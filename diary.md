@@ -3,6 +3,11 @@
 I read through chapter 1, which didn't have any exercises. The operator `??` was
 new to me, and I wrote its semantics down in comparison to the `||` operator.
 
+I also decided to use `prettier` as a formatter. By default, it uses double
+quotes for strings, trailing commas, and a indentation with two space
+characters. (I'd prefer four, but I'll stick to the standard settings
+nonetheless.)
+
 # Day -2 (2024-09-29)
 
 I wanted to start the _Daily Frontend Grind_ in October; but here I am. I
