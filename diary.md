@@ -1,3 +1,8 @@
+# Day -1 (2024-09-30)
+
+I read through chapter 1, which didn't have any exercises. The operator `??` was
+new to me, and I wrote its semantics down in comparison to the `||` operator.
+
 # Day -2 (2024-09-29)
 
 I wanted to start the _Daily Frontend Grind_ in October; but here I am. I
