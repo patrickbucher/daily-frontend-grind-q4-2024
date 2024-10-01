@@ -1,3 +1,15 @@
+# Day 0 (2024-10-01)
+
+It's October: the last quarter of the year, which I'd like to devote to web
+frontend programming—at least for roughly one hour every morning.
+
+I worked through chapter 2, which had some easy exercises to do.
+
+By accident, I figured out that Deno has a `fmt` command, which seems to do the
+same as `prettier`. Typing `deno fmt` and `prettier -w` is roughly the same, but
+I'll stick to the former when I work with Deno, and use the latter in any other
+environment.
+
 # Day -1 (2024-09-30)
 
 I read through chapter 1, which didn't have any exercises. The operator `??` was
