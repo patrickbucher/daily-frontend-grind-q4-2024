@@ -1,3 +1,9 @@
+# Day 1 (2024-10-02)
+
+I worked through chapter 3 of _Eloquent JavaScript_ and documented how to use
+Deno as a REPL with a file to be evaluated first (e.g. containing function
+definitions to be called inside the REPL).
+
 # Day 0 (2024-10-01)
 
 It's October: the last quarter of the year, which I'd like to devote to web
