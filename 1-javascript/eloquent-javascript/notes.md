@@ -74,3 +74,77 @@ for (let i of [1, 2, 3]) {
   console.log(i);
 }
 ```
+
+## Rest Parameters
+
+Functions can accept a variable number of arguments as _rest parameters_:
+
+```javascript
+function sum(...numbers) {
+  let sum = 0;
+  for (const number of numbers) {
+    sum += number;
+  }
+  return sum;
+}
+```
+
+Such functions can be called either using stand-alone arguments:
+
+```javascript
+sum(1, 2, 3, 4);
+```
+
+Or by turning an array into rest parameters:
+
+```javascript
+const numbers = [1, 2, 3, 4];
+sum(...numbers);
+```
+
+This technique can also be used to nest arrays:
+
+```javascript
+const numbers = [4, 5, 6];
+const moreNumbers = [1, 2, 3, ...numbers, 7, 8, 9];
+console.log(moreNumbers);
+```
+
+Output:
+
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Or with objects:
+
+```javascript
+const physique = {
+  weightKg: 76.0,
+  heightCm: 188,
+};
+
+const name = {
+  firstName: "Patrick",
+  lastName: "Bucher",
+};
+
+const combined = {
+  age: 36,
+  ...name,
+  ...physique,
+  country: "Switzerland",
+};
+
+console.log(combined);
+```
+
+Output:
+
+    {
+      age: 36,
+      firstName: "Patrick",
+      lastName: "Bucher",
+      weightKg: 76,
+      heightCm: 188,
+      country: "Switzerland"
+    }
+
