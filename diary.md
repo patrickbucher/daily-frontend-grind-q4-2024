@@ -1,6 +1,6 @@
 # Day 2 (2024-10-03)
 
-I continued working through chapter 4.
+I worked through chapter 4, which had quite some challenging exercises.
 
 # Day 1 (2024-10-02)
 
