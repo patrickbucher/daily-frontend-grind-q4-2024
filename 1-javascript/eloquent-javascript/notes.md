@@ -63,3 +63,14 @@ Properties can be copied into an object from another object using
 ```javascript
 Object.assign(person, { profession: "Programmer", country: "Switzerland" });
 ```
+
+## Loops
+
+Unlike other programming languages, looping over the elements of an array is
+_not_ done with `for`/`in` but with `for`/**`of`**:
+
+```javascript
+for (let i of [1, 2, 3]) {
+  console.log(i);
+}
+```
