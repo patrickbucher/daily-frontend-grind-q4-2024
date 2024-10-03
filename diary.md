@@ -1,8 +1,14 @@
+# Day 2 (2024-10-03)
+
+I continued working through chapter 4.
+
 # Day 1 (2024-10-02)
 
 I worked through chapter 3 of _Eloquent JavaScript_ and documented how to use
 Deno as a REPL with a file to be evaluated first (e.g. containing function
 definitions to be called inside the REPL).
+
+I started reading chapter 4 in the evening on the train.
 
 # Day 0 (2024-10-01)
 
