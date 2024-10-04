@@ -1,3 +1,8 @@
+# Day 3 (2024-10-04)
+
+I worked through chapter 5 about higher-order functions, which wasn't too
+difficult, and neither were the exercises.
+
 # Day 2 (2024-10-03)
 
 I worked through chapter 4, which had quite some challenging exercises.
