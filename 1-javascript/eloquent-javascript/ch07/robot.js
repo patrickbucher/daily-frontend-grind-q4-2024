@@ -60,20 +60,18 @@ let first = new VillageState("Post Office", [{
 }]);
 let next = first.move("Alice's House");
 
-console.log(next.place);
-console.log(next.parcels);
-console.log(first.place);
+//console.log(next.place);
+//console.log(next.parcels);
+//console.log(first.place);
 
 function runRobot(state, robot, memory) {
   for (let turn = 0;; turn++) {
     if (state.parcels.length == 0) {
-      console.log(`Done in ${turn} turns`);
-      break;
+      return turn;
     }
     let action = robot(state, memory);
     state = state.move(action.direction);
     memory = action.memory;
-    console.log(`Moved to ${action.direction}`);
   }
 }
 
@@ -99,8 +97,6 @@ VillageState.random = function (parcelCount = 5) {
   return new VillageState("Post Office", parcels);
 };
 
-runRobot(VillageState.random(), randomRobot);
-
 const mailRoute = [
   "Alice's House",
   "Cabin",
@@ -123,8 +119,6 @@ function routeRobot(state, memory) {
   }
   return { direction: memory[0], memory: memory.slice(1) };
 }
-
-runRobot(VillageState.random(), routeRobot);
 
 function findRoute(graph, from, to) {
   let work = [{ at: from, route: [] }];
@@ -153,4 +147,28 @@ function goalOrientedRobot({ place, parcels }, route) {
   return { direction: route[0], memory: route.slice(1) };
 }
 
+function compareRobots(robotA, robotB, memory) {
+  let turnsA = 0, turnsB = 0;
+  for (let i = 0; i < 100; i++) {
+    let state = VillageState.random();
+    turnsA += runRobot(state, robotA, memory);
+    turnsB += runRobot(state, robotB, memory);
+  }
+  console.log(`A: ${turnsA / 100}`);
+  console.log(`B: ${turnsB / 100}`);
+}
+
+console.log("random vs: route");
+compareRobots(randomRobot, routeRobot);
+
+console.log("route vs: goal");
+compareRobots(routeRobot, goalOrientedRobot);
+
+console.log("goal vs: random");
+compareRobots(goalOrientedRobot, randomRobot);
+
+/* manual test code
+runRobot(VillageState.random(), randomRobot);
+runRobot(VillageState.random(), routeRobot);
 runRobot(VillageState.random(), goalOrientedRobot);
+*/
