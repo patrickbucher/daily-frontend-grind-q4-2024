@@ -172,3 +172,24 @@ runRobot(VillageState.random(), randomRobot);
 runRobot(VillageState.random(), routeRobot);
 runRobot(VillageState.random(), goalOrientedRobot);
 */
+
+function smartRobot({ place, parcels }, route) {
+  let shortestRoute = undefined, shortestLength = Infinity;
+  if (route == undefined || route.length == 0) {
+    for (let parcel of parcels) {
+      if (parcel.place != place) {
+        route = findRoute(roadGraph, place, parcel.place);
+      } else {
+        route = findRoute(roadGraph, place, parcel.address);
+      }
+      if (route.length < shortestLength) {
+        shortestRoute = route;
+      }
+    }
+    route = shortestRoute;
+  }
+  return { direction: route[0], memory: route.slice(1) };
+}
+
+console.log("goal vs: smart");
+compareRobots(goalOrientedRobot, smartRobot);
