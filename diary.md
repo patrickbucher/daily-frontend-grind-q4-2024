@@ -1,3 +1,9 @@
+# Day 4 (2024-10-05)
+
+I worked through chapter 6 about object-oriented programming. I learned a couple
+of new features, such as private fields, static methods, and how to implement
+iterators. The exercises are well-suited to the chapter.
+
 # Day 3 (2024-10-04)
 
 I worked through chapter 5 about higher-order functions, which wasn't too
