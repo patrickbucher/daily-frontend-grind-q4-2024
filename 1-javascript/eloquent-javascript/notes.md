@@ -148,3 +148,18 @@ Output:
       country: "Switzerland"
     }
 
+# Chapter 6
+
+All objects are based on a prototype:
+
+    > Object.getPrototypeOf([1, 2, 3]) === Array.prototype
+    true
+    > Object.getPrototypeOf({a: 1, b: "foo"}) === Object.prototype
+    true
+
+Use `instanceof` to check for a type:
+
+    > [1, 2, 3] instanceof Array
+    true
+    > {a: 1, b: 2} instanceof Object
+    true
