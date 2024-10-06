@@ -1,3 +1,8 @@
+# Day 5 (2024-10-06)
+
+I worked through chapter 8 in the morning, which only had two rather easy
+exercises.
+
 # Day 4 (2024-10-05)
 
 I worked through chapter 6 about object-oriented programming. I learned a couple
