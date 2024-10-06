@@ -163,3 +163,45 @@ Use `instanceof` to check for a type:
     true
     > {a: 1, b: 2} instanceof Object
     true
+
+# Chapter 9
+
+To match unicode characters, use the suffix `/u` and the following patterns to
+match…
+
+- `\p{L}`: letters
+- `\p{N}`: numeric characters
+- `\p{P}`: punctuation characters
+- `\P{L}`: nonletter
+- `\p{Script=SCRIPT}`: character of a given script
+
+Examples:
+
+    > /\w{3}/u.test('ABC')
+    true
+    > /\w{3}/u.test('ЯБГ')
+    false
+
+    > /\p{L}+/u.test('ABC')
+    true
+    > /\p{L}+/u.test('ЯБГ')
+    true
+
+    > /\p{Script=Cyrillic}+/u.test('Ялта')
+    true
+    > /\p{Script=Cyrillic}+/u.test('Jalta')
+    false
+
+Use the following methods together with regular expressions, which return…
+
+- `RegExp.test(String)`: Boolean (match or mismatch)
+- `RegExp.execute(String)`: Array of Matches
+- `String.replace(RegExp, String/Function)`: String with replacements applied
+- `String.search(RegExp)`: Number (start index of matching regular expression)
+
+There are different options that can be combined:
+
+- `/g`: global
+- `/i`: case-insentitive
+- `/u`: Unicode
+- `/y`: sticky (no lookahead)
