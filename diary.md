@@ -1,7 +1,15 @@
 # Day 5 (2024-10-06)
 
-I worked through chapter 8 in the morning, which only had two rather easy
-exercises.
+I worked through chapter 8 about errors and exception handling in the morning,
+which only had two rather easy exercises.
+
+I also worked through chapter 9 on regex during the day, which had some rather
+challenging exercises.
+
+I went rather quickly through the first 9 chapters. For October, I planned to do
+two chapters in three days. Now I rather did three chapters in two days. But now
+begins the part I missed out on so far: modules and async programming. It's time
+to slow down and work carefully through those.
 
 # Day 4 (2024-10-05)
 
