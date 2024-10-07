@@ -1,3 +1,9 @@
+# Day 6 (2024-10-07)
+
+I worked through chapter 10 about modules, which was rather thin. Doing some
+small examples was enough, and I didn't bother working through the exercises,
+which don't go beyond my own examples, or are about CommonJS, which I'll ignore.
+
 # Day 5 (2024-10-06)
 
 I worked through chapter 8 about errors and exception handling in the morning,
