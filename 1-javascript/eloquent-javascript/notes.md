@@ -205,3 +205,92 @@ There are different options that can be combined:
 - `/i`: case-insentitive
 - `/u`: Unicode
 - `/y`: sticky (no lookahead)
+
+# Chapter 10
+
+ECMAScript Modules (_ES Modules_) can `export` bindigs (classes, functions,
+constants) to make them avavailable for `import` in other modules.
+
+Given a module `weekdays.js`:
+
+```javascript
+const names = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+export function getName(date) {
+  return names[date.getDay()];
+}
+
+export function getDay(name) {
+  return names.indexOf(date.getDay());
+}
+```
+
+The module `today.js` can use its functionality as follows:
+
+```javascript
+import { getName } from "./weekdays.js";
+
+const now = new Date();
+const day = getName(now);
+console.log(`Today is ${day}.`);
+```
+
+The way modules are resolved depends on the platform (file system paths on
+Node.js and Deno, web addresses in the browser).
+
+The `export` statement can only be used on top-level declarations, not inside
+blocks.
+
+## Alias Imports
+
+A binding can be imported under an alias name using `as`:
+
+```javascript
+import { getName as getWeekDayName } from "./weekdays.js";
+
+const now = new Date();
+const day = getWeekDayName(now);
+console.log(`Today is ${day}.`);
+```
+
+## Default Exports
+
+If a module only exports a single binding, this can be done using the `default`
+keyword (`factorial.js`):
+
+```javascript
+export default function factorial(n) {
+  if (n < 0) {
+    throw new Error(`cannot compute factorial of a negative number ${n}`);
+  } else if (n == 0) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+```
+
+The `factorial` function can be imported under any name as follows:
+
+```javascript
+import fac from "./factorial.js";
+
+const x = 10;
+const y = fac(x);
+console.log(`!${x}=${y}`);
+```
+
+## CommonJS Modules
+
+Node.js introduced its own module system, _CommonJS_, which uses `require` to
+import other modules and uses `exports` to define the bindings to be exposed.
+Since Node.js also supports ES Modules, new projects should rather use ES
+Modules instead of CommonJS modules.
