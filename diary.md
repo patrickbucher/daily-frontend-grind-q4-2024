@@ -1,3 +1,7 @@
+# Day 7 (2024-10-08)
+
+I started reading chapter 11 on asynchronous programming.
+
 # Day 6 (2024-10-07)
 
 I worked through chapter 10 about modules, which was rather thin. Doing some
