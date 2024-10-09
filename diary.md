@@ -1,3 +1,8 @@
+# Day 8 (2024-10-09)
+
+I continued working through chapter 11 and now better understand the handling of
+`Promise`.
+
 # Day 7 (2024-10-08)
 
 I started reading chapter 11 on asynchronous programming.

@@ -269,6 +269,7 @@ keyword (`factorial.js`):
 ```javascript
 export default function factorial(n) {
   if (n < 0) {
+
     throw new Error(`cannot compute factorial of a negative number ${n}`);
   } else if (n == 0) {
     return 1;
@@ -294,3 +295,66 @@ Node.js introduced its own module system, _CommonJS_, which uses `require` to
 import other modules and uses `exports` to define the bindings to be exposed.
 Since Node.js also supports ES Modules, new projects should rather use ES
 Modules instead of CommonJS modules.
+
+# Chapter 11
+
+`Promise.resolve(value)` wraps the `value` in a `Promise`. If `value` is already
+a `Promise`, it is simply returned.
+
+`new Promise(resolve)` creates a new `Promise` that immediately runs the
+function it is passed to. This function's `resolve` argument is itself a
+function that resolves into a value.
+
+The `then` method handles the resolved value and itself returns a `Promise`.
+
+```javascript
+let p = new Promise(resolve => resolve(42));
+p.then(value => console.log(value)); // 42
+p.then(console.log); // same
+```
+
+Multiple `then` calls can be chained as a pipeline:
+
+```javascript
+let x = 2;
+let y = new Promise((resolve) => resolve(x))
+  .then((x) => x + 2) // 4
+  .then((x) => x * 2) // 8
+  .then((x) => x - 2) // 6
+  .then((x) => x / 2) // 3
+  .then(console.log);
+```
+
+A `Promise` can be _resolved_ (resulting in a value) or _rejected_ (resulting in
+an error). If an exception is thrown, the `Promise` produced by its `then` call
+is rejected. The error is propagated through the entire chain of `then` calls.
+
+A rejected `Promise` can be created using `Promise.reject()`.
+
+Both resolved and rejected promises can be handled alongside:
+
+```javascript
+function applyOpsWithTwo(x) {
+  new Promise((resolve, reject) => {
+    const parsed = Number.parseFloat(x);
+    if (Number.isNaN(parsed)) {
+      reject(new Error(`${x} cannot be parsed as float`));
+    } else {
+      resolve(parsed);
+    }
+  }).then((x) => x + 2)
+    .then((x) => x * 2)
+    .then((x) => x - 2)
+    .then((x) => x / 2)
+    .then((result) => console.log(`result: ${result}`))
+    .catch((reason) => console.log(`error: ${reason}`));
+}
+
+applyOpsWithTwo(" 13.2 ");
+applyOpsWithTwo("-OooO-");
+```
+
+Output:
+
+    result: 14.2
+    error: Error: -OooO- cannot be parsed as float
