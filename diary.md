@@ -1,3 +1,8 @@
+# Day 9 (2024-10-10)
+
+I continued working through chapter 11. I learned about `async`/`await` and how
+those keywords relate to promises, and about generators.
+
 # Day 8 (2024-10-09)
 
 I continued working through chapter 11 and now better understand the handling of

@@ -298,6 +298,8 @@ Modules instead of CommonJS modules.
 
 # Chapter 11
 
+## `Promise`
+
 `Promise.resolve(value)` wraps the `value` in a `Promise`. If `value` is already
 a `Promise`, it is simply returned.
 
@@ -358,3 +360,61 @@ Output:
 
     result: 14.2
     error: Error: -OooO- cannot be parsed as float
+
+## `async`/`await`
+
+A function marked as `async` returns a `Promise`. This `Promise` is resolved,
+when the function returns something; it is rejected, when the body throws an
+exception.
+
+Inside such a function, execution can be stopped until a `Promise` is resolved
+using the `await` keyword.
+
+```javascript
+async function increment(x) {
+  return x + 1;
+}
+
+async function square(x) {
+  return x * x;
+}
+
+async function squaredIncrement(x) {
+  let incremented = await increment(x);
+  let squared = await square(incremented);
+  return squared;
+}
+
+squaredIncrement(3).then(console.log);
+```
+
+The `squaredIncrement` function could also be written as:
+
+```javascript
+function squaredIncrement(x) {
+  return increment(x).then(square);
+}
+```
+
+## Generators
+
+Generators are functions declared with `function*` and can make use of the
+`yield` keyword, which returns a value and then continues the flow of the
+function. Such a function actually returns an iterator, with `yield` returning
+the next value of the iteration.
+
+```javascript
+function* fibs(n) {
+  let a = 1, b = 1;
+  for (let i = 0; i < n; i++) {
+    yield a;
+    let next = a + b;
+    a = b;
+    b = next;
+  }
+}
+
+for (let fib of fibs(10)) {
+  console.log(fib);
+}
+```
