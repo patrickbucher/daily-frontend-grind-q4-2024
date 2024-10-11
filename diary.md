@@ -1,3 +1,9 @@
+# Day 10 (2024-10-11)
+
+I finished reading chapter 11, which unfortunately uses fictional examples that
+cannot be run as they are. The exercises are based on those examples, which
+rather annoys me.
+
 # Day 9 (2024-10-10)
 
 I continued working through chapter 11. I learned about `async`/`await` and how

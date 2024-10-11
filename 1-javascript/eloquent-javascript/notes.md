@@ -361,6 +361,38 @@ Output:
     result: 14.2
     error: Error: -OooO- cannot be parsed as float
 
+Multiple promises can be turned into a single promise using the static
+`Promise.all` method:
+
+```javascript
+function applyOps(x) {
+  let plusTwo = new Promise((resolve, _) => resolve(x + 2));
+  let minusTwo = new Promise((resolve, _) => resolve(x - 2));
+  let timesTwo = new Promise((resolve, _) => resolve(x * 2));
+  let divideByTwo = new Promise((resolve, reject) => {
+    if (x != 0) {
+      resolve(x / 2);
+    } else {
+      reject(new Error("divide by zero"));
+    }
+  });
+  Promise.all([plusTwo, minusTwo, timesTwo, divideByTwo])
+    .then((y) => console.log(`results: ${y}`))
+    .catch((e) => console.log(`failed: ${e}`));
+}
+
+applyOps(3);
+applyOps(0);
+```
+
+This `Promise` resolves into an array of results with its length corresponding
+to the number of promises originally passed.
+
+Output:
+
+    results: 5,1,6,1.5
+    failed: Error: divide by zero
+
 ## `async`/`await`
 
 A function marked as `async` returns a `Promise`. This `Promise` is resolved,

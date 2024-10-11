@@ -52,3 +52,22 @@ function applyOpsWithTwo(x) {
 
 applyOpsWithTwo(" 13.2 ");
 applyOpsWithTwo("-OooO-");
+
+function applyOps(x) {
+  let plusTwo = new Promise((resolve, _) => resolve(x + 2));
+  let minusTwo = new Promise((resolve, _) => resolve(x - 2));
+  let timesTwo = new Promise((resolve, _) => resolve(x * 2));
+  let divideByTwo = new Promise((resolve, reject) => {
+    if (x != 0) {
+      resolve(x / 2);
+    } else {
+      reject(new Error("divide by zero"));
+    }
+  });
+  Promise.all([plusTwo, minusTwo, timesTwo, divideByTwo])
+    .then((y) => console.log(`results: ${y}`))
+    .catch((e) => console.log(`failed: ${e}`));
+}
+
+applyOps(3);
+applyOps(0);
