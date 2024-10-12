@@ -71,3 +71,36 @@ function applyOps(x) {
 
 applyOps(3);
 applyOps(0);
+
+function promiseAll(...promises) {
+  return new Promise((resolve, reject) => {
+    const results = [];
+    const errors = [];
+    for (const p of promises) {
+      p.then((r) => results.push(r)).catch((e) => errors.push(e));
+    }
+    if (errors.length > 0) {
+      reject(errors);
+    } else {
+      resolve(results);
+    }
+  });
+}
+
+function arithmeticPromises(x, y) {
+  promiseAll(
+    new Promise((resolve, _) => resolve(x + y)),
+    new Promise((resolve, _) => resolve(x - y)),
+    new Promise((resolve, _) => resolve(x * y)),
+    new Promise((resolve, reject) => {
+      if (y == 0) {
+        reject(new Error("divide by zero"));
+      } else {
+        resolve(x / y);
+      }
+    }),
+  ).then((x) => console.log(`promiseAll: ${x}`)).catch(console.log);
+}
+
+arithmeticPromises(3, 2);
+arithmeticPromises(2, 0);
