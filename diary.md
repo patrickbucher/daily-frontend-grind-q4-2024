@@ -1,7 +1,7 @@
 # Day 11 (2024-10-12)
 
 I half-heartedly worked through the last exercise of chapter 11, which is about
-implementing `Promise.all`.
+implementing `Promise.all`. I also started working through chapter 12.
 
 # Day 10 (2024-10-11)
 
