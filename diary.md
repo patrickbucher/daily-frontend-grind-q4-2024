@@ -1,3 +1,10 @@
+# Day 12 (2024-10-13)
+
+I finished working through chapter 12, but I skipped the exercises. I'm
+interested in revisiting JavaScript, not in building programming languages.
+
+Chapter 13 will be about the browser, which is closer to my personal goal.
+
 # Day 11 (2024-10-12)
 
 I half-heartedly worked through the last exercise of chapter 11, which is about
