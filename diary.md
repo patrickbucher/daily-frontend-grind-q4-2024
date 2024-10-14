@@ -1,3 +1,11 @@
+# Day 13 (2024-10-14)
+
+I read through the very short chapter 13, which showed how to load ES modules.
+However, it doesn't work using the `file://` protocol, so I need to find a very
+small web server for testing.
+
+I found darkhttpd, which does _exactly_ what I need.
+
 # Day 12 (2024-10-13)
 
 I finished working through chapter 12, but I skipped the exercises. I'm
