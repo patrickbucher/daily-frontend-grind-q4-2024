@@ -6,6 +6,9 @@ small web server for testing.
 
 I found darkhttpd, which does _exactly_ what I need.
 
+I started reading chapter 14 on the train and worked through the first exercise
+while waiting in the hospital.
+
 # Day 12 (2024-10-13)
 
 I finished working through chapter 12, but I skipped the exercises. I'm
