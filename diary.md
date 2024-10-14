@@ -9,6 +9,9 @@ I found darkhttpd, which does _exactly_ what I need.
 I started reading chapter 14 on the train and worked through the first exercise
 while waiting in the hospital. I finished the exercises on my way back.
 
+It's October 14th, and I have finished 14 chapters out of 22. If I continue like
+this, I'll be able to get started with TypeScript earlier.
+
 # Day 12 (2024-10-13)
 
 I finished working through chapter 12, but I skipped the exercises. I'm
