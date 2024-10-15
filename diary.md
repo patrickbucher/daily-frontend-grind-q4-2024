@@ -1,6 +1,7 @@
 # Day 14 (2024-10-15)
 
-I read chapter 15 and worked through exercise 1 in the morning.
+I read chapter 15 and worked through exercise 1 in the morning. I did the other
+two exercises in the evening.
 
 # Day 13 (2024-10-14)
 
