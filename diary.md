@@ -1,3 +1,7 @@
+# Day 14 (2024-10-15)
+
+I read chapter 15 and worked through exercise 1 in the morning.
+
 # Day 13 (2024-10-14)
 
 I read through the very short chapter 13, which showed how to load ES modules.
