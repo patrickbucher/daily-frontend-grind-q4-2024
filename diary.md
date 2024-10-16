@@ -1,3 +1,8 @@
+# Day 15 (2024-10-16)
+
+I started working through chapter 16, in which a small platform game is
+implemented.
+
 # Day 14 (2024-10-15)
 
 I read chapter 15 and worked through exercise 1 in the morning. I did the other
