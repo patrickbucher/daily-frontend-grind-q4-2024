@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Game</title>
+  </head>
+  <body>
+    <script src="game.js"></script>
+    <script>
+      let simpleLevel = new Level(simpleLevelPlan);
+      let display = new DOMDisplay(document.body, simpleLevel);
+      display.syncState(State.start(simpleLevel));
+    </script>
+  </body>
+</html>

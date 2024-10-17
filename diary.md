@@ -1,3 +1,8 @@
+# Day 16 (2024-10-17)
+
+I continued working through chapter 16. Unfortunately, the game isn't rendered
+as intended, so I need to debug the code.
+
 # Day 15 (2024-10-16)
 
 I started working through chapter 16, in which a small platform game is
