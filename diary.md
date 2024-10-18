@@ -5,6 +5,8 @@ belong to an `if`-statement, when in fact it was only a single instruction
 to be executed conditionally. (The author probably had to omit the curly braces
 in order to save space on the page to prevent an ugly page break.)
 
+I continued with the implementation of the game.
+
 # Day 16 (2024-10-17)
 
 I continued working through chapter 16. Unfortunately, the game isn't rendered
