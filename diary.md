@@ -1,3 +1,9 @@
+# Day 18 (2024-10-19)
+
+I worked through the rest of chapter 16, but I didn't do the exercises, because
+they don't align to what I'm trying to achieve right now. I'd like to move
+through the book quickly and then learn TypeScript thoroughly.
+
 # Day 17 (2024-10-18)
 
 I figured out the issue from yesterday; I misread a sequence of instructions to
