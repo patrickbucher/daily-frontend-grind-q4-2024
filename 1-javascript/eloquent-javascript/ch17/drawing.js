@@ -64,7 +64,7 @@ const results = [
   { name: "Unsatisfied", count: 510, color: "pink" },
   { name: "No comment", count: 175, color: "silver" },
 ];
-const total = results.reduce((sum, {count}) => sum + count, 0);
+const total = results.reduce((sum, { count }) => sum + count, 0);
 let currentAngle = -0.5 * Math.PI;
 const x = WIDTH / 2 + WIDTH / 4;
 const y = HEIGHT / 2 + HEIGHT / 4;
@@ -75,7 +75,7 @@ for (const result of results) {
   cx.arc(x, y, radius, currentAngle, currentAngle + sliceAngle);
   currentAngle += sliceAngle;
   cx.lineTo(x, y);
-  cx.fillStyle = result.color; 
+  cx.fillStyle = result.color;
   cx.fill();
 }
 
