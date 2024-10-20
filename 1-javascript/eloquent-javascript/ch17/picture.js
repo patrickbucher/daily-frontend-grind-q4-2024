@@ -18,6 +18,7 @@ catImg.addEventListener("load", () => {
   let max = 800;
   for (let x = start; x < max; x += 40) {
     factor = x / max;
+    cx.rotate(0.0025 * Math.PI);
     cx.drawImage(catImg, x, 10, catImg.width * factor, catImg.height * factor);
     cx.drawImage(
       mouseImg,
