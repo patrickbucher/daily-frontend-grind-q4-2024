@@ -1,3 +1,7 @@
+# Day 19 (2024-10-20)
+
+I worked through the first half of chapter 17, which is about Canvas.
+
 # Day 18 (2024-10-19)
 
 I worked through the rest of chapter 16, but I didn't do the exercises, because
