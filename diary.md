@@ -2,6 +2,9 @@
 
 I worked through the first half of chapter 17, which is about Canvas.
 
+In the evening, I read the rest of the chapter and made some examples. Instead
+of doing the exercises, I displayed the Doom Guy as sprites.
+
 # Day 18 (2024-10-19)
 
 I worked through the rest of chapter 16, but I didn't do the exercises, because
