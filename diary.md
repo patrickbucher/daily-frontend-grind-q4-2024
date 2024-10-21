@@ -1,3 +1,8 @@
+# Day 20 (2024-10-21)
+
+I started working through chapter 18. As an own example, I started rewriting my
+Rust `warmup` program as a form.
+
 # Day 19 (2024-10-20)
 
 I worked through the first half of chapter 17, which is about Canvas.
