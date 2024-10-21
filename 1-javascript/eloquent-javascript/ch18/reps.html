@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="reps.css" />
+    <title>Repetition Calculator</title>
+  </head>
+  <body>
+    <h1>Repetition Calculator</h1>
+    <form id="reps-form">
+      <div>
+        <label for="repetitions">Repetitions</label>
+        <input type="number" name="repetitions" min="1" value="8" />
+      </div>
+      <div>
+        <label for="weight">Target Weight</label>
+        <input type="number" name="weight" min="0" step="0.05" value="15.0" />
+      </div>
+      <div>
+        <label for="buildup">Buildup</label>
+        <input type="text" name="buildup" value="7.5, 10, 12.5" />
+      </div>
+      <div>
+        <label for="submit"></label>
+        <input type="submit" name="submit" value="Calculate" />
+      </div>
+    </form>
+    <ol id="output"></ol>
+    <script src="reps.js"></script>
+  </body>
+</html>
