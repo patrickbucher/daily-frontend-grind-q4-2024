@@ -450,3 +450,52 @@ for (let fib of fibs(10)) {
   console.log(fib);
 }
 ```
+
+# Chapter 18
+
+URL encoding/decoding can be performed using the functions `encodeURIComponent`
+and `decodeURIComponent`:
+
+```javascript
+const input = 'This is... a question?';
+const encoded = encodeURIComponent(input);
+const decoded = decodeURIComponent(encoded);
+console.log(encoded);
+console.log(decoded);
+```
+
+Output:
+
+    This%20is...%20a%20question%3F
+    This is... a question?
+
+URI encoding uses a percent-sign `%` with a hexadecimal character encoding (e.g.
+`0x20` for `32` for space).
+
+## HTTP Requests
+
+HTTP requests can be done using `fetch`, which returns a `Promise` that resolves
+to a `Response` object:
+
+```javascript
+let response = await fetch('https://www.paedubucher.ch');
+console.log(response.status); // 200
+console.log(response.headers.get("content-type")); // text/html
+```
+
+The `text()` method of `Response` returns another `Promise` that resolves to the
+actual content of the response body. The `json()` method returns a `Promise`
+that is rejected when the response body cannot be parsed to valid JSON.
+
+As additional parameters, `fetch` can be handed over a map, e.g. containing the
+HTTP method to be used:
+
+```javascript
+let response = await fetch("https://www.paedubucher.ch", { method: "HEAD" });
+```
+
+Pages being loaded from a specific domain cannot by default `fetch` resources of
+other domains, unless the server providing the script explicitly allows this
+using the header:
+
+    Access-Control-Allow-Origin: *
