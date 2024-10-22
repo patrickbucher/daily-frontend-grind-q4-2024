@@ -1,3 +1,7 @@
+# Day 21 (2024-10-22)
+
+I finished the repetition calculator I started yesterday.
+
 # Day 20 (2024-10-21)
 
 I started working through chapter 18. As an own example, I started rewriting my
