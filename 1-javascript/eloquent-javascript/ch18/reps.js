@@ -1,10 +1,21 @@
 document.addEventListener("DOMContentLoaded", (_) => {
+  const defaults = JSON.parse(localStorage.getItem("repCalc")) ?? {
+    repetitions: 8,
+    targetWeight: 15.0,
+    buildup: [7.5, 10, 12.5],
+  };
+
   const form = document.getElementById("reps-form");
   const submitButton = form.elements.submit;
   const repetitionsInput = form.elements.repetitions;
   const weightInput = form.elements.weight;
   const buildupInput = form.elements.buildup;
   const outputList = document.getElementById("output");
+
+  repetitionsInput.value = defaults.repetitions;
+  weightInput.value = defaults.targetWeight;
+  buildupInput.value = defaults.buildup.reduce((acc, e) => `${acc}, ${e}`);
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const repetitions = Number.parseInt(repetitionsInput.value);
@@ -12,6 +23,16 @@ document.addEventListener("DOMContentLoaded", (_) => {
     const buildup = buildupInput.value
       .split(",")
       .map((s) => Number.parseInt(s.trim()));
+
+    localStorage.setItem(
+      "repCalc",
+      JSON.stringify({
+        repetitions: repetitions,
+        targetWeight: weight,
+        buildup: buildup,
+      }),
+    );
+
     const sets = calculateSets(repetitions, weight, buildup);
     while (outputList.firstChild) {
       outputList.removeChild(outputList.firstChild);
