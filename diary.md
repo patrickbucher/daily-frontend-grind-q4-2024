@@ -1,3 +1,12 @@
+# Day 22 (2024-10-23)
+
+I finished reading chapter 18 and integrated local storage to my repetition
+counter application. I worked through the first exercise, but skipped the rest.
+(I don't want to know how to evaluate user input as JavaScript code, and I
+already implemented Conway's Game of Life multiple times.)
+
+This leaves me with four chapters and eight days left, which should be doable.
+
 # Day 21 (2024-10-22)
 
 I finished the repetition calculator I started yesterday.
