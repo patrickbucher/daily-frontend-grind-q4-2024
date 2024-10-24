@@ -1,3 +1,8 @@
+# Day 23 (2024-10-24)
+
+I started working through chapter 19, in which a pixel art editor is
+implemented.
+
 # Day 22 (2024-10-23)
 
 I finished reading chapter 18 and integrated local storage to my repetition
