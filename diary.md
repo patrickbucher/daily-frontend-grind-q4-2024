@@ -1,3 +1,7 @@
+# Day 24 (2024-10-25)
+
+I continued working through chapter 19.
+
 # Day 23 (2024-10-24)
 
 I started working through chapter 19, in which a pixel art editor is
