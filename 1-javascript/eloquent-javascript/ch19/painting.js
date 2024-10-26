@@ -35,7 +35,7 @@ function elt(type, props, ...children) {
       if (typeof child != "string") {
         dom.appendChild(child);
       } else {
-        dom.appendChild(document.createTetNode(child));
+        dom.appendChild(document.createTextNode(child));
       }
     }
   }
@@ -53,7 +53,7 @@ class PictureCanvas {
     this.syncState(picture);
   }
 
-  suncState(picture) {
+  syncState(picture) {
     if (this.picture == picture) {
       return;
     }
@@ -69,8 +69,8 @@ function drawPicture(picture, canvas, scale) {
 
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
-      xs.fillStyle = picture.pixel(x, y);
-      xs.fillRect(x * scale, y * scale, scale, scale);
+      cx.fillStyle = picture.pixel(x, y);
+      cx.fillRect(x * scale, y * scale, scale, scale);
     }
   }
 }
@@ -85,7 +85,7 @@ PictureCanvas.prototype.mouse = function (downEvent, onDown) {
     return;
   }
   let move = (moveEvent) => {
-    if (mouseEvent.buttons == 0) {
+    if (moveEvent.buttons == 0) {
       this.dom.removeEventListener("mousemove", move);
     } else {
       let newPos = pointerPosition(moveEvent, this.dom);
@@ -253,4 +253,167 @@ function fill({ x, y }, state, dispatch) {
     }
   }
   dispatch({ picture: state.picture.draw(drawn) });
+}
+
+function pick(pos, state, dispatch) {
+  dispatch({ color: state.picture.pixel(pos.x, pos.y) });
+}
+
+class SaveButton {
+  constructor(state) {
+    this.picture = state.picture;
+    this.dom = elt(
+      "button",
+      {
+        onclick: () => this.save(),
+      },
+      "💾 Save",
+    );
+  }
+
+  save() {
+    let canvas = elt("canvas");
+    drawPicture(this.picture, canvas, 1);
+    let link = elt("a", {
+      href: canvas.toDataURL(),
+      download: "pixelart.png",
+    });
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+  syncState(state) {
+    this.picture = state.picture;
+  }
+}
+
+class LoadButton {
+  constructor(_, { dispatch }) {
+    this.dom = elt(
+      "button",
+      {
+        onclick: () => startLoad(dispatch),
+      },
+      "📁 Load",
+    );
+  }
+  syncState() {}
+}
+
+function startLoad(dispatch) {
+  let input = elt("input", {
+    type: "file",
+    onchange: () => finishLoad(input.files[0], dispatch),
+  });
+  document.body.appendChild(input);
+  input.click();
+  input.remove();
+}
+
+function finishLoad(file, dispatch) {
+  if (file == null) {
+    return;
+  }
+  let reader = new FileReader();
+  reader.addEventListener("load", () => {
+    let image = elt("img", {
+      onload: () =>
+        dispatch({
+          picture: pictureFromImage(image),
+        }),
+      src: reader.result,
+    });
+  });
+  reader.readAsDataURL(file);
+}
+
+function pictureFromImage(image) {
+  let width = Math.min(100, image.width);
+  let height = Math.min(100, image.height);
+  let canvas = elt("canvas", { width, height });
+  let cx = canvas.getContext("2d");
+  cx.drawImage(image, 0, 0);
+  let pixels = [];
+  let { data } = cx.getImageData(0, 0, width, height);
+  function hex(n) {
+    return n.toString(16).padStart(2, "0");
+  }
+  for (let i = 0; i < data.length; i += 4) {
+    let [r, g, b] = data.slice(i, i + 3);
+    pixels.push("#" + hex(r) + hex(g) + hex(b));
+  }
+  return new Picture(width, height, pixels);
+}
+
+function historyUpdateState(state, action) {
+  if (action.undo == true) {
+    if (state.done.length == 0) {
+      return state;
+    }
+    return {
+      ...state,
+      picture: state.done[0],
+      done: state.done.slice(1),
+      doneAt: 0,
+    };
+  } else if (action.picture && state.doneAt < Date.now() - 1000) {
+    return {
+      ...state,
+      ...action,
+      done: [state.picture, ...state.done],
+      doneAt: Date.now(),
+    };
+  } else {
+    return { ...state, ...action };
+  }
+}
+
+class UndoButton {
+  constructor(state, { dispatch }) {
+    this.dom = elt(
+      "button",
+      {
+        onclick: () => dispatch({ undo: true }),
+        disabled: state.done.length == 0,
+      },
+      "⎌ Undo",
+    );
+  }
+  syncState(state) {
+    this.dom.disabled = state.done.length == 0;
+  }
+}
+
+const startState = {
+  tool: "draw",
+  color: "#000000",
+  picture: Picture.empty(60, 30, "#f0f0f0"),
+  done: [],
+  doneAt: 0,
+};
+
+const baseTools = { draw, fill, rectangle, pick };
+
+const baseControls = [
+  ToolSelect,
+  ColorSelect,
+  SaveButton,
+  LoadButton,
+  UndoButton,
+];
+
+function startPixelEditor({
+  state = startState,
+  tools = baseTools,
+  controls = baseControls,
+}) {
+  let app = new PixelEditor(state, {
+    tools,
+    controls,
+    dispatch(action) {
+      state = historyUpdateState(state, action);
+      app.syncState(state);
+    },
+  });
+  return app.dom;
 }

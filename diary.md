@@ -1,3 +1,8 @@
+# Day 25 (2024-10-26)
+
+I finished working through chapter 19, but didn't bother with the exercises. The
+next part on Node.js looks more interesting, and there I'll do the exercises.
+
 # Day 24 (2024-10-25)
 
 I continued working through chapter 19.
