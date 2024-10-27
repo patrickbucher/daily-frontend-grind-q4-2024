@@ -499,3 +499,23 @@ other domains, unless the server providing the script explicitly allows this
 using the header:
 
     Access-Control-Allow-Origin: *
+
+# Chapter 20
+
+Exiting Node with a return code:
+
+```plain
+$ node
+> process.exit(1);
+$ echo $?
+1
+```
+
+Access arguments:
+
+```javascript
+console.log(process.argv);
+```
+
+Use the extension `.mjs` for ES modules. Modules can be referred to as relatives
+paths, or ar looked for in the `node_modules` folder.

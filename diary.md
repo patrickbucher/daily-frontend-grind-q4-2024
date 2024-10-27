@@ -1,3 +1,14 @@
+# Day 26 (2024-10-27)
+
+Against my intention from yesterday, I did not work on the exercises after
+having read chapter 20. I'm simply fed up working through long given examples
+and then extending them in a way that doesn't build up new knowledge. I also
+read through chapter 21, but didn't even bother to follow along with the code.
+_Eloquent JavaScript_ is a great book, but it's not what I need at the moment.
+
+I finished the book by reading chapter 22 and workign through the two small
+exercises. That's it for JavaScript, on towards TypeScript.
+
 # Day 25 (2024-10-26)
 
 I finished working through chapter 19, but didn't bother with the exercises. The
