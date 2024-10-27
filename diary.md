@@ -9,6 +9,51 @@ _Eloquent JavaScript_ is a great book, but it's not what I need at the moment.
 I finished the book by reading chapter 22 and workign through the two small
 exercises. That's it for JavaScript, on towards TypeScript.
 
+A few reflections are due after the somewhat mixed experience with _Eloquent
+JavaScript_.
+
+First, I didn't feel the urge to go deeply into it. The examples are
+interesting, and Vanilla JS is something I truly like, despite the rather janky
+APIs. On the other side, this learning project (JS, TS, Angular) is _pragmatic_:
+I want to understand the skills necessary for doing more frontend work. So
+Vanilla JS and especially DOM manipulations or "native" Node.js servers are
+clearly not the priority. TypeScript is what I really need to understand. So I
+hope to muster the necessary motivation for the next book.
+
+Second, I'm pretty annoyed by the overall state of programming at the moment.
+Rust is a great language, but the need to go into async programming makes
+everything more complicated. I still don't like this concurrency model, but
+prefer working with "green threads" as in Go or Erlang/Elixir. Unfortunately, Go
+is verbose and relies on `nil`. Elixir lacks the type system I so much started
+to like of Rust. There's no silver bullet. Learning yet another programming
+language isn't the solution either. (OK, maybe Haskell.)
+
+My current haunch is to devote Q1 2025 to Elixir, Ecto, and Phoenix, together
+with an SQL refresher, and maybe getting deeper into PostgreSQL, which is an
+absolute solid technology.
+
+I'd also like TypeScript in a slower way. Since I won't be able to work through
+the entire Angular book this year (it's far too big), I'd rather go deep with
+TypeScript. Here's my plan:
+
+- I'll be using two bookmarks: One for reading while highlighting sections, the
+  other lagging behind, until I summarized the read/highlighted part.
+- Then I'll summarize the highlights on paper to make sure that my notes are a)
+  minimalistic rather than bloated, and b) concise rather than comprehensive.
+- I only go to the computer when I have written notes. I try the concepts out,
+  make some examples, and create a digital personal documentation out of it.
+- I don't know yet by how much the first bookmark should lead the second one.
+  Maybe I should work through entire chapters, maybe I should process a chapter
+  in 2-3 parts to make sure that I'll do a complete round trip every day
+  (reading/highlighting, taking notes, making examples/writing documentation). I
+  tend towards the "small junks" approach, just reading a couple of pages,
+  filling an A5 sheet with notes, then going to the computer. This will also
+  guarantee daily commits and daily exposure to the code.
+
+Working through the next book as I did with the last would be a waste of time.
+Let's go deep and slow instead of broad and fast. (The last couple of chapters
+are about Angular and React, so breadth is a given anyway.)
+
 # Day 25 (2024-10-26)
 
 I finished working through chapter 19, but didn't bother with the exercises. The
