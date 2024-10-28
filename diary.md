@@ -1,3 +1,9 @@
+# Day 27 (2024-10-28)
+
+I started reading _Essential TypeScript 5 (3rd Edition)_. I summarized the most
+important points in the introductory chapter using pen an paper, then
+transferred my notes to a markdown file. This feels almost therapeutic.
+
 # Day 26 (2024-10-27)
 
 Against my intention from yesterday, I did not work on the exercises after
