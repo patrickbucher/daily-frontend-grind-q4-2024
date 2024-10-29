@@ -53,7 +53,7 @@ for this purpose:
 ```json
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2023",
     "outDir": "./dist",
     "rootDir": "./src",
     "module": "CommonJS"
@@ -62,7 +62,7 @@ for this purpose:
 ```
 
 This configuration uses the CommonJS module system and produces JavaScript code
-according to the ECMAScript2022 specification.
+according to the ECMAScript2023 specification.
 
 The main code file is commonly named `index.ts`, which is to be placed into the
 `src/` folder:
