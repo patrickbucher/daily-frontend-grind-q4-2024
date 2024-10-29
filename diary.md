@@ -1,3 +1,10 @@
+# Day 28 (2024-10-29)
+
+I read chapter 2 and summarized the first part (up to the setup and project
+initialization) both on pen and paper and later in my markdown file. I
+absolutely love this (inefficient) way of working, it calms me down and gives me
+deeper understanding.
+
 # Day 27 (2024-10-28)
 
 I started reading _Essential TypeScript 5 (3rd Edition)_. I summarized the most
