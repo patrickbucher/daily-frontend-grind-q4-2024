@@ -80,3 +80,165 @@ This produces a file `dist/index.js` that can be run by Node.js:
 
     $ node dist/index.js
     Hello, World!
+
+### Demo Application: Drivers in a Race
+
+As an example application, multiple drivers entering a race shall be modeled in
+TypeScript. The driver is represented as a class called `Driver`, which is
+defined in `driver.ts`:
+
+```typescript
+export class Driver {
+  public id: number;
+  public name: string;
+  public retired: boolean = false;
+
+  public constructor(id: number, name: string, retired: boolean = false) {
+    this.id = id;
+    this.name = name;
+    this.retired = retired;
+  }
+
+  public describe(): string {
+    return `${this.id}\t${this.name}\t${this.retired ? "[r]" : "[ ]"}`;
+  }
+}
+```
+
+This code uses features that are not available in JavaScript:
+
+- Fields (`id`, `name`, `retired`) and methods (`describe`) are annotated with a
+  type (`number`, `string`, `boolean`), which is written as a suffix after the
+  colon `:`.
+- Fields and methods also have access modifiers (`public`).
+
+TypeScript provides a shorter syntax to initialize the fields of a class that
+are passed to its constructor. The `Driver` class can be writter more concisely
+without loosing any functionality as follows:
+
+```typescript
+export class Driver {
+  // no additional field declaration required
+
+  public constructor(
+    public id: number,
+    public name: string,
+    public retired: boolean = false,
+  ) {
+    // no manual initialization required
+  }
+
+  public describe(): string {
+    return `${this.id}\t${this.name}\t${this.retired ? "[r]" : "[ ]"}`;
+  }
+}
+```
+
+The field declaration and initialization is automatically handled by the
+constructor, whose parameters now also come with access modifiers. The default
+access modifier is `public`, but here it must be defined for the constructor
+parameters so that the compiler detects that concise constructor syntax is being
+used.
+
+Multiple drivers shall be put together in a container class called `Race`, which
+is defined in `race.ts`:
+
+```typescript
+import { Driver } from "./driver";
+
+export class Race {
+  private nextId: number = 0;
+
+  constructor(
+    public track: string,
+    public laps: number,
+    public drivers: Driver[] = [],
+  ) {}
+
+  addDriver(name: string, retired: boolean = false): number {
+    const maxId = Math.max(...this.drivers.map((d) => d.id));
+    const newId = maxId + 1;
+    this.drivers.push(new Driver(newId, name, retired));
+    this.nextId = newId + 1;
+    return newId;
+  }
+
+  getDriverById(id: number): Driver {
+    return this.drivers.find((d) => d.id === id);
+  }
+
+  markRetired(id: number, retired: boolean) {
+    const driver = this.getDriverById(id);
+    if (driver) {
+      driver.retired = retired;
+    }
+  }
+}
+```
+
+The drivers are stored in an array that is annotated with the type `Driver[]`—an
+array of drivers.
+
+Those two classes—`Driver` and `Race`—can interact together as shown in
+`index.ts`:
+
+```typescript
+import { Driver } from "./driver";
+import { Race } from "./race";
+
+const drivers = [
+  new Driver(1, "Freddie Fuel"),
+  new Driver(2, "Eddie Engine"),
+  new Driver(3, "Walter Wheel"),
+];
+const race = new Race("Detroit City Speedwary", 48, drivers);
+
+const lateEntrantId = race.addDriver("Tommy Tardy");
+const lateEntrant = race.getDriverById(lateEntrantId);
+
+const crashed = race.getDriverById(2);
+race.markRetired(crashed.id, true);
+
+for (const driver of race.drivers) {
+  console.log(driver.describe());
+}
+```
+
+Which produces the following output:
+
+    $ tsc && node dist/index.js
+    1	Freddie Fuel	[ ]
+    2	Eddie Engine	[r]
+    3	Walter Wheel	[ ]
+    4	Tommy Tardy     [ ]
+
+There are no type annotations used in the code of `index.ts`. The TypeScript
+compiler is able to infer the proper types by the context. However, the code can
+be made easier to read by providing additional type annotations. The programmer
+can decide to what extent type annotations shall be used to give both the
+compiler and other programmers hints on the types being used.
+
+The code of `index.ts` can be rewritten as follows with additional type
+annotations:
+
+```typescript
+import { Driver } from "./driver";
+import { Race } from "./race";
+
+const drivers: Driver[] = [
+  new Driver(1, "Freddie Fuel"),
+  new Driver(2, "Eddie Engine"),
+  new Driver(3, "Walter Wheel"),
+];
+const race: Race = new Race("Detroit City Speedwary", 48, drivers);
+
+const lateEntrantId: number = race.addDriver("Tommy Tardy");
+const lateEntrant: Driver = race.getDriverById(lateEntrantId);
+
+const crashed: Driver = race.getDriverById(2);
+race.markRetired(crashed.id, true);
+
+for (const driver of race.drivers) {
+  console.log(driver.describe());
+}
+```

@@ -1,3 +1,14 @@
+# Day 29 (2024-10-30)
+
+I continued processing what I've read yesterday in chapter 2. Progress is slow,
+but working this way has a calming effect on me. I process the information
+deeper, which is a good start into the day. I'd like to continue in this way,
+even if it will take me more time to get through the book.
+
+However, I have to think about part 3 of the book, which is about applications
+in vanilla DOM, Angular, and React. Maybe pen and paper are not a good choice
+for the boiler plate being written there. But I have to decide when I'm there.
+
 # Day 28 (2024-10-29)
 
 I read chapter 2 and summarized the first part (up to the setup and project
