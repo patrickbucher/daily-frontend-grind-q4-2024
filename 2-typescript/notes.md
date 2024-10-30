@@ -61,8 +61,11 @@ for this purpose:
 }
 ```
 
-This configuration uses the CommonJS module system and produces JavaScript code
-according to the ECMAScript2023 specification.
+This configuration produces JavaScript code according to the ECMAScript2023
+specification. The `module` setting defines which module system is being used in
+the _emitted_ JavaScript code, not the module system being used in the
+TypeScript code! CommonJS is used here, because the resulting code shall be run
+in Node.js.
 
 The main code file is commonly named `index.ts`, which is to be placed into the
 `src/` folder:
