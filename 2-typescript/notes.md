@@ -245,3 +245,124 @@ for (const driver of race.drivers) {
   console.log(driver.describe());
 }
 ```
+
+Instead of storing the drivers in an array and looking them up by filtering for
+their `id`, storing them in a `Map` will make the lookup easier and faster. The
+values of `driverMap` can be filtered like an array (`race.ts`):
+
+```typescript
+import { Driver } from "./driver";
+
+export class Race {
+  private nextId: number = 0;
+  private driverMap = new Map<number, Driver>();
+
+  constructor(
+    public track: string,
+    public laps: number,
+    public drivers: Driver[] = [],
+  ) {
+    drivers.forEach((d) => this.driverMap.set(d.id, d));
+  }
+
+  addDriver(name: string, retired: boolean = false): number {
+    const maxId = Math.max(...this.drivers.map((d) => d.id));
+    const newId = maxId + 1;
+    this.driverMap.set(newId, new Driver(newId, name, retired));
+    this.nextId = newId + 1;
+    return newId;
+  }
+
+  getDriverById(id: number): Driver {
+    return this.driverMap.get(id);
+  }
+
+  markRetired(id: number, retired: boolean) {
+    const driver = this.getDriverById(id);
+    if (driver) {
+      driver.retired = retired;
+    }
+  }
+
+  getDrivers(includeRetired: boolean): Driver[] {
+    return [...this.driverMap.values()].filter(
+      (d) => !d.retired || includeRetired,
+    );
+  }
+}
+```
+
+The otherwise dynamic types of a JavaScript `Map` are restricted for `driverMap`
+with the type parameter `number` for keys and `Driver` for values, which are
+defined in angle brackets. Those type hints allow the compiler to know and check
+the value type of the `Map`: `Driver`, which has a field `retired` of type
+`boolean`.
+
+Retired drivers can be removed from the map by adding the method
+`removeRetired` (`race.ts`):
+
+```typescript
+removeRetired() {
+  this.driverMap.forEach((d) => {
+    if (d.retired) {
+      this.driverMap.delete(d.id);
+    }
+  });
+}
+```
+
+The types of object literals can be described using an object's _shape_: a
+combination of the property names and types, which can be declared as a new
+`type` alias:
+
+```typescript
+type DriverCounts = {
+  total: number;
+  active: number;
+};
+```
+
+A method to return those counts can be annotated with `DriverCounts` as its
+return type:
+
+```typescript
+getDriverCounts(): DriverCounts {
+  return {
+    total: this.driverMap.size,
+    active: this.getDrivers(false).length,
+  };
+}
+```
+
+Those new features can be used as follows (`index.ts`):
+
+```typescript
+import { Driver } from "./driver";
+import { Race } from "./race";
+
+const drivers: Driver[] = [
+  new Driver(1, "Freddie Fuel"),
+  new Driver(2, "Eddie Engine"),
+  new Driver(3, "Walter Wheel"),
+];
+const race: Race = new Race("Detroit City Speedwary", 48, drivers);
+
+const lateEntrantId: number = race.addDriver("Tommy Tardy");
+const lateEntrant: Driver = race.getDriverById(lateEntrantId);
+
+const crashed: Driver = race.getDriverById(2);
+race.markRetired(crashed.id, true);
+
+race.getDrivers(false).forEach((d) => console.log(d.describe()));
+console.log(race.getDriverCounts(), "before removing retired");
+race.removeRetired();
+console.log(race.getDriverCounts(), "after removing retired");
+```
+
+Output:
+
+    1	Freddie Fuel	[ ]
+    3	Walter Wheel	[ ]
+    4	Tommy Tardy	    [ ]
+    { total: 4, active: 3 } before removing retired
+    { total: 3, active: 3 } after removing retired

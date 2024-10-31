@@ -1,3 +1,14 @@
+# Day 30 (2024-10-31)
+
+I continued summarizing chapter 2 and caught up with my green bookmark, which
+indicates the progress of _summarizing_ the book, with the yellow bookmark,
+which indicates the progress of _reading_ the book. Tomorrow, I'll start by
+reading further ahead. There's still a lot to be done in this chapter; so I'll
+probably will need more time to work through the entire book, even if I don't do
+the third part, or only if I do so partially. (I'm thinking about doing the
+standalone web application part, skipping the React and Angular part, but work
+through the Angular book afterwards, instead.)
+
 # Day 29 (2024-10-30)
 
 I continued processing what I've read yesterday in chapter 2. Progress is slow,

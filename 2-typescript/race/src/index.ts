@@ -14,6 +14,7 @@ const lateEntrant: Driver = race.getDriverById(lateEntrantId);
 const crashed: Driver = race.getDriverById(2);
 race.markRetired(crashed.id, true);
 
-for (const driver of race.drivers) {
-  console.log(driver.describe());
-}
+race.getDrivers(false).forEach((d) => console.log(d.describe()));
+console.log(race.getDriverCounts(), "before removing retired");
+race.removeRetired();
+console.log(race.getDriverCounts(), "after removing retired");
