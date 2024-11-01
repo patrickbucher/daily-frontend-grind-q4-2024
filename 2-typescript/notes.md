@@ -366,3 +366,61 @@ Output:
     4	Tommy Tardy	    [ ]
     { total: 4, active: 3 } before removing retired
     { total: 3, active: 3 } after removing retired
+
+### Using a third-party package
+
+TypeScript allows using any JavaScript package with additional static type
+support. In order to make use of ECMAScript modules, which is the common
+standard for modules by now, the Node.js project configuration file
+`package.json` has to be extended by the following setting:
+
+```json
+"type": "module"
+```
+
+The TypeScript compiler settings in `tsconfig.json` have to be modified
+accordingly, so that the module system defined by the Node.js project is
+considered:
+
+```json
+"module": "Node16"
+```
+
+The way in wh ich Node.js implements ECMAScript modules requires to use the
+`.js` (_not_ `.ts`!) extension for imports, e.g. in `race.ts`:
+
+```typescript
+import { Driver } from "./driver.js";
+```
+
+This has to be understood as a reference to the compiled JavaScript file as
+opposed to the original TypeScript source code file.
+
+The existing application shall be extended by the
+[Inquirer.js](https://www.npmjs.com/package/inquirer) library to provide
+interactive menus. Pure JavaScript libraries can be installed into a TypeScript
+project as in a plain JavaScript project:
+
+```bash
+npm install inquirer@9.1.4
+```
+
+The library can be imported as follows in `index.js`:
+
+```typescript
+import inquirer from "inquirer";
+```
+
+Since the Inquirer.js project doesn't provide any type information, the
+TypeScript compiler cannot check its proper usage concerning data types. There
+are,  however, two ways in which such type information can be provided still:
+First, to describe the types yourself; and second, to use existing type
+declarations from the
+[Typed](https://github.com/DefinitelyTyped/DefinitelyTyped) project—a repository
+of type declarations for many JavaScript packages. Such type declarations can be
+installed as a development dependency as follows (in a slightly different
+version, though):
+
+```bash
+npm install --save-dev @types/inquirer@9.0.5
+```

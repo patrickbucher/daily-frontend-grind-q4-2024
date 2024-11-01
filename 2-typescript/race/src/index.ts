@@ -1,5 +1,5 @@
-import { Driver } from "./driver";
-import { Race } from "./race";
+import { Driver } from "./driver.js";
+import { Race } from "./race.js";
 
 const drivers: Driver[] = [
   new Driver(1, "Freddie Fuel"),

@@ -1,3 +1,9 @@
+# Day 31 (2024-11-01)
+
+I summarized the part of chapter 2 about adding an external dependency with
+additional type hints. Next up is the actual usage of the external package
+Inquirer.js.
+
 # Day 30 (2024-10-31)
 
 I continued summarizing chapter 2 and caught up with my green bookmark, which

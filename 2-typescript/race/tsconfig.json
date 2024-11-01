@@ -3,6 +3,6 @@
     "target": "ES2023",
     "outDir": "./dist",
     "rootDir": "./src",
-    "module": "CommonJS"
+    "module": "Node16"
   }
 }
