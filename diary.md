@@ -1,3 +1,10 @@
+# Day 32 (2024-11-02)
+
+I continued with chapter 2 and integrated Inquirer.js into the example. The rest
+of the chapter is about persistence, which I'd like to work through tomorrow.
+Next up are two chapters on JavaScript, which I'd like to summarize very
+concisely.
+
 # Day 31 (2024-11-01)
 
 I summarized the part of chapter 2 about adding an external dependency with

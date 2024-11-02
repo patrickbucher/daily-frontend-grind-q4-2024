@@ -6,22 +6,20 @@ type DriverCounts = {
 };
 
 export class Race {
-  private nextId: number = 0;
   private driverMap = new Map<number, Driver>();
 
   constructor(
     public track: string,
     public laps: number,
-    public drivers: Driver[] = [],
+    drivers: Driver[] = [],
   ) {
     drivers.forEach((d) => this.driverMap.set(d.id, d));
   }
 
   addDriver(name: string, retired: boolean = false): number {
-    const maxId = Math.max(...this.drivers.map((d) => d.id));
+    const maxId = Math.max(...this.driverMap.keys());
     const newId = maxId + 1;
     this.driverMap.set(newId, new Driver(newId, name, retired));
-    this.nextId = newId + 1;
     return newId;
   }
 

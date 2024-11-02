@@ -254,22 +254,20 @@ values of `driverMap` can be filtered like an array (`race.ts`):
 import { Driver } from "./driver";
 
 export class Race {
-  private nextId: number = 0;
   private driverMap = new Map<number, Driver>();
 
   constructor(
     public track: string,
     public laps: number,
-    public drivers: Driver[] = [],
+    drivers: Driver[] = [],
   ) {
     drivers.forEach((d) => this.driverMap.set(d.id, d));
   }
 
   addDriver(name: string, retired: boolean = false): number {
-    const maxId = Math.max(...this.drivers.map((d) => d.id));
+    const maxId = Math.max(...this.driverMap.keys());
     const newId = maxId + 1;
     this.driverMap.set(newId, new Driver(newId, name, retired));
-    this.nextId = newId + 1;
     return newId;
   }
 
@@ -423,4 +421,140 @@ version, though):
 
 ```bash
 npm install --save-dev @types/inquirer@9.0.5
+```
+
+The Inquirer.js package shall be used to implement an interactive menu. This
+menu provides different options using different kinds of prompts, e.g. to enter
+additional drivers to a race, or to mark drivers as retired, which then can be
+purged from the list.
+
+Each command is represented as an entry in an `enum`, which is a TypeScript
+feature to group related constants together:
+
+```typescript
+enum Commands {
+  Add = "Add New Driver",
+  Retire = "Retire a Driver",
+  Toggle = "Show/Hide Retired Drivers",
+  Purge = "Remove Retired Drivers",
+  Quit = "Quit",
+}
+```
+
+The menu is run by the `promptUser` function, which dispatches individual
+commands to their respective prompt function—or performs the action on its own:
+
+```typescript
+function promptUser(): void {
+  console.clear();
+  displayDrivers();
+  inquirer
+    .prompt({
+      type: "list",
+      name: "command",
+      message: "Choose Option",
+      choices: Object.values(Commands),
+    })
+    .then((answers) => {
+      switch (answers["command"]) {
+        case Commands.Toggle:
+          showRetired = !showRetired;
+          promptUser();
+          break;
+        case Commands.Add:
+          promptAdd();
+          break;
+        case Commands.Retire:
+          if (race.getDriverCounts().active > 0) {
+            promptRetire();
+          } else {
+            promptUser();
+          }
+          break;
+        case Commands.Purge:
+          race.removeRetired();
+          promptUser();
+          break;
+      }
+    });
+}
+```
+
+The `inquirer.prompt` function shows a prompt that is configured using a
+JavaScript object with the following properties:
+
+- `type: "list"`: shows the provided `choices` (see below) as an interactive
+  menu
+- `name: "commands"`: assigns a name to the property that will hold the user's
+  choice
+- `message: "Choose Option"`: is the actual prompt being shown to the user
+- `choices: Object.values(Commnds)`: provides the options for the user to select
+  from a list
+
+The other prompt functions use a different `type` together with different
+options for their user interaction:
+
+```typescript
+function promptAdd(): void {
+  console.clear();
+  inquirer
+    .prompt({
+      type: "input",
+      name: "add",
+      message: "Enter Driver: ",
+    })
+    .then((answers) => {
+      if (answers["add"] !== "") {
+        race.addDriver(answers["add"]);
+      }
+      promptUser();
+    });
+}
+
+function promptRetire(): void {
+  console.clear();
+  inquirer
+    .prompt({
+      type: "checkbox",
+      name: "retired",
+      message: "Retire Driver: ",
+      choices: race
+        .getDrivers(showRetired)
+        .map((driver) => ({
+          name: driver.name,
+          value: driver.id,
+          checked: driver.retired,
+        })),
+    })
+    .then((answers) => {
+      let retiredDrivers = answers["retired"] as number[];
+      race
+        .getDrivers(true)
+        .forEach((driver) =>
+          race.markRetired(
+            driver.id,
+            retiredDrivers.find((id) => id === driver.id) != undefined,
+          ),
+        );
+      promptUser();
+    });
+}
+```
+
+Since the compiler cannot figure out the type of `answers["retired"]`, the _type
+assertion_ `as number[]` is used to explicitly tell the compiler that an array
+of numbers is being used.
+
+The list of drivers is shown using the `displayDrivers` function:
+
+```typescript
+function displayDrivers(): void {
+  console.log(
+    `Race at ${race.track} over ${race.laps} laps. ` +
+      `${race.getDriverCounts().active} drivers active.`,
+  );
+  race
+    .getDrivers(showRetired)
+    .forEach((driver) => console.log(driver.describe()));
+}
 ```
