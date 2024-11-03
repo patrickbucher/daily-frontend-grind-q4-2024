@@ -3,6 +3,17 @@
 I finished summarizing chapter 2. For the next two chapters, which are about
 JavaScript, I shall follow a more pragmatic approach to summarizing it.
 
+I decided to focus on the first two parts of the book, omitting part 3 about
+standalone, Angular, and React applications. This leaves me with 13 chapters or
+361 pages. There are 27 days left in November, so I need to work through and
+summarize 13-14 pages every single day. I doubt that this is feasible with only
+one hour per day. But I rather go deep than fast, so stretching TypeScript into
+December might be the better option, but leaves me less time with Angular.
+
+So for the next couple of days, I'll try to work through 13-14 pages every
+single day. If I can't do this in my assigned morning hour, I need to change my
+plans. Let's see.
+
 # Day 32 (2024-11-02)
 
 I continued with chapter 2 and integrated Inquirer.js into the example. The rest
