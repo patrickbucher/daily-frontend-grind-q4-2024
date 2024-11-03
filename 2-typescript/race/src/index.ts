@@ -1,5 +1,5 @@
 import { Driver } from "./driver.js";
-import { Race } from "./race.js";
+import { PersistentRace } from "./persistentRace.js";
 import inquirer from "inquirer";
 
 const drivers: Driver[] = [
@@ -7,7 +7,11 @@ const drivers: Driver[] = [
   new Driver(2, "Eddie Engine"),
   new Driver(3, "Walter Wheel"),
 ];
-const race: Race = new Race("Detroit City Speedwary", 48, drivers);
+const race: PersistentRace = new PersistentRace(
+  "Detroit City Speedwary",
+  48,
+  drivers,
+);
 
 race.addDriver("Tommy Tardy");
 race.addDriver("Joey Baloney");
@@ -78,7 +82,7 @@ function promptAdd(): void {
     })
     .then((answers) => {
       if (answers["add"] !== "") {
-        race.addDriver(answers["add"]);
+        race.addDriver(answers["add"], false);
       }
       promptUser();
     });

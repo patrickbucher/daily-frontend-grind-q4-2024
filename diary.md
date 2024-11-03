@@ -1,3 +1,8 @@
+# Day 33 (2024-11-03)
+
+I finished summarizing chapter 2. For the next two chapters, which are about
+JavaScript, I shall follow a more pragmatic approach to summarizing it.
+
 # Day 32 (2024-11-02)
 
 I continued with chapter 2 and integrated Inquirer.js into the example. The rest

@@ -1,0 +1,39 @@
+{
+  "drivers": [
+    {
+      "id": 1,
+      "name": "Freddie Fuel",
+      "retired": false
+    },
+    {
+      "id": 2,
+      "name": "Eddie Engine",
+      "retired": true
+    },
+    {
+      "id": 3,
+      "name": "Walter Wheel",
+      "retired": false
+    },
+    {
+      "id": 4,
+      "name": "Tommy Tardy",
+      "retired": true
+    },
+    {
+      "id": 5,
+      "name": "Joey Baloney",
+      "retired": false
+    },
+    {
+      "id": 6,
+      "name": "Boney Jaloney",
+      "retired": false
+    },
+    {
+      "id": 7,
+      "name": "Foo Bar",
+      "retired": false
+    }
+  ]
+}

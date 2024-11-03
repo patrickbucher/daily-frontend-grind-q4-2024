@@ -6,7 +6,7 @@ type DriverCounts = {
 };
 
 export class Race {
-  private driverMap = new Map<number, Driver>();
+  protected driverMap = new Map<number, Driver>();
 
   constructor(
     public track: string,

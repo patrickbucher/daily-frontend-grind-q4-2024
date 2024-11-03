@@ -558,3 +558,102 @@ function displayDrivers(): void {
     .forEach((driver) => console.log(driver.describe()));
 }
 ```
+
+### Adding Persistence
+
+The application shall be extended with persistent storage of the data. For this
+purpose the Lowdb package shall be used, which stores data in JSON files. Even
+though this is a pure JavaScript package, it supplies type information:
+
+```bash
+npm install lowdb@5.1.0
+```
+
+Persistence shall be added by the means of inheritance: The `Race` class—with
+its various operations that manipulate the data—is extended to synchronize the
+changes with the JSON database on the disk. Currently, `driverMap` is declared
+as `private`, preventing sub-classes from accessig it. To allow this access,
+`driverMap` has to be declared as `protected` (`race.ts`):
+
+```typescript
+protected driverMap = new Map<number, Driver>();
+```
+
+The new sub-class `PersistentRace` then can be implemented as follows
+(`persistentRace.ts`):
+
+```typescript
+import { Driver } from "./driver.js";
+import { Race } from "./race.js";
+import { LowSync } from "lowdb";
+import { JSONFileSync } from "lowdb/node";
+
+type schemaType = {
+  drivers: {
+    id: number;
+    name: string;
+    retired: boolean;
+  }[];
+};
+
+export class PersistentRace extends Race {
+  private database: LowSync<schemaType>;
+
+  constructor(
+    public track: string,
+    public laps: number,
+    drivers: Driver[] = [],
+  ) {
+    super(track, laps, []);
+    this.database = new LowSync(new JSONFileSync("race.json"));
+    this.database.read();
+    if (this.database.data == null) {
+      this.database.data = { drivers: drivers };
+      this.database.write();
+      drivers.forEach((driver) => this.driverMap.set(driver.id, driver));
+    } else {
+      this.database.data.drivers.forEach((driver) =>
+        this.driverMap.set(
+          driver.id,
+          new Driver(driver.id, driver.name, driver.retired),
+        ),
+      );
+    }
+  }
+
+  addDriver(name: string, retired: boolean = false): number {
+    let result = super.addDriver(name, retired);
+    this.storeDrivers();
+    return result;
+  }
+
+  markRetired(id: number, retired: boolean): void {
+    super.markRetired(id, retired);
+    this.storeDrivers();
+  }
+
+  removeRetired(): void {
+    super.removeRetired();
+    this.storeDrivers();
+  }
+
+  private storeDrivers() {
+    this.database.data.drivers = [...this.driverMap.values()];
+    this.database.write();
+  }
+}
+```
+
+The schema used for storing the data persistently is defined using a `type`
+called `schemaType`, which describes the shape of the object to be stored: an
+array of drivers.
+
+The extended implementation can be used as follows (`index.ts`):
+
+```typescript
+import { PersistentRace } from "./persistentRace.js";
+
+const race: PersistentRace = new PersistentRace("Detroit City Speedwary", 48, drivers);
+```
+
+The data is then stored persistently in a file called `race.json`.
