@@ -711,14 +711,14 @@ following built-in types in JavaScript:
 The type of an expression can be determined by using the `typeof` operator on
 it, which returns the type name as a `string`:
 
-> typeof 5
-'number'
-> typeof "5"
-'string'
-> typeof (typeof 5)
-'string'
-> typeof null
-'object'
+    > typeof 5
+    'number'
+    > typeof "5"
+    'string'
+    > typeof (typeof 5)
+    'string'
+    > typeof null
+    'object'
 
 Notice the last example: The type of `null` is `object` instead of `null`. This
 behaviour is inconsistent, but cannot be changed because a lot of code depends
