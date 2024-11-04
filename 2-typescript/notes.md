@@ -657,3 +657,69 @@ const race: PersistentRace = new PersistentRace("Detroit City Speedwary", 48, dr
 ```
 
 The data is then stored persistently in a file called `race.json`.
+
+## JavaScript primer, part 1
+
+To understand the benefits provided by TypeScript, one has to understand what
+JavaScript issues it addresses.
+
+For the sake of convenient demonstration with automatic execution of a script
+upon saving it, the `nodemon` package can be used in a new project called
+`primer`:
+
+```bash
+mkdir primer
+cd primer
+npm init --yes
+npm install nodemon@3.1.7
+touch index.js
+npx nodemon index.js
+```
+
+JavaScript is similar to many other programming languages in many ways, but it
+confuses its users with some of its—peculiar, but well-defined—behaviour:
+
+```javascript
+let penPrice = 5;
+let paperPrice = "5";
+if (penPrice == paperPrice) {
+  console.log("pen and paper cost the same");
+}
+console.log(`total price: ${penPrice + paperPrice}`);
+```
+
+Output:
+
+    pen and paper cost the same
+    total price: 55
+
+The operators `==` and `+` deal differently with the same types.
+
+In JavaScript, variables are untyped, but values have a type. There are the
+following built-in types in JavaScript:
+
+- `number`: numeric values, both floating-point and integer values
+- `string`: text data
+- `boolean`: the values `true` and `false`
+- `symbol`: unique constant values
+- `null`: a non-existant or invalid reference with the only possible value of
+  `null`
+- `undefined`: the type of variables that are uninitialized
+- `object`: the type of compound values, made up of primitive and/or other
+  compound values
+
+The type of an expression can be determined by using the `typeof` operator on
+it, which returns the type name as a `string`:
+
+> typeof 5
+'number'
+> typeof "5"
+'string'
+> typeof (typeof 5)
+'string'
+> typeof null
+'object'
+
+Notice the last example: The type of `null` is `object` instead of `null`. This
+behaviour is inconsistent, but cannot be changed because a lot of code depends
+on this (mis)behaviour.

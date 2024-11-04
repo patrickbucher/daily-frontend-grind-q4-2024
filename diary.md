@@ -1,3 +1,8 @@
+# Day 34 (2024-11-04)
+
+I read roughly half of chapter 3, but only managed to summarize 6 pages instead
+of the 13-14 pages required to work through the entire book in November.
+
 # Day 33 (2024-11-03)
 
 I finished summarizing chapter 2. For the next two chapters, which are about
