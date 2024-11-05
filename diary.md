@@ -1,3 +1,7 @@
+# Day 35 (2024-11-05)
+
+I continued with chapter 3, but still have a long way to go.
+
 # Day 34 (2024-11-04)
 
 I read roughly half of chapter 3, but only managed to summarize 6 pages instead

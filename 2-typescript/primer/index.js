@@ -1,6 +1,5 @@
-let penPrice = 5;
-let paperPrice = "5";
-if (penPrice == paperPrice) {
-  console.log("pen and paper cost the same");
+function mean(...numbers) {
+  let actualNumbers = numbers.map((x) => (Number.isNaN(x) ? 0 : Number(x)));
+  let sum = actualNumbers.reduce((acc, x) => acc + x, 0);
+  return sum / actualNumbers.length;
 }
-console.log(`total price: ${penPrice + paperPrice}`);

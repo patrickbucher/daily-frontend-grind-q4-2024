@@ -723,3 +723,146 @@ it, which returns the type name as a `string`:
 Notice the last example: The type of `null` is `object` instead of `null`. This
 behaviour is inconsistent, but cannot be changed because a lot of code depends
 on this (mis)behaviour.
+
+An operator being applied to two values of different types needs to coerce one
+value to the type of the other value. Different operators apply different rules
+for this process, which is called _type coercion_: The `==` operator applied to
+a `number` and a `string` converts the `string` to a `number` and then compares
+the two `number` values:
+
+    > 3 == "5"
+    false
+    > 3 == "3"
+    true
+
+However, the `+` operator applied to a `string` and a value of any other type
+will first convert the other value to a `string` and then concatenate both
+`string` values:
+
+    > "3" + 4
+    '34'
+    > 4 + "3"
+    '43'
+
+When aplied to a `number` value and `undefined`, the latter is converted to
+`NaN`, resulting in an addition that results in `NaN` itself:
+
+    > 3 + undefined
+    NaN
+
+Such behaviour is erratic, but well-defined and documented. To solve problems
+arising from those rules, the strict equality operator `===` can be used instead
+of `==`. Here, both value and type must match:
+
+    > 3 == "3"
+    true
+    > 3 === "3"
+    false
+
+To make sure that numbers are added instead of concatenated, use explicit type
+conversion:
+
+    > let x = 3;
+    > let y = 4;
+    > let z = "5";
+    > const addNumbers = (a, b) => Number(a) + Number(b);
+    > addNumbers(x, y);
+    7
+    > addNumbers(y, z);
+    9
+
+Type coercion can be very useful, too: The or-operator `||` converts `null` and
+`undefined` to `false`, which allows for defining fallback values:
+
+    > let userChoice = userInput || "Hamburger";
+    > userChoice
+    'Hamburger'
+
+Unfortunately, not only `null` and `undefined` are coerced into `false`, but
+also the empty string `""`, the number `0`, and `NaN`:
+
+    > let defaultInterestRate = 1.5;
+    > let explicitInterestRate = 0;
+    > let actualInterestRate = explicitInterestRate || defaultInterestRate;
+    > actualInterestRate
+    1.5
+
+Here, the fallback to the default value is not desired, because `0` is a
+perfectly fine value in this context. The _nullish coalescing operator_ `??`,
+which is a rather recent addition to JavaScript, only converts `null` and
+`undefined` to `false`:
+
+    > let defaultInterestRate = 1.5;
+    > let explicitInterestRate = 0;
+    > let actualInterestRate = explicitInterestRate ?? defaultInterestRate;
+    > actualInterestRate
+    0
+
+Function parameters are untyped, and argument values will be coerced as needed
+based on the operators being applied to them. Parameters can be given default
+values so that they don't end up being `undefined` when the function is called
+with fewer arguments than specified:
+
+    > const formatCurrency = (currency, amount = 0.0) => `${currency} ${amount}`;
+    > formatCurrency("CHF", 3.5);
+    'CHF 3.5'
+    > formatCurrency("CHF");
+    'CHF 0'
+
+To deal with a variable number of arguments, rest parameters can be used:
+
+    > const sum = (...xs) => xs.reduce((acc, x) => acc + x, 0);
+    > sum(3, 4, 5);
+    12
+
+Values such as `undefined` and `NaN` being passed explicitly have to be dealt
+with programmatically:
+
+```typescript
+function mean(...numbers) {
+  let actualNumbers = numbers.map((x) => (Number.isNaN(x) ? 0 : Number(x)));
+  let sum = actualNumbers.reduce((acc, x) => acc + x, 0);
+  return sum / actualNumbers.length;
+}
+```
+
+JavaScript arrays are dynamically sized and can take up elements of different
+types. They support various operations:
+
+- operations on single values
+    - `push(item)`: adds `item` at the end
+    - `pop()`: removes and returns the last item
+    - `unshift(item)`: adds `item` at the beginning
+    - `shift()`: removes and returns the first item
+- operations on the entire array or parts of it
+    - `concat(others)`: returns a new array consisting of the original elements
+      and the elements of the passed arrays
+    - `join(separator)`: joins the array elements to a string with `separator`
+      in between
+    - `sort(compare)`: returns a new array with the original elements in
+      ascending order; an optional `compare` function can be passed
+    - `reverse()`: returns a new array with the original elements in reversed
+      order
+    - `slice(start, end)`: returns a section of the array from start (inlcusive)
+      to end (exclusive)
+    - `splice(index, count)`: removes `count` elements starting from `index`
+    - `includes(value)`: returns `true` if the array contains `value`; `false`
+      otherwise
+- higher-order functions
+    - `every(predicate)`: returns `true` if `predicate` returns `true` for all
+      elements
+    - `some(predicate)`: returns `true` if `predicate` returns `true` for at
+      least one element
+    - `filter(predicate)`: returns an array consisting of the elements for which
+      `predicate` returns `true`
+    - `find(predicate)`: returns the first value for which `predicate` returns
+      `true`
+    - `findIndex(predicate)`: returns the first index of the value for which
+      `predicate` returns `true`
+    - `forEach(callback)`: calls the `callback` function on each element
+    - `map(callback)`: returns an array consisting of the return values of
+      `callback` called on every element
+    - `reduce(callback, start)`: combines the array elements using the
+      `callback` function and an optional `start` value
+
+TODO: examples
