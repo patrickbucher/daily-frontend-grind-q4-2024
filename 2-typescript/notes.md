@@ -865,4 +865,51 @@ types. They support various operations:
     - `reduce(callback, start)`: combines the array elements using the
       `callback` function and an optional `start` value
 
-TODO: examples
+Examples:
+
+    > let numbers = [1, 2, 3]
+    > numbers.push(4)
+    > numbers.unshift(0)
+    > numbers.pop()
+    4
+    > numbers.shift()
+    0
+
+    > [1, 2, 3].concat([4, 5, 6], [7, 8, 9])
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+    > [1, 2, 3, 4, 5].join(" < ")
+    '1 < 2 < 3 < 4 < 5'
+    > [5, 2, 3, 4, 1].sort()
+    [ 1, 2, 3, 4, 5 ]
+    > [1, 2, 3, 4, 5].reverse()
+    [ 5, 4, 3, 2, 1 ]
+    > [2, 4, 6, 8].slice(2, 4)
+    [ 6, 8 ]
+    > [1, 2, 3, 4, 5].splice(2, 3)
+    [ 3, 4, 5 ]
+    > [2, 4, 6, 8].includes(5)
+    false
+
+    > [1, 1, 2, 3, 5, 8, 13, 21].every(x => x % 2 == 0)
+    false
+    > [1, 1, 2, 3, 5, 8, 13, 21].some(x => x % 2 == 0)
+    true
+    > [1, 1, 2, 3, 5, 8, 13, 21].filter(x => x % 2 == 0)
+    [ 2, 8 ]
+    > [1, 1, 2, 3, 5, 8, 13, 21].find(x => x % 2 == 0)
+    2
+    > [1, 1, 2, 3, 5, 8, 13, 21].findIndex(x => x % 2 == 0)
+    2
+    > [1, 1, 2, 3, 5, 8, 13, 21].forEach(x => console.log(`x=${x}`))
+    x=1
+    x=1
+    x=2
+    x=3
+    x=5
+    x=8
+    x=13
+    x=21
+    > [1, 1, 2, 3, 5, 8, 13, 21].map(x => x * 2)
+    [ 2,  2,  4,  6, 10, 16, 26, 42 ]
+    > [1, 1, 2, 3, 5, 8, 13, 21].reduce((acc, x) => acc + x, 0)
+    54
