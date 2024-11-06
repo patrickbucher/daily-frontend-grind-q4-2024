@@ -1,3 +1,7 @@
+# Day 36 (2024-11-06)
+
+I extended yesterday's list of array methods with some examples.
+
 # Day 35 (2024-11-05)
 
 I continued with chapter 3, but still have a long way to go.
