@@ -1,5 +1,8 @@
-function mean(...numbers) {
-  let actualNumbers = numbers.map((x) => (Number.isNaN(x) ? 0 : Number(x)));
-  let sum = actualNumbers.reduce((acc, x) => acc + x, 0);
-  return sum / actualNumbers.length;
-}
+let words = ["read", "write", "think", "morning"];
+let [first, second] = words;
+let [, , third] = words;
+let [, , ...lastTwo] = words;
+console.log(`first: ${first}`);
+console.log(`second: ${second}`);
+console.log(`third: ${third}`);
+console.log(`lastTwo: ${lastTwo}`);

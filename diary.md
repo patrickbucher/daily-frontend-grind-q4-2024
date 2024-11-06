@@ -1,6 +1,7 @@
 # Day 36 (2024-11-06)
 
-I extended yesterday's list of array methods with some examples.
+I extended yesterday's list of array methods with some examples. I also
+summarized the rest about arrays, now on towards objects.
 
 # Day 35 (2024-11-05)
 

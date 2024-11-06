@@ -913,3 +913,43 @@ Examples:
     [ 2,  2,  4,  6, 10, 16, 26, 42 ]
     > [1, 1, 2, 3, 5, 8, 13, 21].reduce((acc, x) => acc + x, 0)
     54
+
+An array can be passed to a function expecting rest parameters by applying the
+spread operator `...` to it:
+
+```javascript
+function sumUp(...numbers) {
+  return numbers.reduce((acc, x) => acc + x, 0);
+}
+
+const numbers = [1, 1, 2, 3, 5, 8];
+console.log(sumUp(...numbers)); // 20
+```
+
+The spread operator can also be used to concatenate arrays:
+
+    > let xs = [2, 4, 6, 8, 10];
+    > let ys = [3, 6, 9, 12, 15];
+    > let zs = [...xs, ...ys];
+    > zs
+    [ 2, 4, 6,  8, 10, 3, 6, 9, 12, 15 ]
+
+Arrays can be unpacked by applying destructuring assignment to them:
+
+```javascript
+let words = ["read", "write", "think", "morning"];
+let [first, second] = words;
+let [, , third] = words;
+let [, , ...lastTwo] = words;
+console.log(`first: ${first}`);
+console.log(`second: ${second}`);
+console.log(`third: ${third}`);
+console.log(`lastTwo: ${lastTwo}`);
+```
+
+Output:
+
+    first: read
+    second: write
+    third: think
+    lastTwo: think,morning
