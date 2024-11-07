@@ -953,3 +953,48 @@ Output:
     second: write
     third: think
     lastTwo: think,morning
+
+JavaScript objects are collections of properties, which have a name and a value.
+Objects can be expressed using a literal syntax:
+
+    > let alice = { name: "Alice", age: 52 };
+    > let bob = { name: "Bob", age: 46 };
+
+Properties can be accessed using the dot operator, added by assignment, and
+removed using the `delete` keyword:
+
+    > let aliceAge = alice.age;
+    > alice.place = "Sweden";
+    > delete alice.name;
+    > alice
+    { age: 52, place: 'Sweden' }
+
+Reading a property that doesn't exist returns `undefined`. The _optional
+chaining operator_ `?.` will stop the evaluation once `null` or `undefined` is
+reached. This is especially useful in combination with the `??` operator:
+
+    > bob?.place?.population ?? 0;
+    0
+
+The spread operator can be applied to objects for destructuring:
+
+    > let { name, age } = bob;
+    > name
+    'Bob'
+    > age
+    46
+
+    > let olderBob = {...bob, age: 60, disease: "Diabetes" };
+    > olderBob
+    { name: 'Bob', age: 60, disease: 'Diabetes' }
+
+    > let { bobsName, ...otherProperties } = olderBob;
+    > otherProperties
+    { name: 'Bob', age: 60, disease: 'Diabetes' }
+
+An object can be turned into its JSON representation using `JSON.stringify`:
+
+    > JSON.stringify(bob);
+    '{"name":"Bob","age":46}'
+    > JSON.stringify(alice);
+    '{"age":52,"place":"Sweden"}'
