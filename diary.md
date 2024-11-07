@@ -1,3 +1,7 @@
+# Day 37 (2024-11-07)
+
+I read and summarized the section about JavaScript objects.
+
 # Day 36 (2024-11-06)
 
 I extended yesterday's list of array methods with some examples. I also
