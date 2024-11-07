@@ -22,7 +22,7 @@ My daily grind shall look as follows: After getting up at 5 o'clock, rowing for 
   Edition](https://www.manning.com/books/essential-typescript-5-third-edition)
     - 21 chapters, 568 pages
     - Again: roughly 2 chapters ever 3 days.
-- December: Angular with [Angular. Das große Praxisbuch, 4
+- ~~December: Angular with [Angular. Das große Praxisbuch, 4~~ _skipped_: more time for TypeScript needed
   Ausgabe](https://angular-buch.com/)
     - 42 chapters, 930 pages
     - Which is probably way too much for December, but the first 25 chapters
