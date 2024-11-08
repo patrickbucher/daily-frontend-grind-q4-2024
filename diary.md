@@ -1,3 +1,9 @@
+# Day 38 (2024-11-08)
+
+I only summarized a small section on getters and setters, and I did _not_ do so
+on paper. I think the depth of my approach surpasses the depth of the material
+by far. But I'd like to continue with my approach for the time being.
+
 # Day 37 (2024-11-07)
 
 I read and summarized the section about JavaScript objects.
