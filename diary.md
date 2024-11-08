@@ -2,6 +2,19 @@
 
 I read and summarized the section about JavaScript objects.
 
+Later, I realized that I'd rather spend the entire December with TypeScript
+than rushing through this book like through the last one, but drop Angular for
+the moment. TypeScript is a solid foundation for leearning Angular later on.
+And maybe I'll use it during the next term for the programming examples, which
+will allow me to keep the knowledge warm.
+
+The entire effort was a bit too rushed: First, I went through _Eloquent
+JavaScript_ way too fast, and now I'm stuck with two "JavaScript Primer"
+chapters in the next book. I should have planned this differently, i.e.
+skipping _Eloeuqent JavaScript_ in the first place. Anyway, November/December
+will be reserved for the second book, and if I have time left in late December,
+I can still do the two Angular chapters in it.
+
 # Day 36 (2024-11-06)
 
 I extended yesterday's list of array methods with some examples. I also

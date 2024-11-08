@@ -22,12 +22,11 @@ My daily grind shall look as follows: After getting up at 5 o'clock, rowing for 
   Edition](https://www.manning.com/books/essential-typescript-5-third-edition)
     - 21 chapters, 568 pages
     - Again: roughly 2 chapters ever 3 days.
-- December: Angular with [Angular. Das große Praxisbuch, 4
-  Ausgabe](https://angular-buch.com/)
-    - 42 chapters, 930 pages
-    - Which is probably way too much for December, but the first 25 chapters
-      look essential.
-    - Yes, it's a German book. At least they don't try to be funny all the time.
+- ~~December: Angular with [Angular. Das große Praxisbuch, 4 Ausgabe](https://angular-buch.com/)~~
+    - ~~42 chapters, 930 pages~~
+    - ~~Which is probably way too much for December, but the first 25 chapters look essential.~~
+    - ~~Yes, it's a German book. At least they don't try to be funny all the time.~~
+    - _skipped_: more time for TypeScript needed!
 
 This will be a lot of work in an already busy fourth quarter of the year, but
 let's give web frontend programming a chance once again.
