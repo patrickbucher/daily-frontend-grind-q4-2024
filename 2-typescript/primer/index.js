@@ -1,30 +1,15 @@
-let stock = {
-  item: "Beer",
-  _price: 1.25,
-  _quantity: 100,
-
-  set price(newPrice) {
-    this._price = newPrice;
-  },
-
-  get price() {
-    return this._price;
-  },
-
-  set quantity(newQuantity) {
-    this._quantity = newQuantity;
-  },
-
-  get quantity() {
-    return this._quantity;
-  },
-
-  get worth() {
-    return this._price * this._quantity;
+let object = {
+  label: "y",
+  getOutput() {
+    return (value) => console.log(`${this.label}=${value}`);
   },
 };
 
-console.log(`stock worth before: ${stock.worth}`);
-stock.price *= 1.03; // inflation
-stock.quantity += 100; // hoarding
-console.log(`stock worth after: ${stock.worth}`);
+label = "x";
+
+let outputReference = object.getOutput(); // invoked on object
+outputReference(11);
+
+let getOutput = object.getOutput;
+let outputStandAlone = getOutput(); // invoked on global
+outputStandAlone(11);

@@ -724,6 +724,8 @@ Notice the last example: The type of `null` is `object` instead of `null`. This
 behaviour is inconsistent, but cannot be changed because a lot of code depends
 on this (mis)behaviour.
 
+### Type Coercion
+
 An operator being applied to two values of different types needs to coerce one
 value to the type of the other value. Different operators apply different rules
 for this process, which is called _type coercion_: The `==` operator applied to
@@ -798,6 +800,8 @@ which is a rather recent addition to JavaScript, only converts `null` and
     > actualInterestRate
     0
 
+### Functions
+
 Function parameters are untyped, and argument values will be coerced as needed
 based on the operators being applied to them. Parameters can be given default
 values so that they don't end up being `undefined` when the function is called
@@ -825,6 +829,8 @@ function mean(...numbers) {
   return sum / actualNumbers.length;
 }
 ```
+
+### Arrays
 
 JavaScript arrays are dynamically sized and can take up elements of different
 types. They support various operations:
@@ -954,6 +960,8 @@ Output:
     third: think
     lastTwo: think,morning
 
+### Objects
+
 JavaScript objects are collections of properties, which have a name and a value.
 Objects can be expressed using a literal syntax:
 
@@ -1044,3 +1052,141 @@ Output:
   properties `_price` and `_quantity`.
 - The property `worth` is a computed property that only has a `get` method and
   therefore cannot be overwritten.
+
+#### `this`
+
+`this` refers to different objects depending on how a function or method using
+it is called. Consider a function that outputs a label and a value:
+
+```javascript
+function output(value) {
+  console.log(`${this.label}=${value}`);
+}
+
+label = "x";
+output(13);
+```
+
+Output:
+
+    x=13
+
+The `this` object refers to the _global object_ by default. Properties can be
+set to the global object by simple assignment (as `label = "x"` above) without
+using the `var`, `let`, or `const` keyword—except in strict mode!
+
+Functions and methods are objects in JavaScript, which have their own properties
+and methods in turn. The above function call is actually a convenience syntax
+for the following invocation:
+
+```javascript
+output.call(global, 13);
+```
+
+The global object is called `global` in Node.js and `window` or `self` in a
+browser context; the latter having an object called `document` representing the
+DOM.
+
+When a function belongs to an object and is invoked as a method, the `this`
+keyword refers to the surrounding object:
+
+```javascript
+let object = {
+  label: "y",
+  output(value) {
+    console.log(`${this.label}=${value}`);
+  },
+};
+
+label = "x";
+object.output(13); // same as: object.output.call(object, 13);
+```
+
+Output:
+
+    y=13
+
+However, if the method is called outside of its object context, `this` refers to
+the global object:
+
+```javascript
+let object = {
+  label: "y",
+  output(value) {
+    console.log(`${this.label}=${value}`);
+  },
+};
+
+label = "x";
+let output = object.output;
+output(13); // same as: output.call(global, 13);
+```
+
+Output:
+
+    x=13
+
+The `this` keyword can be bound explitly and persistently to an object using the
+method's `bind` method:
+
+```javascript
+let object = {
+  label: "y",
+  output(value) {
+    console.log(`${this.label}=${value}`);
+  },
+};
+
+label = "x";
+object.output = object.output.bind(object);
+object.output(13);
+let output = object.output;
+output(13);
+```
+
+Output:
+
+    y=13
+    y=13
+
+Now `output` being called as a stand-alone function also uses `object` as its
+`this` reference: `this.label` has the value of `"y"` in both cases.
+
+An arrow function returned from a method works differently in respect to its
+`this` reference. Consider a following example, in which the function creating
+the output is an arrow function being returned from a method:
+
+```javascript
+let object = {
+  label: "y",
+  getOutput() {
+    return (value) => console.log(`${this.label}=${value}`);
+  },
+};
+```
+
+Depending on how the function is called, `this` refers to different objects:
+
+```javascript
+label = "x";
+
+let outputReference = object.getOutput(); // invoked on object
+outputReference(11);
+
+let getOutput = object.getOutput;
+let outputStandAlone = getOutput(); // invoked on global
+outputStandAlone(11);
+```
+
+Output:
+
+    y=11
+    x=11
+
+In the first usage, the `getOutput` is called in the context of `object`,
+binding `this` to `object`. In the second usage, the `getOutput` method is
+called in the global context, binding `this` to `global`.
+
+An arrow functio has no `this` reference of its own! It instead works its way up
+the scope until it finds a `this` reference instead—either reaching the
+surrounding or the global object.

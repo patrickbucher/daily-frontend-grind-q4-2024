@@ -1,3 +1,9 @@
+# Day 39 (2024-11-09)
+
+I finished chapter 3 with the section about the `this` keyword, which was quite
+illuminating. I also added sub-headings to the chapter, which was really
+necessary considering its length!
+
 # Day 38 (2024-11-08)
 
 I only summarized a small section on getters and setters, and I did _not_ do so
