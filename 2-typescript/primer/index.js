@@ -1,15 +1,28 @@
-let object = {
-  label: "y",
-  getOutput() {
-    return (value) => console.log(`${this.label}=${value}`);
+let alice = {
+  name: "Alice",
+  age: 52,
+};
+
+let bob = {
+  name: "Bob",
+  age: 47,
+};
+
+let ProtoPerson = {
+  toString: function () {
+    return `${this.name} is ${this.age} years old.`;
   },
 };
 
-label = "x";
+Object.setPrototypeOf(alice, ProtoPerson);
+Object.setPrototypeOf(bob, ProtoPerson);
 
-let outputReference = object.getOutput(); // invoked on object
-outputReference(11);
+console.log(`alice: ${alice}`);
+console.log(`bob: ${bob}`);
 
-let getOutput = object.getOutput;
-let outputStandAlone = getOutput(); // invoked on global
-outputStandAlone(11);
+let product = {
+  name: "Candy Bar",
+  price: 1.25,
+};
+
+console.log(`product: ${product}`);

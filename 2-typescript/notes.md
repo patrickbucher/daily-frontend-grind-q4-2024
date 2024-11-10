@@ -1190,3 +1190,123 @@ called in the global context, binding `this` to `global`.
 An arrow functio has no `this` reference of its own! It instead works its way up
 the scope until it finds a `this` reference instead—either reaching the
 surrounding or the global object.
+
+## JavaScript primer, part 2
+
+A JavaScript object inherits its properties and methods from another object
+known as its _prototype_. The links of prototypes form an inheritance chain. By
+default, an object defined by a literal has the prototype `Object`, which
+defines the following methods related to prototypes:
+
+- `getPrototypeOf`: returns an object's prototype
+- `setPrototypeOf`: sets an object's prototype
+- `getOwnPropertyNames`: returns the names of the properties defined on an
+  object itself (excluding inherited properties from its prototype)
+
+The following example defines two objects and checks if they share the same
+prototype:
+
+```javascript
+let alice = {
+  name: "Alice",
+  age: 52,
+};
+
+let bob = {
+  name: "Bob",
+  age: 47,
+};
+
+let aliceProto = Object.getPrototypeOf(alice);
+let bobProto = Object.getPrototypeOf(bob);
+console.log(`same prototype? ${aliceProto === bobProto}`);
+console.log(`alice's properties: ${Object.getOwnPropertyNames(alice)}`);
+console.log(`bob's properties: ${Object.getOwnPropertyNames(bob)}`);
+```
+
+Output:
+
+    same prototype? true
+    alice's properties: name,age
+    bob's properties: name,age
+
+It is possible to define operations shared among objects directly on its default
+prototype `Object`:
+
+```javascript
+let alice = {
+  name: "Alice",
+  age: 52,
+};
+
+let bob = {
+  name: "Bob",
+  age: 47,
+};
+
+let aliceProto = Object.getPrototypeOf(alice);
+
+aliceProto.toString = function () {
+  return `${this.name} is ${this.age} years old.`;
+};
+
+console.log(`alice: ${alice}`);
+console.log(`bob: ${bob}`);
+
+let product = {
+  name: "Candy Bar",
+  price: 1.25,
+};
+
+console.log(`product: ${product}`);
+```
+
+Output:
+
+    alice: Alice is 52 years old.
+    bob: Bob is 47 years old.
+    product: Candy Bar is undefined years old.
+
+The method `toString` is overwritten directly on the prototype of the object
+`alice`, which is `Object`. Therefore, `toString` is also overwritten for the
+object `product`, which has no `age` property.
+
+A better option is to define a common and custom prototype shared among the
+relevant  objects explicitly, but leaving `Object` untouched:
+
+```javascript
+let alice = {
+  name: "Alice",
+  age: 52,
+};
+
+let bob = {
+  name: "Bob",
+  age: 47,
+};
+
+let ProtoPerson = {
+  toString: function () {
+    return `${this.name} is ${this.age} years old.`;
+  },
+};
+
+Object.setPrototypeOf(alice, ProtoPerson);
+Object.setPrototypeOf(bob, ProtoPerson);
+
+console.log(`alice: ${alice}`);
+console.log(`bob: ${bob}`);
+
+let product = {
+  name: "Candy Bar",
+  price: 1.25,
+};
+
+console.log(`product: ${product}`);
+```
+
+Output:
+
+    alice: Alice is 52 years old.
+    bob: Bob is 47 years old.
+    product: [object Object]

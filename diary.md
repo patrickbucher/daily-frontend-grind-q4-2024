@@ -1,3 +1,8 @@
+# Day 40 (2024-11-10)
+
+I started reading chapter 4. I read the entire section about prototypes and
+classes. I only summarized the first half of it. (I'd rather go slow now.)
+
 # Day 39 (2024-11-09)
 
 I finished chapter 3 with the section about the `this` keyword, which was quite
