@@ -1310,3 +1310,96 @@ Output:
     alice: Alice is 52 years old.
     bob: Bob is 47 years old.
     product: [object Object]
+
+### Constructor Functions and Prototype Chaining
+
+Objects can not only be created using literal syntax, but also with _constructor
+functions_, which can apply additional logic upon the object's creation.
+Constructor functions have capitalized names by convention and are invoked using
+the `new` keyword, setting the `this` parameter to the newly instantiated
+object.
+
+The constructor function's `prototype` property provides access to its prototype
+object, to which methods can be attached:
+
+```javascript
+let Person = function (name, age) {
+  this.name = name;
+  this.age = age;
+};
+
+Person.prototype.toString = function () {
+  return `${this.name} is ${this.age} years old.`;
+};
+
+let alice = new Person("Alice", 52);
+let bob = new Person("Bob", 47);
+
+console.log(alice.toString());
+console.log(bob.toString());
+```
+
+Output:
+
+    Alice is 52 years old.
+    Bob is 47 years old.
+
+Constructor functions can be chained by connecting their prototypes. A
+constructor further down the chain can invoke the constructor function higher up
+the chain using its `call` method:
+
+```javascript
+let Person = function (name, age) {
+  this.name = name;
+  this.age = age;
+};
+
+Person.prototype.toString = function () {
+  return `${this.name} is ${this.age} years old`;
+};
+
+let Employee = function (name, age, percentage, salary) {
+  Person.call(this, name, age);
+  this.percentage = percentage;
+  this.salary = salary;
+};
+
+Employee.prototype.toString = function () {
+  let salary = this.percentage * 0.01 * this.salary;
+  return `${Person.prototype.toString.call(this)} and earns ${salary}`;
+};
+
+Object.setPrototypeOf(Employee.prototype, Person.prototype);
+
+let alice = new Employee("Alice", 52, 75.0, 120000);
+let bob = new Person("Bob", 47);
+
+console.log(alice.toString());
+console.log(bob.toString());
+```
+
+Output:
+
+    Alice is 52 years old and earns 90000
+    Bob is 47 years old
+
+The `toString` method of the prototype further up the chain has to be invoked
+explicitly using `Person.prototype.toString.call`, passing it the `this`
+reference of the calling object.
+
+The `instanceof` operator determines whether or not an object is part of a
+prototype chain. Using the example from above:
+
+```javascript
+console.log(`is Alice a Person? ${alice instanceof Person}`);
+console.log(`is Alice an Employee? ${alice instanceof Employee}`);
+console.log(`is Bob a Person? ${bob instanceof Person}`);
+console.log(`is Bob an Employee? ${bob instanceof Employee}`);
+```
+
+Output:
+
+    is Alice a Person? true
+    is Alice an Employee? true
+    is Bob a Person? true
+    is Bob an Employee? false

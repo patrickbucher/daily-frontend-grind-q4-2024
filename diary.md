@@ -1,3 +1,11 @@
+# Day 41 (2024-11-11)
+
+I continued working through chapter 4, for which I have summarized the part on
+prototype chaining, which is rather weird and uncomfortable to use. Now I really
+understand why JavaScript included classes and especially the `super` keyword,
+which is far more flexible than accessing the prototype's implementation
+explicitly using its constructor function name and its `call` method.
+
 # Day 40 (2024-11-10)
 
 I started reading chapter 4. I read the entire section about prototypes and
