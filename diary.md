@@ -1,3 +1,8 @@
+# Day 42 (2024-11-12)
+
+I summarized the part about classes, for which I re-implemented the prototype
+chaining examples with recent JavaScript features.
+
 # Day 41 (2024-11-11)
 
 I continued working through chapter 4, for which I have summarized the part on

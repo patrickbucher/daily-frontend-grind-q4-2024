@@ -1,32 +1,34 @@
-let Person = function (name, age) {
-  this.name = name;
-  this.age = age;
-};
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
 
-Person.prototype.toString = function () {
-  return `${this.name} is ${this.age} years old`;
-};
+  toString() {
+    return `${this.name} is ${this.age} years old`;
+  }
 
-let Employee = function (name, age, percentage, salary) {
-  Person.call(this, name, age);
-  this.percentage = percentage;
-  this.salary = salary;
-};
+  static output(...people) {
+    people.forEach((p) => console.log(p.toString()));
+  }
+}
 
-Employee.prototype.toString = function () {
-  let salary = this.percentage * 0.01 * this.salary;
-  return `${Person.prototype.toString.call(this)} and earns ${salary}`;
-};
+class Employee extends Person {
+  constructor(name, age, percentage, salary) {
+    super(name, age);
+    this.percentage = percentage;
+    this.salary = salary;
+  }
 
-Object.setPrototypeOf(Employee.prototype, Person.prototype);
+  toString() {
+    return `${super.toString()} and earns ${this.#salary()}`;
+  }
 
-let alice = new Employee("Alice", 52, 75.0, 120000);
-let bob = new Person("Bob", 47);
+  #salary() {
+    return this.percentage * (this.salary / 100.0);
+  }
+}
 
-console.log(alice.toString());
-console.log(bob.toString());
-
-console.log(`is Alice a Person? ${alice instanceof Person}`);
-console.log(`is Alice an Employee? ${alice instanceof Employee}`);
-console.log(`is Bob a Person? ${bob instanceof Person}`);
-console.log(`is Bob an Employee? ${bob instanceof Employee}`);
+let alice = new Person("Alice", 52);
+let bob = new Employee("Bob", 47, 90, 120000);
+Person.output(alice, bob);
