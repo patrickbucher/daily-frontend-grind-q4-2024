@@ -1,3 +1,8 @@
+# Day 43 (2024-11-13)
+
+Only little time for TypeScript today: I read the section about iterators and
+generators, but only summarized the first part on iterators.
+
 # Day 42 (2024-11-12)
 
 I summarized the part about classes, for which I re-implemented the prototype
