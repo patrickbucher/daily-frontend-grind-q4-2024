@@ -1,7 +1,16 @@
+# Day 44 (2024-11-14)
+
+I summarized the part about generators, for which I rewrote the number sequence
+iterator from yesterday.
+
 # Day 43 (2024-11-13)
 
 Only little time for TypeScript today: I read the section about iterators and
 generators, but only summarized the first part on iterators.
+
+I worked a bit with the [PDFKit](https://pdfkit.org/) library for a
+side-project. The API is relatively straightforward, but the behaviour of the
+layout engine seems erratic to me.
 
 # Day 42 (2024-11-12)
 

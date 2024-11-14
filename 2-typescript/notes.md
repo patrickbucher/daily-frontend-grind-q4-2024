@@ -1471,7 +1471,7 @@ Output:
 Notice that for `bob` the `toString` method of `Employee` is called, even though
 the static `output` method is defined on `Person`.
 
-### Iterators
+### Iterators and Generators
 
 An iterator provides a function called `next`, which returns a sequence of
 objects containing a `value` and a `done` property, the latter indicating
@@ -1516,3 +1516,41 @@ Output:
     48
     54
     60
+
+A generator is a function declared using an asterisk character (`*`) that
+returns an intermediate result using the `yield` keyword and l ater continues
+its execution upon the next call. The state is maintained implicitly by the
+runtime rather than explicitly by the programmer.
+
+The number sequence from above can be expressed using a generator as follows:
+
+```javascript
+function* createSequence(step, n) {
+  let value = 0;
+  for (let i = 0; i < n; i++) {
+    value += step;
+    yield value;
+  }
+}
+```
+
+Generators can be consumed in a `for`/`of` loop or using the spread operator:
+
+```javascript
+for (let x of createSequence(6, 5)) {
+  console.log(x);
+}
+[...createSequence(3, 4)].forEach((x) => console.log(x));
+```
+
+Output:
+
+    6
+    12
+    18
+    24
+    30
+    3
+    6
+    9
+    12
