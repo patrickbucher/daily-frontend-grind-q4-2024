@@ -1,3 +1,7 @@
+# Day 45 (2024-11-15)
+
+I summarized the rest about the section about iterators and generators.
+
 # Day 44 (2024-11-14)
 
 I summarized the part about generators, for which I rewrote the number sequence

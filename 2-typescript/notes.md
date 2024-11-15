@@ -1554,3 +1554,43 @@ Output:
     6
     9
     12
+
+For objects that provide sequences of items, a special proprty called
+`Symbol.iterator` can be provided as a generator, allowing the object being used
+as a sequence in loops and with spread operations:
+
+```javascript
+class Sequence {
+  constructor(step, n) {
+    this.step = step;
+    this.n = n;
+  }
+
+  *[Symbol.iterator]() {
+    let value = 0;
+    for (let i = 0; i < this.n; i++) {
+      value += this.step;
+      yield value;
+    }
+  }
+}
+
+for (let x of new Sequence(7, 5)) {
+  console.log(x);
+}
+
+[...new Sequence(10, 5)].forEach((x) => console.log(x));
+```
+
+Output:
+
+    7
+    14
+    21
+    28
+    35
+    10
+    20
+    30
+    40
+    50
