@@ -1594,3 +1594,101 @@ Output:
     30
     40
     50
+
+### Collections
+
+An object's properties are key/value pairs. The keys and values of an object
+called `obj` can be obtained using the methods `Object.keys(obj)` and
+`Object.values(obj)`, respectively. Given an object and one of its keys, the
+value can be obtained using square bracket notation: `let value = obj[key]`.
+
+```javascript
+let mouse = {
+  name: "Pixie",
+  legs: 4,
+  food: "cheese",
+};
+
+for (let key of Object.keys(mouse)) {
+  console.log(`${key}: ${mouse[key]}`);
+}
+```
+
+Output:
+
+    name: Pixie
+    legs: 4
+    food: cheese
+
+Objects only support strings for keys. The `Map` type is more general in as far
+as it allows for any types to be used as a key. A `Map` provides the following
+operations (among others):
+
+- `set(key, value)`: stores the `value` under `key`
+- `get(key)`: returns the value stored under `key`
+- `keys()`: returns an iterator over the keys
+- `values()`: returns an iterator over the values
+- `entries()`: returns an iterator over `[key, value]` arrays
+
+Using a `Symbol` as a key avoids collisions, which could happen when the keys
+are derived from the stored value:
+
+```javascript
+class Person {
+  constructor(name, age) {
+    this.id = Symbol();
+    this.name = name;
+    this.age = age;
+  }
+}
+
+let alice = new Person("Alice", 52);
+let bob = new Person("Bob", 47);
+
+let people = new Map();
+people.set(alice.id, alice);
+people.set(bob.id, bob);
+
+for (let [id, { name, age, ..._ }] of people.entries()) {
+  console.log(`${id.toString()}: ${name} (${age})`);
+}
+```
+
+Note that a `Symbol` is rather abstract and not intended for output:
+
+    Symbol(): Alice (52)
+    Symbol(): Bob (47)
+
+A `Set` stores unique values and supports, among others, the following
+operations:
+
+- `add(value)`: adds a value to the set, if it is not already contained
+- `entries()`: returns an iterator over the set's values in insertion order
+- `has(value)`: returns true, if `value` is contained in the set, and `false`
+  otherwise
+- `size`: returns the number of elements in the set
+
+```javascript
+let additions = [
+  [3, 5],
+  [1, 4],
+  [4, 4],
+  [2, 1],
+];
+
+let sums = new Set();
+
+for (let [a, b] of additions) {
+  sums.add(a + b);
+}
+sums.forEach((s) => console.log(s));
+```
+
+Both the additions of `[3, 5]` and `[4, 4]` result in the sum of `8`, but this
+particular result is stored only once in the set of sums.
+
+Output:
+
+    8
+    5
+    3

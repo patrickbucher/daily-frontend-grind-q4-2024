@@ -1,3 +1,7 @@
+# Day 46 (2024-11-16)
+
+I summarized the part about collections, i.e. objects, maps, and sets.:x
+
 # Day 45 (2024-11-15)
 
 I summarized the rest about the section about iterators and generators.

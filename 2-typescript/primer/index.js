@@ -1,20 +1,13 @@
-class Sequence {
-  constructor(step, n) {
-    this.step = step;
-    this.n = n;
-  }
+let additions = [
+  [3, 5],
+  [1, 4],
+  [4, 4],
+  [2, 1],
+];
 
-  *[Symbol.iterator]() {
-    let value = 0;
-    for (let i = 0; i < this.n; i++) {
-      value += this.step;
-      yield value;
-    }
-  }
+let sums = new Set();
+
+for (let [a, b] of additions) {
+  sums.add(a + b);
 }
-
-for (let x of new Sequence(7, 5)) {
-  console.log(x);
-}
-
-[...new Sequence(10, 5)].forEach((x) => console.log(x));
+sums.forEach((s) => console.log(s));
