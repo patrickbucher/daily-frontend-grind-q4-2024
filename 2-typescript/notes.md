@@ -1692,3 +1692,70 @@ Output:
     8
     5
     3
+
+### Modules
+
+Modules allow it to break an application into manageable junks. Most JavaScript
+projects use either one of the following module systems:
+
+1. _ECMAScript modules_ are the official standard built into recent runtimes.
+2. _CommonJS modules_ are provided by Node.js and used to be the de facto
+   standard.
+
+Since ECMAScript modules can deal with CommonJS modules, most projects targeting
+recent runtime versions should use ECMAScript modules. In Node.js, the type of
+module can be configured by convention or by configuration:
+
+- by convention: using file name extensions
+    - Use the `.mjs` extension for ECMAScript module files.
+    - Use the `.cjs` extension for CommonJS module files.
+- by configuration: using the `type` setting in `package.json`
+    - Use the `"type": "module"` setting for ECMAScript modules.
+    - Use the `"type": "commonjs"` setting for CommonJS modules.
+
+The following module defines functions for rounding values with different
+granularities (`round.js`):
+
+```javascript
+export default function roundTo(value, granularity) {
+  const factor = 1.0 / granularity;
+  const scaledUp = value * factor;
+  const rounded = Math.round(scaledUp);
+  const scaledDown = rounded / factor;
+  return scaledDown;
+}
+
+export function roundToNickels(value) {
+  return roundTo(value, 0.05);
+}
+
+export function roundToDimes(value) {
+  return roundTo(value, 0.1);
+}
+```
+
+Functions defined in modules are private to the module by default and need to be
+made available to other modules using the `export` keyword. The `default`
+keyword denotes a single feature of the module that is imported by default
+without having to use an explicit name.
+
+The `round.js` module can be used in `index.js` as follows:
+
+```javascript
+import round, { roundToNickels, roundToDimes } from "./round.js";
+
+console.log(round(10.0 / 3.0, 0.01));
+console.log(roundToNickels(10.0 / 3.0));
+console.log(roundToDimes(10.0 / 3.0));
+```
+
+The default feature of the module is imported using an alternative name: `round`
+instead of `roundTo`. The other two functions are imported using their names.
+
+If the module code resides in the same project, relative paths are used,
+starting with `./` for modules located in the same directory, or starting with
+`../` for modules located in a directory higher up in the hierarchy.
+
+If external modules are used, such as those located in `node_modules`, the
+import path starts with the module name: the name of the module directory
+located in `node_modules`.

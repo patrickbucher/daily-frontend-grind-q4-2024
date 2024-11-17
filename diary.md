@@ -1,3 +1,9 @@
+# Day 47 (2024-11-17)
+
+I summarized the part about modules and thereby finished summarizing chapter 4.
+It's the middle of November, and only now I actually start with working on
+TypeScript.
+
 # Day 46 (2024-11-16)
 
 I summarized the part about collections, i.e. objects, maps, and sets.:x

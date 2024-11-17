@@ -1,13 +1,5 @@
-let additions = [
-  [3, 5],
-  [1, 4],
-  [4, 4],
-  [2, 1],
-];
+import round, { roundToNickels, roundToDimes } from "./round.js";
 
-let sums = new Set();
-
-for (let [a, b] of additions) {
-  sums.add(a + b);
-}
-sums.forEach((s) => console.log(s));
+console.log(round(10.0 / 3.0, 0.01));
+console.log(roundToNickels(10.0 / 3.0));
+console.log(roundToDimes(10.0 / 3.0));
