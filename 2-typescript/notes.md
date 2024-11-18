@@ -1759,3 +1759,103 @@ starting with `./` for modules located in the same directory, or starting with
 If external modules are used, such as those located in `node_modules`, the
 import path starts with the module name: the name of the module directory
 located in `node_modules`.
+
+## Using the TypeScript compiler
+
+To demonstrate the usage of the TypeScript compiler, a new project called
+`tools` shall be created:
+
+```bash
+mkdir tools
+cd tools
+npm init --yes
+```
+
+Two dependencies—the TypeScript compiler and a tool for automatic
+compilation—shall be installed:
+
+```bash
+npm install --save-dev typescript@6.2.1
+npm install --save-dev tsc-watch@5.6.3
+```
+
+This will store the specified dependencies in the `devDependencies` section of
+the `package.json` file—unlike dependencies installed without the `--save-dev`
+option, which are listed in the `dependencies` section.
+
+A basic compiler configuration file `tsconfig.json` shall be created:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}
+```
+
+TypeScript files located in the `src` folder will be compiled using the
+ECMAScript 2022 standard, and the resulting JavaScript code will be put into the
+`dist` folder.
+
+A file `src/index.ts` shall be created:
+
+```javascript
+function greet(whom: string): void {
+  console.log(`Hello, ${whom}!`);
+}
+
+greet("TypeScript");
+```
+
+The code can be compiled and executed as follows:
+
+```bash
+tsc
+node dist/index.js
+
+Output:
+
+    Hello, TypeScript!
+```
+
+Version numbers in `packge.json` (both in `dependencies` and `devDependencies`)
+can be specified using different rules:
+
+- `6.2.1`: the exact version
+- `*`: any version
+- `>6.2.1`, `>=6.2.1`, `<6.2.1`, `<=6.2.1`: versions higher/lower
+  (exclusive/inclusive) than the stated version number
+- `~6.2.1`: same major and minor version, but allows for other patch version
+- `^6.2.1`: same major version, but allows for other minor or patch version
+
+The most commonly used NPM commands are:
+
+- `npm install`: install the packages specified in `package.json`
+- `npm install package@version`: install a single package with a specific
+  version (saved to `dependencies` in `package.json`)
+- `npm install --save-dev package@version`: install a single package with a
+  specific version (saved to `devDependencies` in `package.json`)
+- `npm install --global package@version`: install a single package with a
+  specific version globally
+- `npm list`: list local packages and their dependencies
+- `npm run`: execute a script defined in `package.json`
+- `npx package`: runs the code of a package
+
+The `packag.json` and `package-lock.json` files shall be _included_ in, the folder
+`node_modules` shall be _excluded_ from version control
+
+To control which files shall be compiled when running `tsc`, different options
+can be specified in `tsconfig.json`:
+
+- `files`: overrides the standard behaviour by specifying a set of files to be
+  compiled
+- `include`/`exclude`: define files by patterns to be included/excluded
+- `compileOnSave`: hints to the text editor that `tsc` shall be run upon saving
+  a file, if set to `true`
+
+To figure out which files are considered for compilation, run:
+
+- globally: `tsc --listFiles`
+- locally: `npx tsc --listFiles`

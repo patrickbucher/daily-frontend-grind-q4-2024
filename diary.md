@@ -1,3 +1,8 @@
+# Day 48 (2024-11-18)
+
+I started working through chapter 5, which repeats some basics about setting up
+TypeScript projects from chapter 2.
+
 # Day 47 (2024-11-17)
 
 I summarized the part about modules and thereby finished summarizing chapter 4.
