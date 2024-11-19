@@ -3,3 +3,6 @@ function greet(whom: string): void {
 }
 
 greet("TypeScript");
+greet("JavaScript");
+greet("ECMAScript");
+greet("VBScript");

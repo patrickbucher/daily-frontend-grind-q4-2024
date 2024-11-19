@@ -1,3 +1,8 @@
+# Day 49 (2024-11-19)
+
+I summarized the next part of chapter 5, which is about various compiler
+settings and automatic compilation/execution.
+
 # Day 48 (2024-11-18)
 
 I started working through chapter 5, which repeats some basics about setting up

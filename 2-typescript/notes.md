@@ -1801,7 +1801,7 @@ ECMAScript 2022 standard, and the resulting JavaScript code will be put into the
 
 A file `src/index.ts` shall be created:
 
-```javascript
+```typescript
 function greet(whom: string): void {
   console.log(`Hello, ${whom}!`);
 }
@@ -1859,3 +1859,97 @@ To figure out which files are considered for compilation, run:
 
 - globally: `tsc --listFiles`
 - locally: `npx tsc --listFiles`
+
+By default, the TypeScript compiler emits JavaScript code even when it
+encounters errors. This resulting code contains potential errors. To demonstrate
+this problematic behaviour, extend `index.ts` with the following function call:
+
+```typescript
+function greet(whom: string): void {
+  console.log(`Hello, ${whom}!`);
+}
+
+greet("TypeScript");
+greet(100);
+```
+
+Compilation will fail:
+
+    $ tsc
+    src/index.ts:6:7 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'
+
+But the following JavaScript code _was_ emitted:
+
+```javascript
+function greet(whom) {
+    console.log(`Hello, ${whom}!`);
+}
+greet("TypeScript");
+greet(100);
+```
+
+In this case, the resulting code is unproblematic, because numbers can be
+printed just as strings. However, this defeats the purpose of using TypeScript.
+This behaviour can be changed by setting the `noEmitOnError` setting to `true`
+in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noEmitOnError": true
+  }
+}
+```
+
+For automatic recompilation, run `tsc` with the `--watch` flag:
+
+```bash
+tsc --watch
+```
+
+However, the emitted JavaScript code still needs to be executed manually. Use
+the `tsc-watch` package instealled earlier for automatic execution after
+compilation:
+
+```bash
+npx tsc-watch --onsuccess 'node dist/index.js'
+```
+
+To avoid typing this command again at the beginning of the next session, encode
+it as a script in `package.json`:
+
+```json
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc-watch --onsuccess 'node dist/index.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsc-watch": "^6.2.1",
+    "typescript": "^5.6.3"
+  }
+}
+```
+
+Which then can be run as follows:
+
+
+```bash
+npm start
+```
+
+To specify the targeted version of the JavaScript language being emitted by the
+compiler, set the `target` option in `tsconfig.json`. By default `ES5` is used.
+See the documentation of the
+[`target`](https://www.typescriptlang.org/tsconfig/#target) option for all
+allowed values. The other compiler options are documented on the [TSConfig
+Reference](https://www.typescriptlang.org/tsconfig/) page.
