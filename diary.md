@@ -1,3 +1,18 @@
+# Day 50 (2024-11-20)
+
+I didn't bother too long with the rest of chapter 5, which is mostly about
+compiler options. My goal is to learn the language TypeScript, which will only
+be systematically introduced in chapter 7, starting at page 148.
+
+The next chapter is on testing and debugging. This will be a useful chapter,
+because I'd like to use TypeScript in school. I'll teach testing, and most
+students can't work without a debugger.
+
+I think the use of debuggers hints to problems in the development process. Once
+you no longer understand the code, you resort to "operational reasoning" by
+watching the code being executed. I absolute hate programming, nay: _coding_, in
+this way.
+
 # Day 49 (2024-11-19)
 
 I summarized the next part of chapter 5, which is about various compiler
