@@ -1953,3 +1953,16 @@ See the documentation of the
 [`target`](https://www.typescriptlang.org/tsconfig/#target) option for all
 allowed values. The other compiler options are documented on the [TSConfig
 Reference](https://www.typescriptlang.org/tsconfig/) page.
+
+If a feature is used in TypeScript code that isn't available in the targeted
+JavaScript runtime, the compiler will report an error. The problem can be
+resolved by either targeting a later JavaScript standard or by changing the type
+definitions using the [`lib`](https://www.typescriptlang.org/tsconfig/#lib)
+setting in `tsconfig.json`, which is an array of library names.
+
+To target different type of module implementations, use the
+[`module`](https://www.typescriptlang.org/tsconfig/#module) setting in
+`tsconfig.json`.
+
+See the list of [compiler options](https://www.typescriptlang.org/tsconfig/) to
+further control the compilation process.
