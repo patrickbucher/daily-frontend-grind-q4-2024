@@ -1966,3 +1966,88 @@ To target different type of module implementations, use the
 
 See the list of [compiler options](https://www.typescriptlang.org/tsconfig/) to
 further control the compilation process.
+
+## Testing and debugging TypeScript
+
+Because the written TypeScript code and the emitted JavaScript code do not
+correlate on a line-by-line basis, _source maps_ have to be generated in order
+to use a debugger on the TypeScript code. Set the `sourceMap` setting to `true`
+in `tsconfig.json` in order to create `.map` files alongside the `.js` files in
+the `dist` folder.
+
+To use a debugger on TypeScript code, check your editor's documentation, or use
+the `debugger` keyword together with Node.js:
+
+```bash
+node inspect dist/index.js
+```
+
+See the [Debugging
+Node.js](https://nodejs.org/en/learn/getting-started/debugging) documentation
+for further instructions.
+
+A linter inspects the code for style issues and emits warnings. Install the
+following packages to lint your code:
+
+```bash
+npm install --save-dev eslint@<9.0.0
+npm install --save-dev @typescript-eslint/parser@8.15.0
+npm install --save-dev @typescript-eslint/eslint-plugin@8.15.0
+```
+
+Create a configuration file `.eslintrc` to the project's root folder:
+
+```json
+{
+  "root": true,
+  "ignorePatterns": ["node_modules", "dist"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ]
+}
+```
+
+The linter can be run using the following command:
+
+```bash
+npx eslint .
+```
+
+Change the code in `src/index.ts` to use a variable using a `let` statement:
+
+```typescript
+function greet(whom: string): void {
+  let message = `Hello, ${whom}!`;
+  console.log(message);
+}
+
+greet("TypeScript");
+```
+
+The linter will warn you about using `let` where `const` would be more
+appropriate:
+
+    2:7  error  'message' is never reassigned. Use 'const' instead  prefer-const
+
+Once `let` is replaced by `const`, the message won't be shown again when linting
+the code.
+
+The rightmost information of the error message (`prefer-const`) ist the name of
+the rule, which can be disabled by adding in to the `rules` section of the
+`eslintrc` file:
+
+```json
+{
+  …
+  "rules": {
+    "prefer-const": 0
+  }
+}
+```

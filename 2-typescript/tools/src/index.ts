@@ -1,8 +1,6 @@
 function greet(whom: string): void {
-  console.log(`Hello, ${whom}!`);
+  let message = `Hello, ${whom}!`;
+  console.log(message);
 }
 
 greet("TypeScript");
-greet("JavaScript");
-greet("ECMAScript");
-greet("VBScript");
