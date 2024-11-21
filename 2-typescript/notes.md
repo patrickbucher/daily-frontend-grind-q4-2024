@@ -2051,3 +2051,6 @@ the rule, which can be disabled by adding in to the `rules` section of the
   }
 }
 ```
+
+See the [ESLint documentation](https://eslint.org/docs/latest/use/configure/)
+for further configuration options.

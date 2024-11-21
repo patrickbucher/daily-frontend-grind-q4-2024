@@ -1,3 +1,9 @@
+# Day 51 (2024-11-21)
+
+Chapter 6 is yet another chapter on tooling, so it doesn't require careful
+summarization using pen and paper, but merely documenting the most important
+steps.
+
 # Day 50 (2024-11-20)
 
 I didn't bother too long with the rest of chapter 5, which is mostly about
