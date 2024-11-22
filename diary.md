@@ -1,3 +1,23 @@
+# Day 52 (2024-11-22)
+
+I finished summarizing chapter 6 with the rather useful part on Unit Tests. I
+now doubt that TypeScript is the right tool for teaching in the next term,
+because of subtleties as importing code using a `.js` extension in production
+code, and without any extension in test code (because Jest uses `CommonJS`
+modules instead of `ECMAScript` modules). This just bogs everything down. Maybe
+a different test framework using `ECMAScript` modules would simplify things.
+Let's see…
+
+Now I can move to part 2 of the book (finally!), which is roughly 250 pages
+long.
+
+I should write a standalone project setup tutorial with the most recent versions
+of the tools, too. For ESlint, the configuration works differently now than with
+the versions used in the book. This ecosystem is just way too volatile for my
+taste.
+
+I probably should use Go as a teaching language.
+
 # Day 51 (2024-11-21)
 
 Chapter 6 is yet another chapter on tooling, so it doesn't require careful

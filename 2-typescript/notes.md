@@ -2054,3 +2054,93 @@ the rule, which can be disabled by adding in to the `rules` section of the
 
 See the [ESLint documentation](https://eslint.org/docs/latest/use/configure/)
 for further configuration options.
+
+### Unit Testing
+
+When writing TypeScript, both the test and the production code are compiled to
+JavaScript. It's the duty of the TypeScript compiler to verify the use of
+TypeScript features; the unit tests only verify JavaScript code.
+
+Install the Jest test framework as follows:
+
+```bash
+npm install --save-dev jest@29.7.0
+npm install --save-dev ts-jest@29.2.5
+npm install --save-dev @types/jest@29.5.14
+```
+
+The `ts-jest` package automatically compiles TypeScript files before the tests
+are executed. The `@types/jest` package contains TypeScript definitions for the
+Jest API.
+
+Create a test concifugartion file `jest.config.js` in the project's root folder
+with the following content:
+
+```javascript
+module.exports = {
+  roots: ["src"],
+  transform: { "^.+\\.tsx?$": "ts-jest" },
+};
+```
+
+The source code will be looked up in the `src` folder. Files with the `.ts` and
+`.tsx` extension should be processed by `ts-jest`.
+
+For a file called `foo.ts`, a unit test is defined in a file called
+`foo.test.ts`.
+
+Create a new file `src/rounding.ts` with the following code to be tested:
+
+```typescript
+export function roundTo(value: number, granularity: number): number {
+  const factor = 1.0 / granularity;
+  const scaledUp = value * factor;
+  const rounded = Math.round(scaledUp);
+  const scaledDown = rounded / factor;
+  return scaledDown;
+}
+```
+
+Create a new file `src/rounding.test.ts` with the following test code:
+
+```typescript
+import { roundTo } from "./rounding";
+
+test("check round to cents", () => {
+  expect(roundTo(10.0 / 3.0, 0.01)).toBe(3.33);
+});
+
+test("check round to nickels", () => {
+  expect(roundTo(10.0 / 3.0, 0.05)).toBe(3.35);
+});
+
+test("check round to dimes", () => {
+  expect(roundTo(10.0 / 3.0, 0.1)).toBe(3.3);
+});
+```
+
+The `test` function provided by the Jest framework expects both a test
+description as a string and a function performing the actual test. The `expect`
+function expects a function result, which than can be further processed by a
+_matcher function_ such as `toBe`.
+
+The `import` statement does _not_ require a `.js` extension, because internally
+`CommonJS` is used as the module system.
+
+The tests can be run as follows:
+
+```bash
+npx jest
+```
+
+An interactive mode of test running is supported as well:
+
+```bash
+npx jest --watchAll
+```
+
+This allows the tests to be quickly executed again (e.g. by pressing `f` to run
+failed tests, or by pressing `[Enter]` to run all tests again).
+
+A complete list of Jest matcher functions can be found in the [Jest
+documentation](https://jestjs.io/docs/expect).
