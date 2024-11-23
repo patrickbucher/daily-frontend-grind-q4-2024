@@ -1,3 +1,9 @@
+# Day 53 (2024-11-23)
+
+I read most of chapter 7 and summarized the first part of it. I finally learned
+something new, e.g. about the `declaration` compiler option, that reveals the
+types the compiler has inferred.
+
 # Day 52 (2024-11-22)
 
 I finished summarizing chapter 6 with the rather useful part on Unit Tests. I

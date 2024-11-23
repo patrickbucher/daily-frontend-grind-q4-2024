@@ -2144,3 +2144,81 @@ failed tests, or by pressing `[Enter]` to run all tests again).
 
 A complete list of Jest matcher functions can be found in the [Jest
 documentation](https://jestjs.io/docs/expect).
+
+## Understanding static types
+
+The following code examples can be run in a project called `types`, similar to
+the `tools` project from the above section.
+
+In JavaScript, variables have no types, but values do. JavaScript's `typeof`
+keyword returns the type of an expression's resulting value:
+
+```typescript
+console.log(`${typeof "hello"}`);
+console.log(`${typeof 12.5}`);
+console.log(`${typeof true}`);
+console.log(`${typeof { some: "thing" }}`);
+```
+
+Output:
+
+    string
+    number
+    boolean
+    object
+
+To restrict variables, function parameters, and function return values to
+certain types, TypeScript supports _type annotations_:
+
+```typescript
+function discount(amount: number, percentage: number): number {
+  const factor: number = (100 - percentage) / 100.0;
+  const discounted: number = amount * factor;
+  return discounted;
+}
+
+console.log(discount(50, 2.5));
+```
+
+The TypeScript compiler is able to infer the types of expressions. In this
+example, the result is converted to a `string`:
+
+```typescript
+function discount(amount: number, percentage: number) {
+  const factor: number = (100 - percentage) / 100.0;
+  const discounted: number = amount * factor;
+  return discounted.toFixed(2);
+}
+
+const originalPrice = 50;
+const discountRate = 1.25;
+const discountedPrice = discount(originalPrice, discountRate);
+console.log(discountedPrice);
+```
+
+The `toFixed` method turns the `number` into a `string`, which is returned from
+the `discount` function. Since no variable nor return types have been annotated,
+the compiler has to figure out the types.
+
+Extend the `tsconfig.json` file by adding the `declaration` setting:
+
+```json
+{
+  "compilerOptions": {
+    …
+    "declaration": true
+  }
+}
+```
+
+This will create a file called `index.d.ts` alongside `index.js` in the dist
+folder:
+
+```typescript
+declare function discount(amount: number, percentage: number): string;
+declare const originalPrice = 50;
+declare const discountRate = 1.25;
+declare const discountedPrice: string;
+```
+
+This is helpful to reveal what types the compiler has inferred.
