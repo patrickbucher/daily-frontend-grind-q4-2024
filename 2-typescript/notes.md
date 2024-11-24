@@ -2222,3 +2222,102 @@ declare const discountedPrice: string;
 ```
 
 This is helpful to reveal what types the compiler has inferred.
+
+The `any` type can be used if _all_ types are allowed. In this case, the
+programmer must take care that the types are used correctly, and the compiler
+won't help. If no type parameters are provided, the TypeScript compiler fills in
+`any` implicitly.
+
+This implicit usage of `any` can be disabled using the `noImplicitAny` compiler
+option in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    …
+    "noImplicitAny": true
+  }
+}
+```
+
+If different types are acceptable for a variable or function argument, the
+allowed types can be narrowed down using a _type union_ rather than just
+allowing `any` type.
+
+A type union is a list of types, separated by a bar, e.g. `string | number` to
+allow both strings and numeric values.
+
+The discount example from before is extended using a flag indicating whether or
+not the result shall be formatted as a currency string, either returning a
+`string` or a `number`.
+
+```typescript
+function discount(
+  amount: number,
+  percentage: number,
+  format: boolean,
+): string | number {
+  const factor: number = (100 - percentage) / 100.0;
+  const discounted: number = amount * factor;
+  if (format) {
+    return `$${discounted.toFixed(2)}`;
+  }
+  return discounted;
+}
+
+const originalPrice = 50;
+const discountRate = 1.25;
+const discountedPrice = discount(originalPrice, discountRate, true);
+console.log(discountedPrice);
+```
+
+The operations allowed on the `discountedPrice` variable are the intersection of
+operations allowed on the `string` and on the `number` type, i.e. only
+`toString()` is allowed.
+
+If the programmer knows more than the compiler, a _type assertion_ using the
+`as` keyword can be used to make sure TypeScript treats a variable as having a
+specific type. Using the `discount` function from above:
+
+```typescript
+const discountedPriceFormatted: string = discount(99.9, 5.0, true) as string;
+const discountedPriceRaw: number = discount(99.9, 5.0, false) as number;
+console.log(discountedPriceFormatted, discountedPriceRaw.toFixed(2));
+```
+
+Notice that no conversion is performed by using the `as` keyword; instead,
+TypeScript uses this information to determine which operations are allowed on
+the variables.
+
+A different approach is to use _type guards_ using the `typeof` JavaScript keyword:
+
+```typescript
+const discountedPrice = discount(99.9, 5.0, false);
+if (typeof discountedPrice === "string") {
+  console.log(discountedPrice);
+} else if (typeof discountedPrice === "number") {
+  console.log(`$${discountedPrice.toFixed(2)}`);
+}
+```
+
+The TypeScript compiler figures out that in the second branch, `discountedPrice`
+is a number, therefore permitting the usage of its `toFixed` method.
+
+The `never` type can be used to ensure that type guards are being used
+exhaustively, i.e. that no type remains unhandled:
+
+```typescript
+const discountedPrice = discount(99.9, 5.0, false);
+if (typeof discountedPrice === "string") {
+  console.log(discountedPrice);
+} else if (typeof discountedPrice === "number") {
+  console.log(`$${discountedPrice.toFixed(2)}`);
+} else {
+  let impossible: never = discountedPrice;
+  console.log(`unexpected type for value ${impossible}`);
+}
+```
+
+If the `discount` function were to be declared with the type `string | number |
+object`, the assignment of `discountedPrice` to `impossible` _would_ actually
+happen, causing an error.
