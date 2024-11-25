@@ -2321,3 +2321,32 @@ if (typeof discountedPrice === "string") {
 If the `discount` function were to be declared with the type `string | number |
 object`, the assignment of `discountedPrice` to `impossible` _would_ actually
 happen, causing an error.
+
+Unlike `any`, the type `unknown` can only be assigned to another type together
+with a type assertion. The following code using `any` compiles:
+
+```typescript
+const discounted: any = discount(99.9, 5.0, false);
+const discountedPrice: number = discounted;
+console.log(discountedPrice);
+```
+
+When using `unknown` instead of `any` instead, this code would fail:
+
+```typescript
+const discounted: unknown = discount(99.9, 5.0, false);
+const discountedPrice: number = discounted;
+console.log(discountedPrice);
+```
+
+Error:
+
+    error TS2322: Type 'unknown' is not assignable to type 'number'.
+
+It works however together with a type assertion:
+
+```typescript
+const discounted: unknown = discount(99.9, 5.0, false);
+const discountedPrice: number = discounted as number;
+console.log(discountedPrice);
+```

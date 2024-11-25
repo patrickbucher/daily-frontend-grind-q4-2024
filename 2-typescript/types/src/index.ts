@@ -11,12 +11,6 @@ function discount(
   return discounted;
 }
 
-const discountedPrice = discount(99.9, 5.0, false);
-if (typeof discountedPrice === "string") {
-  console.log(discountedPrice);
-} else if (typeof discountedPrice === "number") {
-  console.log(`$${discountedPrice.toFixed(2)}`);
-} else {
-  let impossible: never = discountedPrice;
-  console.log(`unexpected type for value ${impossible}`);
-}
+const discounted: unknown = discount(99.9, 5.0, false);
+const discountedPrice: number = discounted as number;
+console.log(discountedPrice);

@@ -1,3 +1,11 @@
+# Day 55 (2024-11-25)
+
+I only summarized the tiny section about the `unknown` type. I really need to
+get more work done on a daily basis. Not because of the current _Daily Frontend
+Grind_, but because I'd like to get more serious again next year with _Conrete
+Mathematics_ and the Elixir/Phoenix stack. Rowing, math, Elixir—how can I make
+room for all three on a daily basis?
+
 # Day 54 (2024-11-24)
 
 I summarized the rest of the part I read yesterday, but I haven't read any
