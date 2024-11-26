@@ -2350,3 +2350,115 @@ const discounted: unknown = discount(99.9, 5.0, false);
 const discountedPrice: number = discounted as number;
 console.log(discountedPrice);
 ```
+
+Since the values `null` and `undefined` are legal values for all types, the
+TypeScript compiler won't complain when using them:
+
+```typescript
+function discount(
+  amount: number,
+  percentage: number,
+  format: boolean,
+): string | number {
+  if (amount == 0.0) {
+    return null;
+  }
+  const factor: number = (100 - percentage) / 100.0;
+  const discounted: number = amount * factor;
+  if (format) {
+    return `$${discounted.toFixed(2)}`;
+  }
+  return discounted;
+}
+
+const discountedPrice: string | number = discount(99.9, 5.0, false);
+console.log(discountedPrice);
+```
+
+This behaviour can be changed by activating _strict null checks_ in
+`tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    …
+    "strictNullChecks": true
+  }
+}
+```
+
+The code from above now cuases this error:
+
+    Type 'null' is not assignable to type 'string | number'.
+
+The `null` type has to be included in the type union so that the program
+compiles and runs again:
+
+```typescript
+function discount(
+  amount: number,
+  percentage: number,
+  format: boolean,
+): string | number | null {
+  if (amount == 0.0) {
+    return null;
+  }
+  const factor: number = (100 - percentage) / 100.0;
+  const discounted: number = amount * factor;
+  if (format) {
+    return `$${discounted.toFixed(2)}`;
+  }
+  return discounted;
+}
+
+const discountedPrice: string | number | null = discount(99.9, 5.0, false);
+console.log(discountedPrice);
+```
+
+Note that `typeof null` returns `"object"`, so the variable `discountedPrice` in
+the example above needs to be compared to the _value_ `null`; a type guard won't
+help.
+
+If the value `null` cannot be returned, i.e. by passing an `amount` argument not
+equal to `0.0` in the example above—the programmer knows more than the
+compiler—a _non-null assertion_ can be applied, which is a `!` character after
+the expression producing a non-`null` value:
+
+```typescript
+const discountedPrice: string | number = discount(99.9, 5.0, false)!;
+console.log(discountedPrice);
+```
+
+Note that the type `null` is still part of the function's type union, but no
+longer of the variable's.
+
+The  also uses the `!` character, but right
+after the variable's name.
+
+If the compiler cannot detect the assignment of a value to a variable, but the
+programmer is sure there _is_ a value assigned, the _definitive assignment
+assertion_ (also using the `!` character, but right after the variable's name)
+can be used to prevent compilation errors.
+
+This code fails to compile:
+
+```typescript
+let percentage: number;
+eval("percentage = 5.0;");
+const discountedPrice: string | number = discount(99.9, percentage, false)!;
+console.log(discountedPrice);
+```
+
+Error:
+
+    Variable 'percentage' is used before being assigned.
+
+The TypeScript compiler cannot peek inside the `eval` function, but the
+programmer can:
+
+```typescript
+let percentage!: number;
+eval("percentage = 5.0;");
+const discountedPrice: string | number = discount(99.9, percentage, false)!;
+console.log(discountedPrice);
+```

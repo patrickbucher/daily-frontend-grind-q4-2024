@@ -1,3 +1,8 @@
+# Day 56 (2024-11-26)
+
+I finished summarizing chapter 7. The last sections were about the _non_null_
+and the _definitive assignment assertion_
+
 # Day 55 (2024-11-25)
 
 I only summarized the tiny section about the `unknown` type. I really need to
