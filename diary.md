@@ -1,3 +1,10 @@
+# Day 57 (2024-11-27)
+
+I re-organized the TypeScript documentation. Instead of having a single file
+called `notes.md`, I now have a file per chapter. This makes editing easier,
+especially adding new parts. Jumping to an absolute line is a lot faster when
+you have 300 instead of 3000 lines in a markdown file.
+
 # Day 56 (2024-11-26)
 
 I finished summarizing chapter 7. The last sections were about the _non_null_
