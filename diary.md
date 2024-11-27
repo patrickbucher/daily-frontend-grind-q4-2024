@@ -5,6 +5,9 @@ called `notes.md`, I now have a file per chapter. This makes editing easier,
 especially adding new parts. Jumping to an absolute line is a lot faster when
 you have 300 instead of 3000 lines in a markdown file.
 
+I started reading chapter 8 and summarized the section about non-matching number
+of function arguments/parameters.
+
 # Day 56 (2024-11-26)
 
 I finished summarizing chapter 7. The last sections were about the _non_null_
