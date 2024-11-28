@@ -1,3 +1,13 @@
+# Day 58 (2024-11-28)
+
+I read the rest of chapter 8 and decided to rework the first part, which I
+summarized yesterday. I added some examples.
+
+It's more important to go well than to go fast. I won't tackle Angular this
+year, so spendig another month with the TypeScript book is fine. I reached page
+180, and I'd like to work through chapter 15, i.e. page 402. Those are 223
+pages, or roughly 7-8 pages a day to be summarized. This is a realistic pace.
+
 # Day 57 (2024-11-27)
 
 I re-organized the TypeScript documentation. Instead of having a single file
