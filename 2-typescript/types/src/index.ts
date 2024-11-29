@@ -1,6 +1,13 @@
-function discount(amount: number, percentage: number, absolute: number): number {
+function discount(
+  amount: number,
+  percentage: number,
+  absolute: number | null = 0,
+): number {
   const factor = (100 - percentage) / 100.0;
-  return amount * factor;
+  if (absolute === null) {
+    absolute = 0;
+  }
+  return (amount - absolute | 0) * factor;
 }
 
-console.log(discount(100, 5.0, 10.0));
+console.log(discount(100, 5, null));

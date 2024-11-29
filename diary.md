@@ -1,3 +1,10 @@
+# Day 59 (2024-11-29)
+
+I continued summarizing chapter 8, for which I switched back to paper again.
+Even though this seems to be a bit too much ceremony for this rather shallow
+topic, this way of workig calms me down and reduces the screen time in the early
+morning.
+
 # Day 58 (2024-11-28)
 
 I read the rest of chapter 8 and decided to rework the first part, which I
