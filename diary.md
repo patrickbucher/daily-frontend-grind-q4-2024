@@ -1,3 +1,8 @@
+# Day 60 (2024-11-30)
+
+Today's a lazy day, and I didn't start with my daily frontend grind before noon.
+However, I managed to finish summarizing chapter 8.
+
 # Day 59 (2024-11-29)
 
 I continued summarizing chapter 8, for which I switched back to paper again.

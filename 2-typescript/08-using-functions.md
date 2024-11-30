@@ -213,3 +213,166 @@ function discount(
 
 console.log(discount(100, 5, null));
 ```
+
+If no return type is annotated for a function that returns values of different
+types, the TypeScript compiler will automatically infer a type union for the
+function's return type. If the `declaration` setting is enabled, the inferred
+type unions can be seen in the according declarations file, e.g. in
+`dist/index.d.ts` for the  code in `src/index.ts`. The `discount` function can
+either return a `number` or a `string`, depending on the value of the `format`
+parameter:
+
+```typescript
+function discount(amount: number, percentage: number, format: boolean) {
+  const factor = (100 - percentage) / 100.0;
+  const result = amount * factor;
+  if (format) {
+    return result.toFixed(2);
+  }
+  return result;
+}
+```
+
+The return type is inferred as `string | number` in `dist/index.d.ts`:
+
+```typescript
+declare function discount(amount: number, percentage: number, format: boolean): string | number;
+```
+
+A JavaScript function that never explicitly returns a value using the `return`
+keyword will return `undefined` implicitly when called. Implicit returns can be
+prevented by enabling the `noImplicitReturns` compiler option in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    …
+    "noImplicitReturns": true
+  }
+}
+```
+
+When activated, each execution path of a function must return a value
+explicitly, otherwise the compiler throws an error:
+
+```typescript
+function greet(whom: string): string {
+  if (whom !== "") {
+    return `Hello, ${whom}!`;
+  }
+}
+```
+
+Output:
+
+    error TS2366: Function lacks ending return statement and return type does not include 'undefined'.
+
+Once an explicit return is introduced for the case that `whom` is the empty
+string, the function will be compiled:
+
+```typescript
+function greet(whom: string): string {
+  if (whom !== "") {
+    return `Hello, ${whom}!`;
+  }
+  return "";
+}
+```
+
+A function's return type can depend on the type of its parameters. However, this
+relationship remains implicit and requires reading the code to be uncovered, as
+in the following function:
+
+```typescript
+function multiply(x: number | string, y: number): number | string {
+  if (typeof x === "number") {
+    return x * y;
+  }
+  let result = "";
+  for (let i = 0; i < y; i++) {
+    result = `${result} ${x}`;
+  }
+  return result.trim();
+}
+
+console.log(multiply(3, 5));
+console.log(multiply("oh", 5));
+```
+
+Output:
+
+    15
+    oh oh oh oh oh
+
+A _type overload_ describes such a relationship using different function
+declarations, expressing valid type combinations:
+
+```typescript
+function multiply(x: number, y: number): number;
+function multiply(x: string, y: number): string;
+function multiply(x: number | string, y: number): number | string {
+  if (typeof x === "number") {
+    return x * y;
+  }
+  let result = "";
+  for (let i = 0; i < y; i++) {
+    result = `${result} ${x}`;
+  }
+  return result.trim();
+}
+
+let product: number = multiply(3, 5);
+let output: string = multiply("oh", 5);
+console.log(product);
+console.log(output);
+```
+
+When the function `multiply` is called with an argument of type `number` for the
+parameter `x`, the compiler infers that the resulting value must be of type
+`number`, too; no type assertion is needed when assigning the return value to a
+variable of type `number`.
+
+The `asserts` keyword indicates that a function performs a type assertion on a
+parameter value, which either passes or throws an exception. Consider the
+following function:
+
+```typescript
+function increment(x: number | null): number {
+  return x + 1;
+}
+```
+
+Which cannot be compiled:
+
+    error TS18047: 'x' is possibly 'null'.
+
+However, the code compiles when using an assert function:
+
+```typescript
+function increment(x: number | null): number {
+  assertNotNull(x);
+  return x + 1;
+}
+
+function assertNotNull(x: any): asserts x {
+  if (x == null) {
+    throw new Error("x is null");
+  }
+}
+```
+
+Assertions can also be used for specific types, e.g. to make sure that a
+parameter is actually numeric:
+
+```typescript
+function increment(x: number | string | null): number {
+  assertIsNumeric(x);
+  return x + 1;
+}
+
+function assertIsNumeric(x: any): asserts x is number {
+  if (typeof x != "number") {
+    throw new Error("x is not numeric");
+  }
+}
+```
