@@ -1,3 +1,9 @@
+# Day 61 (2024-12-01)
+
+I started reading chapter 9 on arrays, tuples, enums, and the like. I summarized
+the parts about arrays and tuples. The book is rather verbose; I managed to
+summarize the first 12 pages to one hand-written page; examples included.
+
 # Day 60 (2024-11-30)
 
 Today's a lazy day, and I didn't start with my daily frontend grind before noon.

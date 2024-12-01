@@ -1,10 +1,5 @@
-function increment(x: number | string | null): number {
-  assertIsNumeric(x);
-  return x + 1;
-}
+let dilbert: [string, number, string?, ...string[]] = ["Dilbert", 42];
+let alice: [string, number, string?, ...string[]] = ["Alice", 37, "Amy"];
+let wally: [string, number, string?, ...string[]] = ["Wally", 53, "Ashok", "Boss", "Joe"];
 
-function assertIsNumeric(x: any): asserts x is number {
-  if (typeof x != "number") {
-    throw new Error("x is not numeric");
-  }
-}
+let engineers: [string, number, string?, ...string[]][] = [dilbert, alice, wally];
