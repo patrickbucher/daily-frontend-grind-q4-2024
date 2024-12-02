@@ -1,5 +1,4 @@
-let dilbert: [string, number, string?, ...string[]] = ["Dilbert", 42];
-let alice: [string, number, string?, ...string[]] = ["Alice", 37, "Amy"];
-let wally: [string, number, string?, ...string[]] = ["Wally", 53, "Ashok", "Boss", "Joe"];
+const enum State { Running, Sleeping, Waiting, Starting, Stopping }
 
-let engineers: [string, number, string?, ...string[]][] = [dilbert, alice, wally];
+let state: State = State.Waiting;
+let label: string = State[state];

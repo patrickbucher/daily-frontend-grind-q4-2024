@@ -1,3 +1,8 @@
+# Day 62 (2024-12-02)
+
+I read the part about enums in chapter 9 and summarized it on paper, but didn't
+find time to process it on the computer until after the two morning lessons.
+
 # Day 61 (2024-12-01)
 
 I started reading chapter 9 on arrays, tuples, enums, and the like. I summarized
