@@ -260,3 +260,109 @@ let label: string = State[state];
 Output:
 
     error TS2476: A const enum member can only be accessed using a string literal.
+
+### Literal Value Types
+
+A literal value type defines a set of values that can be used in a certain
+place, e.g. to be assigned to a variable. Syntactically similar to type unions,
+literal values instead of types are used:
+
+```typescript
+let trafficLight: "red" | "yellow" | "green" = "red";
+trafficLight = "yellow";
+trafficLight = "green";
+trafficLight = "black";
+```
+
+The initial and the two subsequent assignments are valid, but the third is not:
+
+    error TS2322: Type '"black"' is not assignable to type '"red" | "yellow" | "green"'.
+
+Literal value types are most useful when applied to function parameters:
+
+```typescript
+function exp(value: number, power: 2 | 3): number {
+  if (power == 2) {
+    return value * value;
+  }
+  return value * value * value;
+}
+```
+
+It's possible to assign overlapping values to variables that are restricted by
+different sets of values:
+
+```typescript
+let twos: 2 | 4 | 6 | 8 = 4;
+let threes: 3 | 6 | 9 | 12 = 9;
+
+twos = 6;
+threes = 6;
+twos = 3;
+```
+
+The first two reassignments are valid, but the third is not:
+
+    error TS2322: Type '3' is not assignable to type '2 | 4 | 6 | 8'.
+
+Literal value types can be mixed with actual types in type unions:
+
+```typescript
+let value: string | 1 | 2 | 3 = "ok";
+value = 1;
+value = 2;
+value = 3;
+value = "whatever";
+```
+
+Type overrides can also be applied to literal value types:
+
+```typescript
+function designate(rank: 1 | 2 | 4): string;
+function designate(rank: 3 | 5): number;
+function designate(rank: 1 | 2 | 3 | 4 | 5): number | string {
+  switch (rank) {
+    case 1:
+      return "winner";
+    case 2:
+      return "first loser";
+    case 4:
+      return "missed the podium";
+    default:
+      return rank;
+  }
+}
+```
+
+It's also possible to use literal value types with string templates:
+
+```typescript
+function greet(
+  name: "Alice" | "Bob" | "Mallory",
+): `Hello, ${"Alice" | "Bob" | "Mallory"}` {
+  return `Hello, ${name}`;
+}
+```
+
+### Type Aliases
+
+Type definitions are often used at multiple places, making it tedious to use
+and especially change them:
+
+```typescript
+let dilbert: [string, number, boolean] = ["Dilbert", 42, true];
+let alice: [string, number, boolean] = ["Alice", 37, true];
+let wally: [string, number, boolean] = ["Wally", 52, false];
+let employees: [string, number, boolean][] = [dilbert, alice, wally];
+```
+
+Using a _type alias_, the type can have a name assigned, which then can be
+re-used:
+
+```typescript
+type employee = [string, number, boolean];
+let dilbert: employee = ["Dilbert", 42, true];
+let alice: employee = ["Alice", 37, true];
+let wally: employee = ["Wally", 52, false];
+let employees: employee[] = [dilbert, alice, wally];
+```
