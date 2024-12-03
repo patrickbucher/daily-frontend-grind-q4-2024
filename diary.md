@@ -1,3 +1,11 @@
+# Day 63 (2024-12-03)
+
+I finished reading chapter 9. It is absolutely devoid of any useful examples.
+Why should I use a feature like a type literal, if the author, who is supposed
+to be the expert on the subject, cannot give me a proper use case? I'd like to
+know how such a feature is used in practice, not how its usage can be
+demonstrated by a totally contrived example.
+
 # Day 62 (2024-12-02)
 
 I read the part about enums in chapter 9 and summarized it on paper, but didn't
