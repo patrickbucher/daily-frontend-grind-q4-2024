@@ -6,6 +6,9 @@ to be the expert on the subject, cannot give me a proper use case? I'd like to
 know how such a feature is used in practice, not how its usage can be
 demonstrated by a totally contrived example.
 
+I only finished summarizing the chapter after my lunch break. Onto the chapter
+about objects.
+
 # Day 62 (2024-12-02)
 
 I read the part about enums in chapter 9 and summarized it on paper, but didn't
