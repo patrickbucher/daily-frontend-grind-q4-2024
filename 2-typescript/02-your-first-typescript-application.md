@@ -13,7 +13,7 @@ version 8 or later:
 The TypeScript compiler can be installed (globally, i.e. for all of the current
 user's projects) in a specific version, e.g. 5.6.3 as follows:
 
-    $ npm install npm install --global typescript@5.6.3
+    $ npm install --global typescript@5.6.3
     $ tsc --version
     Version 5.6.3
 
