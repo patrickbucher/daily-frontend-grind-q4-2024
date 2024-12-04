@@ -1,3 +1,26 @@
+# Day 63 (2024-12-04)
+
+I started reading chapter 10 on objects. Every chapter starts with the same
+repetitive block of a preview and the instructions on how to run the example
+code. The first part serves as a table of contents for the chapter and could be
+useful for reference. However, the second part of that introduction is just a
+copy-paste block that bloats the book up. The entire book feels bloated.
+
+The author would like to explain a number of concepts (e.g. type annotations,
+type unions, some specific compiler flags) and their applications to different
+features of the JavaScript language (e.g. primitive types, functions, objects).
+With the concepts on one and the area of applications on the other axis, this
+creates a table of orthogonal concept-area combinations the author is working
+through.
+
+Unfortunately, he uses the areas of the JavaScript language as the main
+organization principle and goes through all of the TypeScript features for a
+particular area. Since all relevant JavaScript features already have been worked
+through in two preceding chapters, the other approach would be much more useful,
+e.g. a chapter on type unions, applying them to primitives, functions, objects
+etc. This could have been a great book of 200 pages, but now we have a formulaic
+and repetitive 500+ page monster.
+
 # Day 63 (2024-12-03)
 
 I finished reading chapter 9. It is absolutely devoid of any useful examples.
