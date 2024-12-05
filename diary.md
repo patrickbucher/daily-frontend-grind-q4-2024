@@ -1,4 +1,11 @@
-# Day 63 (2024-12-04)
+# Day 65 (2024-12-05)
+
+I summarized the first part of chapter 10. The whole part could have been
+summarized by a single proper code example with some explanations. I really need
+to read the whole chapter again before starting summarizing it. This book is
+totally bloated.
+
+# Day 64 (2024-12-04)
 
 I started reading chapter 10 on objects. Every chapter starts with the same
 repetitive block of a preview and the instructions on how to run the example
