@@ -157,3 +157,59 @@ for (let asset of assets) {
 ```
 
 By convention, type predicates follow the name `is[Type]`.
+
+## Type Intersections
+
+A type intersection combines two types to a new type that is only satisfied by
+values that conform to both original types. For object shapes, the intersection
+of two shapes requires that a value provides all the properties defined by
+either shape:
+
+```typescript
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+type Stock = {
+  id: number;
+  quantity: number;
+};
+
+type StockedProduct = Product & Stock;
+
+let stock: StockedProduct[] = [
+  { id: 1, name: "Stapler", price: 8.90, quantity: 17 },
+  { id: 2, name: "Chair", price: 215.99, quantity: 3 },
+  { id: 3, name: "Lamp", price: 89.95, quantity: 7 },
+];
+
+stock.forEach((i) => {
+  const value: number = i.price * i.quantity;
+  console.log(`${i.id}) ${i.name}:\t${value.toFixed(2)}`);
+});
+```
+
+Output:
+
+    1) Stapler:	151.30
+    2) Chair:	647.97
+    3) Lamp:	629.65
+
+The types `Product` and `Stock` have the `id` property in common; the `name` and
+`price` property of `Product` as well as the `quantity` property of `Stock` are
+only defined by one of the types.
+
+To satisfy the `StockedProduct` type, which is an intersection of `Product` and
+`Stock`, objects need to define _all_ four properties, which then can be safely
+used.
+
+When multiple types of an intersection define the same property name, the
+intersected type uses an intersection of their types. If the types are
+identical, this particular type is used. If different types are involved, the
+intersection of that type is used. If no useful intersection can be found, e.g.
+because `number` and `string` have nothing in common, the `never` type is
+inferred, which makes it impossible to use the type. For methods, it is a good
+practice to consult the declarations file to figure out what implementation in
+terms of types has to be provided.

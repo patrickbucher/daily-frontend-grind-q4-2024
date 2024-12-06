@@ -1,3 +1,7 @@
+# Day 66 (2024-12-06)
+
+TODO
+
 # Day 65 (2024-12-05)
 
 I summarized the first part of chapter 10. The whole part could have been
