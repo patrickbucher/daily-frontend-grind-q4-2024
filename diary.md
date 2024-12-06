@@ -1,6 +1,12 @@
 # Day 66 (2024-12-06)
 
-TODO
+I summarized the rest of chapter 10. The subject was _type intersections_, of
+which I only summarized the most obvious use cases, and only mentioned the
+possible issues arising from it. Type intersections are propably a feature that
+is not used too often, I guess.
+
+I have chapters 11 to 15 left, i.e. 158 pages. December has 25 days left, which
+leaves me at 6.32 pages to be summarized per day. This sounds feasible.
 
 # Day 65 (2024-12-05)
 
