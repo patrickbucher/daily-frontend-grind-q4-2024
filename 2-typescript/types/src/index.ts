@@ -1,11 +1,19 @@
-type Pager = {
-  name: string,
-  contact: number,
-};
+class Employee {
+  id: number;
+  name: string;
 
-type Phone = {
-  name: string,
-  contact: string,
-};
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
 
-type CallablePager = Pager & Phone;
+  describe(): string {
+    return `${this.id}: ${this.name}`;
+  }
+}
+
+let employees: Employee[] = [
+  new Employee(1, "Dilbert"),
+  new Employee(2, "Alice"),
+  new Employee(3, "Wally"),
+];

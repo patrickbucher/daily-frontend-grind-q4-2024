@@ -1,3 +1,15 @@
+# Day 67 (2024-12-07)
+
+I read the first half of chapter 11, which is about classes. As usual for this
+topic, most code examples are just boiler plate, with the usual clichee examples
+("an employee extends the person class"). The world is hierarchical, but not so
+much in terms of onthological hierarchies, but containment hierarchies: it's not
+important that a certain thing is a special case for some other thing, it's more
+important that actual things order themselves into a hierarchy. But for the sake
+of demonstrating the TypeScript featuers, I'll stick to the clichee examples.
+
+I started summarizing the first part of the chapter.
+
 # Day 66 (2024-12-06)
 
 I summarized the rest of chapter 10. The subject was _type intersections_, of
