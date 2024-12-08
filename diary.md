@@ -1,3 +1,9 @@
+# Day 68 (2024-12-08)
+
+I pragmatically summarized what I read about classes yesterday. The rest of the
+chapter is about interfaces, i.e. a very useful topic and one of the reasons I'm
+bothering with TypeScript.
+
 # Day 67 (2024-12-07)
 
 I read the first half of chapter 11, which is about classes. As usual for this
