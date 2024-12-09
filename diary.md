@@ -1,3 +1,11 @@
+# Day 69 (2024-12-08)
+
+I read the section in chapter 11 about interfaces. My new approach is to list
+all the features that have been introduced, create one large example covering
+those (or most of those) features, and then summarize the introduced features
+using that example. This not only makes for a shorter summary, but also for more
+realistic examples.
+
 # Day 68 (2024-12-08)
 
 I pragmatically summarized what I read about classes yesterday. The rest of the
