@@ -432,3 +432,21 @@ Output:
     Rectangle of 3x4 with circumference of 14 and area of 12
     Rectangle of 2x3 with circumference of 10 and area of 6
     Unknown shape with circumference of 20 and area of 25
+
+### Dynamic Properties
+
+JavaScript allows for properties to be used dynamically, whereas TypeScript
+restricts properties to those defined explicitly. An _index signature_ allows
+for dynamic properties within TypeScript code with restricted types.
+
+The property names can be of type `string` or `number`, but the property value
+can be of any type. An index signature is defined as follows, e.g. with `string`
+property names and `number` property values:
+
+```typescript
+[propertyName: string]: number;
+```
+
+Notice the literal `propertyName` defined within square brackets.
+
+TODO: example doesn't work
