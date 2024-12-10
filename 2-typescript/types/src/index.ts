@@ -8,6 +8,7 @@ interface Named {
 }
 
 interface Describable {
+  color?: string;
   describe(): string;
 }
 
@@ -36,6 +37,7 @@ class Rectangle extends Square implements Describable {
   constructor(
     side: number,
     public otherSide: number,
+    public color?: string,
   ) {
     super(side);
     this.name = "Rectangle";
@@ -54,14 +56,18 @@ class Rectangle extends Square implements Describable {
   }
 }
 
-let shapes: Shape[] = [new Rectangle(3, 4), new Square(5)];
+let shapes: Shape[] = [
+  new Rectangle(3, 4),
+  new Rectangle(2, 3, "green"),
+  new Square(5),
+];
 
 shapes.forEach((s) => {
   let description: string;
-  if ("name" in s) {
-    description = s.name as string;
-  } else if ("describe" in s && typeof s.describe == "function") {
-    description = s.describe();
+  if ("describe" in s) {
+    description = (s as Describable).describe();
+  } else if ("name" in s && s.name) {
+    description = (s as Named).name;
   } else {
     description = "Unknown shape";
   }

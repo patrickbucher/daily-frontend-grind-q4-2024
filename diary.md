@@ -1,4 +1,11 @@
-# Day 69 (2024-12-08)
+# Day 70 (2024-12-10)
+
+I summarized the part about interfaces and found a rather ugly solution for
+yesterday's problem. I like the approach of creating one big example that
+demonstrates all the concepts, especially when it comes to using known concepts
+that are simply adopted to TypeScript.
+
+# Day 69 (2024-12-09)
 
 I read the section in chapter 11 about interfaces. My new approach is to list
 all the features that have been introduced, create one large example covering

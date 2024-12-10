@@ -310,3 +310,125 @@ Notice that in the above example the TypeScript compiler infers the type union
 `Horse | Cat` for the `animals` array. Annotating `animals` with the type
 `Animal[]` makes sense here, because the compiler doesn't infer that only the
 API common to those two classes is used (via its abstract superclass).
+
+### Interfaces
+
+The shapes of objects that are based on a class can be described using
+_interfaces_. They are very similar to shape types, but declared using the
+`interface` keyword. Interfaces can both define properties and methods.
+
+A class uses the `implements` keyword to declare that it provides all the
+properties and methods an interface declares. Unlike inheritance, which only
+allows for one `extends` declaration, `implements` can list multiple interfaces.
+
+Multiple `interface` declarations within the same file are merged into one
+interface.
+
+The following example defines a hierarchy of classes and interfaces:
+
+```typescript
+interface Shape {
+  circumference(): number;
+  area(): number;
+}
+
+interface Named {
+  name: string;
+}
+
+interface Describable {
+  color?: string;
+  describe(): string;
+}
+
+abstract class Rectangular implements Shape, Named {
+  public name: string;
+
+  abstract circumference(): number;
+  abstract area(): number;
+}
+
+class Square extends Rectangular {
+  constructor(public side: number) {
+    super();
+  }
+
+  circumference(): number {
+    return 4 * this.side;
+  }
+
+  area(): number {
+    return this.side * this.side;
+  }
+}
+
+class Rectangle extends Square implements Describable {
+  constructor(
+    side: number,
+    public otherSide: number,
+    public color?: string,
+  ) {
+    super(side);
+    this.name = "Rectangle";
+  }
+
+  circumference(): number {
+    return 2 * this.side + 2 * this.otherSide;
+  }
+
+  area(): number {
+    return this.side * this.otherSide;
+  }
+
+  describe(): string {
+    return `${this.name} of ${this.side}x${this.otherSide}`;
+  }
+}
+
+let shapes: Shape[] = [
+  new Rectangle(3, 4),
+  new Rectangle(2, 3, "green"),
+  new Square(5),
+];
+
+shapes.forEach((s) => {
+  let description: string;
+  if ("describe" in s) {
+    description = (s as Describable).describe();
+  } else if ("name" in s && s.name) {
+    description = (s as Named).name;
+  } else {
+    description = "Unknown shape";
+  }
+  console.log(
+    `${description} with circumference of ${s.circumference()} and area of ${s.area()}`,
+  );
+});
+```
+
+- The `Shape` interface defines two methods: `circumference` and `area`, which
+  both return a `number`.
+- The `Named` interface defines a property: `name` of type string.
+- The `Describable` interface defines an optional property `color` and a method
+  `describe`; both of type `string`.
+- The abstract class `Rectangular` implements both `Shape` and `Named`
+  interface. It needs to implement the two methods of `Shape`, but only provides
+  abstract methods, which must then be implemented by a concrete class.
+- The `Square` class extends the abstract class `Rectangular` and therefore
+  needs to implement both `circumference` and `area`.
+- The `Rectangular` class extends `Square` and implements another interface:
+  `Describable`. It, therefore, has to implement three methods: `circumference`,
+  `area`, and `describe`.
+- The `shapes` array (type `Shape[]`) uses the most common denominator of the
+  three instances stored as its type.
+
+Notice that the `instanceof` operator is of no use when testing for interfaces,
+because interfaces only exist up to compile time, but not in the JavaScript code
+actually executed. Therefore, type checks for interfaces have to be implemented
+in a clumsier way.
+
+Output:
+
+    Rectangle of 3x4 with circumference of 14 and area of 12
+    Rectangle of 2x3 with circumference of 10 and area of 6
+    Unknown shape with circumference of 20 and area of 25
