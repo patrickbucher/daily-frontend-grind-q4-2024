@@ -449,4 +449,39 @@ property names and `number` property values:
 
 Notice the literal `propertyName` defined within square brackets.
 
-TODO: example doesn't work
+The following example defines a class `Dimensions` that allows for dynamic
+properties:
+
+```typescript
+class Product {
+  dimensions: Dimensions;
+
+  constructor(
+    public name: string,
+    public inStock: boolean,
+  ) {
+    this.dimensions = new Dimensions();
+  }
+
+  addDimension(name: string, value: number) {
+    this.dimensions[name] = value;
+  }
+}
+
+class Dimensions {
+  [propertyName: string]: number;
+}
+
+let monitor: Product = new Product("Monitor", true);
+monitor.addDimension("height", 30.5);
+monitor.addDimension("width", 55.3);
+monitor.addDimension("weight", 5.4);
+monitor.addDimension("price", 399.99);
+
+for (let property of Object.keys(monitor.dimensions)) {
+  console.log(`${property}:\t${monitor.dimensions[property]}`);
+}
+```
+
+To prevent access to undefined properties, activate the
+`noUncheckedIndexedAccess` compiler option.

@@ -1,3 +1,9 @@
+# Day 71 (2024-12-11)
+
+Yesterday, I was struggling with the _index signature_ feature, which tries to
+re-introduce to TypeScript what it took away from JavaScript: dynamic
+properties. I figured the issue out today.
+
 # Day 70 (2024-12-10)
 
 I summarized the part about interfaces and found a rather ugly solution for
