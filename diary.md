@@ -2,7 +2,14 @@
 
 Yesterday, I was struggling with the _index signature_ feature, which tries to
 re-introduce to TypeScript what it took away from JavaScript: dynamic
-properties. I figured the issue out today.
+properties. I figured the issue out today. That finishes chapter 11.
+
+There are now two chapters on generics, one chapter on decorators, and one
+chapter about working with JavaScript. If I have time during the holiday break,
+I'll probably dip into chapters 16 and 17 about stand-alone web applications.
+
+With 119 pages (up to and including chapter 15) and 20 days left in December, I
+need to work through six pages a day. Sounds possible.
 
 # Day 70 (2024-12-10)
 
