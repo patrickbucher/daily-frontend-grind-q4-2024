@@ -26,5 +26,3 @@ monitor.addDimension("price", 399.99);
 for (let property of Object.keys(monitor.dimensions)) {
   console.log(`${property}:\t${monitor.dimensions[property]}`);
 }
-
-console.log(monitor.dimensions.height);
