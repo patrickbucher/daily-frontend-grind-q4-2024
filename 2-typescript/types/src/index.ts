@@ -1,28 +1,17 @@
-class Product {
-  dimensions: Dimensions;
+import { Body, Rectangle, Square, Circle } from "./shapes.js";
 
-  constructor(
-    public name: string,
-    public inStock: boolean,
-  ) {
-    this.dimensions = new Dimensions();
-  }
+let rectangle: Rectangle = new Rectangle(4, 3);
+let square: Square = new Square(3);
+let circle: Circle = new Circle(5);
 
-  addDimension(name: string, value: number) {
-    this.dimensions[name] = value;
-  }
-}
+console.log(rectangle.circumference(), rectangle.area());
+console.log(square.circumference(), square.area());
+console.log(circle.circumference().toFixed(2), circle.area().toFixed(2));
 
-class Dimensions {
-  [propertyName: string]: number;
-}
+let cuboid: Body<Rectangle> = new Body(rectangle, 5);
+let cube: Body<Square> = new Body(square, 4);
+let cylinder: Body<Circle> = new Body(circle, 3);
 
-let monitor: Product = new Product("Monitor", true);
-monitor.addDimension("height", 30.5);
-monitor.addDimension("width", 55.3);
-monitor.addDimension("weight", 5.4);
-monitor.addDimension("price", 399.99);
-
-for (let property of Object.keys(monitor.dimensions)) {
-  console.log(`${property}:\t${monitor.dimensions[property]}`);
-}
+console.log(cuboid.volume());
+console.log(cube.volume());
+console.log(cylinder.volume().toFixed(2));
