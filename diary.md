@@ -1,3 +1,15 @@
+# Day 72 (2024-12-12)
+
+I started reading chapter 12 on generics. The first example is not convincing at
+all, because a common interface would have resolved the issue in a very elegant
+way. However, I only expect to learn the syntax from this book, not how those
+concepts are applied in practice.
+
+All of a sudden, an extreme tiredness overcame me. This constant learning
+without the intention of applying the knowledge to some practica problem is
+exhausting. And the book doesn't motivate me to use TypeScript in practice at
+all.
+
 # Day 71 (2024-12-11)
 
 Yesterday, I was struggling with the _index signature_ feature, which tries to
