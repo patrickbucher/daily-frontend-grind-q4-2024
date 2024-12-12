@@ -10,6 +10,11 @@ without the intention of applying the knowledge to some practica problem is
 exhausting. And the book doesn't motivate me to use TypeScript in practice at
 all.
 
+I figured out a geometry example, in which shapes are extended to bodies by
+providing an additional height. However, I don't know yet how I'll demonstrate
+_all_ the techniques shown in this chapter. I'm actually doing the author's
+work: finding useful examples.
+
 # Day 71 (2024-12-11)
 
 Yesterday, I was struggling with the _index signature_ feature, which tries to
