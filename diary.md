@@ -1,3 +1,10 @@
+# Day 73 (2024-12-13)
+
+I continued with the generics example. I seriously don't see the purpose of it,
+because using an interface instead of a generic parameter would work just fine
+in all those examples I can think of at the moment. And the same holds true for
+the author's examples.
+
 # Day 72 (2024-12-12)
 
 I started reading chapter 12 on generics. The first example is not convincing at
