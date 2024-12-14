@@ -1,3 +1,9 @@
+# Day 74 (2024-12-14)
+
+After a late start today, I came up with a simpler first generic example. I'd
+like to finish chapter 12 this weekend, even though I have a lot of other things
+to do.
+
 # Day 73 (2024-12-13)
 
 I continued with the generics example. I seriously don't see the purpose of it,
