@@ -1,8 +1,69 @@
 # Using generic types
 
-If values of different kinds of (potentially unrelated) types shall be processed
-in the same function or class, generic type parameters can be used to fill in
-the specific type at runtime.
+Generics allow the use of type parameters in place of specific types. The
+specific type is filled in upon usage, allowing existing code to work with types
+that do not exist yet.
+
+The `Item` class allows different types being used for its `id` property
+(`item.ts`):
+
+```typescript
+export class Item<T> {
+  constructor(
+    public id: T,
+    public name: string,
+  ) {}
+
+  describe(): string {
+    return `${this.id}: ${this.name}`;
+  }
+}
+```
+
+The generic type parameter is written within angle brackets, and its naming
+conventionally starts with `T`.
+
+Unlike the `name` property, which uses the specific type `string`, the `id`
+property can use any type `T`, which has to be filled in with a specific type
+when the class `Item` is being used:
+
+```typescript
+import { Item } from "./item.js";
+
+class Coordinates {
+  constructor(
+    public latitude: number,
+    public longitude: number,
+  ) {}
+
+  toString(): string {
+    return `${this.latitude};${this.longitude}`;
+  }
+}
+
+const dilbert: Item<number> = new Item<number>(317, "Dilbert");
+const stapler: Item<string> = new Item<string>("a3-v5-x7", "Stapler");
+const chorweiler: Item<Coordinates> = new Item<Coordinates>(
+  new Coordinates(51.028679, 6.89476),
+  "Chorweiler",
+);
+
+console.log(dilbert.describe());
+console.log(stapler.describe());
+console.log(chorweiler.describe());
+```
+
+Output:
+
+    317: Dilbert
+    a3-v5-x7: Stapler
+    51.028679;6.89476: Chorweiler
+
+The `Item` class not only supports `number`, `string`, or `Coordinates` as types
+for the `id` property, but any type that can be used with string interpolation,
+as used in its `describe` method (e.g. by providing a `toString` method).
+
+## Constraining generic types
 
 The following example demonstrates the use of generics using geometry shapes
 (`shapes.ts`):
@@ -76,7 +137,7 @@ Thanks to the type restriction on `T` (it must implement `Shape`), the `area`
 method can be used on the `base` object, without narrowing its type down to one
 specific type.
 
-Those geometric objects can be used as follows (`index.ts`):
+Those geometric objects can be used as follows:
 
 ```typescript
 import { Body, Circle, Rectangle, Square } from "./shapes.js";
