@@ -4,6 +4,11 @@ After a late start today, I came up with a simpler first generic example. I'd
 like to finish chapter 12 this weekend, even though I have a lot of other things
 to do.
 
+I wrote a better introductory example during the day and another example using
+type shapes in the evening. Unfortunately, I'm way behind in what I achieved
+compared to what I wanted to do. I had to catch up on sleep today, so tomorrow
+will be a better day, hopefully.
+
 # Day 73 (2024-12-13)
 
 I continued with the generics example. I seriously don't see the purpose of it,

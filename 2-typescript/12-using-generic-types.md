@@ -176,3 +176,53 @@ Output:
     cuboid volume: 60
     cube volume: 36
     cylinder volume: 235.62
+
+Generic types can also be restricted using a shape, so that only objects with
+certain properties or methods can be used. This is more flexible than
+restricting the type using a type union, which needs to be extended each time a
+new (compabible) type is additionally used.
+
+The following example restricts its type parameter `T` using a shape type:
+
+```typescript
+class NamedCollection<T extends { name: string }> {
+  private items: T[];
+
+  constructor() {
+    this.items = new Array();
+  }
+
+  add(item: T) {
+    this.items.push(item);
+  }
+
+  getNames(): string[] {
+    return this.items.map((i) => i.name);
+  }
+}
+
+type Named = { name: string };
+
+class Dog {
+  constructor(
+    public name: string,
+    public race: string,
+  ) {}
+}
+
+class Company {
+  constructor(
+    public name: string,
+    public revenue: number,
+  ) {}
+}
+
+const myStuff: NamedCollection<Named> = new NamedCollection<Named>();
+myStuff.add(new Dog("Doge", "Pitbull"));
+myStuff.add(new Company("ACME Inc.", 1_359_725.39));
+console.log(myStuff.getNames());
+```
+
+Output:
+
+    [ 'Doge', 'ACME Inc.' ]
