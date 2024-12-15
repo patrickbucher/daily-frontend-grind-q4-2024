@@ -226,3 +226,79 @@ console.log(myStuff.getNames());
 Output:
 
     [ 'Doge', 'ACME Inc.' ]
+
+## Multiple type parameters
+
+A class can make use of multiple type parameters, listed within angle brackets,
+separated by commas, e.g. `<T, U>`. The following class computes the volume
+based on an object that has an area, and on another one that has a height:
+
+```typescript
+type WithArea = { area(): number };
+type WithHeight = { height: number };
+
+class ShapeConverter<T extends WithArea, U extends WithHeight> {
+  constructor(
+    private withArea: T,
+    private withHeight: U,
+  ) {}
+
+  volume(): number {
+    return this.withArea.area() * this.withHeight.height;
+  }
+}
+
+const rect = {
+  a: 3,
+  b: 4,
+  area: function (): number {
+    return this.a * this.b;
+  },
+};
+const height = {
+  height: 5,
+};
+const conv = new ShapeConverter(rect, height);
+console.log(conv.volume());
+```
+
+Output:
+
+    60
+
+The second type parameter `U` could also be moved to the `volume` method, making
+it generic:
+
+```typescript
+type WithArea = { area(): number };
+type WithHeight = { height: number };
+
+class ShapeConverter<T extends WithArea> {
+  constructor(private withArea: T) {}
+
+  volume<U extends WithHeight>(withHeight: U): number {
+    return this.withArea.area() * withHeight.height;
+  }
+}
+
+const rect = {
+  a: 3,
+  b: 4,
+  area: function (): number {
+    return this.a * this.b;
+  },
+};
+const height = {
+  height: 5,
+};
+const conv = new ShapeConverter(rect);
+console.log(conv.volume(height));
+```
+
+Output:
+
+    60
+
+Notice that the type parameters haven't been stated explicitly, but have been
+inferred by the compiler. Check the declarations file to find out which types
+have been inferred.

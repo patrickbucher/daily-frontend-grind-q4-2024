@@ -1,36 +1,23 @@
-class NamedCollection<T extends { name: string }> {
-  private items: T[];
+type WithArea = { area(): number };
+type WithHeight = { height: number };
 
-  constructor() {
-    this.items = new Array();
-  }
+class ShapeConverter<T extends WithArea> {
+  constructor(private withArea: T) {}
 
-  add(item: T) {
-    this.items.push(item);
-  }
-
-  getNames(): string[] {
-    return this.items.map((i) => i.name);
+  volume<U extends WithHeight>(withHeight: U): number {
+    return this.withArea.area() * withHeight.height;
   }
 }
 
-type Named = { name: string };
-
-class Dog {
-  constructor(
-    public name: string,
-    public race: string,
-  ) {}
-}
-
-class Company {
-  constructor(
-    public name: string,
-    public revenue: number,
-  ) {}
-}
-
-const myStuff: NamedCollection<Named> = new NamedCollection<Named>();
-myStuff.add(new Dog("Doge", "Pitbull"));
-myStuff.add(new Company("ACME Inc.", 1_359_725.39));
-console.log(myStuff.getNames());
+const rect = {
+  a: 3,
+  b: 4,
+  area: function (): number {
+    return this.a * this.b;
+  },
+};
+const height = {
+  height: 5,
+};
+const conv = new ShapeConverter(rect);
+console.log(conv.volume(height));

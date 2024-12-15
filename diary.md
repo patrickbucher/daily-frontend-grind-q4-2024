@@ -1,3 +1,9 @@
+# Day 75 (2024-12-15)
+
+I continued summarizing chapter 12. I have a hard time coming up with good
+examples, and my progress is really slowing down, as my motivation fades due to
+a lack of practical and useful applications.
+
 # Day 74 (2024-12-14)
 
 After a late start today, I came up with a simpler first generic example. I'd
