@@ -1,4 +1,4 @@
-## JavaScript primer, part 2
+# JavaScript primer, part 2
 
 A JavaScript object inherits its properties and methods from another object
 known as its _prototype_. The links of prototypes form an inheritance chain. By
@@ -118,7 +118,7 @@ Output:
     bob: Bob is 47 years old.
     product: [object Object]
 
-### Constructor Functions and Prototype Chaining
+## Constructor Functions and Prototype Chaining
 
 Objects can not only be created using literal syntax, but also with _constructor
 functions_, which can apply additional logic upon the object's creation.
@@ -222,7 +222,7 @@ Person.output = function (...people) {
 Person.output(alice, bob);
 ```
 
-### Classes
+## Classes
 
 Recent versions of JavaScript support classes, which are implemented using
 prototypes underneath. Keywords such `class`, `extends`, `constructor`, `super`,
@@ -278,7 +278,7 @@ Output:
 Notice that for `bob` the `toString` method of `Employee` is called, even though
 the static `output` method is defined on `Person`.
 
-### Iterators and Generators
+## Iterators and Generators
 
 An iterator provides a function called `next`, which returns a sequence of
 objects containing a `value` and a `done` property, the latter indicating
@@ -402,7 +402,7 @@ Output:
     40
     50
 
-### Collections
+## Collections
 
 An object's properties are key/value pairs. The keys and values of an object
 called `obj` can be obtained using the methods `Object.keys(obj)` and
@@ -500,7 +500,7 @@ Output:
     5
     3
 
-### Modules
+## Modules
 
 Modules allow it to break an application into manageable junks. Most JavaScript
 projects use either one of the following module systems:

@@ -1,4 +1,4 @@
-## Testing and debugging TypeScript
+# Testing and debugging TypeScript
 
 Because the written TypeScript code and the emitted JavaScript code do not
 correlate on a line-by-line basis, _source maps_ have to be generated in order
@@ -86,7 +86,7 @@ the rule, which can be disabled by adding in to the `rules` section of the
 See the [ESLint documentation](https://eslint.org/docs/latest/use/configure/)
 for further configuration options.
 
-### Unit Testing
+## Unit Testing
 
 When writing TypeScript, both the test and the production code are compiled to
 JavaScript. It's the duty of the TypeScript compiler to verify the use of

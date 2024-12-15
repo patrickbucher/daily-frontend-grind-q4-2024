@@ -1,4 +1,4 @@
-## JavaScript primer, part 1
+# JavaScript primer, part 1
 
 To understand the benefits provided by TypeScript, one has to understand what
 JavaScript issues it addresses.
@@ -64,7 +64,7 @@ Notice the last example: The type of `null` is `object` instead of `null`. This
 behaviour is inconsistent, but cannot be changed because a lot of code depends
 on this (mis)behaviour.
 
-### Type Coercion
+## Type Coercion
 
 An operator being applied to two values of different types needs to coerce one
 value to the type of the other value. Different operators apply different rules
@@ -140,7 +140,7 @@ which is a rather recent addition to JavaScript, only converts `null` and
     > actualInterestRate
     0
 
-### Functions
+## Functions
 
 Function parameters are untyped, and argument values will be coerced as needed
 based on the operators being applied to them. Parameters can be given default
@@ -170,7 +170,7 @@ function mean(...numbers) {
 }
 ```
 
-### Arrays
+## Arrays
 
 JavaScript arrays are dynamically sized and can take up elements of different
 types. They support various operations:
@@ -300,7 +300,7 @@ Output:
     third: think
     lastTwo: think,morning
 
-### Objects
+## Objects
 
 JavaScript objects are collections of properties, which have a name and a value.
 Objects can be expressed using a literal syntax:
@@ -393,7 +393,7 @@ Output:
 - The property `worth` is a computed property that only has a `get` method and
   therefore cannot be overwritten.
 
-#### `this`
+### `this`
 
 `this` refers to different objects depending on how a function or method using
 it is called. Consider a function that outputs a label and a value:

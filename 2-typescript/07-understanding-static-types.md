@@ -1,4 +1,4 @@
-## Understanding static types
+# Understanding static types
 
 The following code examples can be run in a project called `types`, similar to
 the `tools` project from the above section.

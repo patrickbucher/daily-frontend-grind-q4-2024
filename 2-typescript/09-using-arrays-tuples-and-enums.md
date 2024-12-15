@@ -1,4 +1,4 @@
-## Using arrays, tuples, and enums
+# Using arrays, tuples, and enums
 
 TypeScript allows to restrict the types of the elements an array can cake up
 using type annotations:
@@ -48,7 +48,7 @@ Declarations:
 declare const values: any[];
 ```
 
-### Tuples
+## Tuples
 
 Tuples are fixed-length arrays, in which every element can have a different
 type. Under the hood, tuples are implemented as regular JavaScript arrays:
@@ -92,7 +92,7 @@ declare let wally: [string, number, string?, ...string[]];
 declare let engineers: [string, number, string?, ...string[]][];
 ```
 
-### Enums
+## Enums
 
 Enums are groups of fixed values that can be accessed by a name. An enum can be
 declared using the `enum` keyword:
@@ -261,7 +261,7 @@ Output:
 
     error TS2476: A const enum member can only be accessed using a string literal.
 
-### Literal Value Types
+## Literal Value Types
 
 A literal value type defines a set of values that can be used in a certain
 place, e.g. to be assigned to a variable. Syntactically similar to type unions,
@@ -344,7 +344,7 @@ function greet(
 }
 ```
 
-### Type Aliases
+## Type Aliases
 
 Type definitions are often used at multiple places, making it tedious to use
 and especially change them:

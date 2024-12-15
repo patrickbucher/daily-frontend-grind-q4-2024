@@ -1,4 +1,4 @@
-## Understanding TypeScript
+# Understanding TypeScript
 
 TypeScript is a superset of JavaScript. It adds static typing to produce safe
 and predictable code. It also provides convenience features such as a concise

@@ -1,4 +1,4 @@
-## Your first TypeScript application
+# Your first TypeScript application
 
 The TypeScript compiler `tsc` can be installed using the Node Package Manager
 (NPM), which is distributed with Node.js. Install it from
@@ -69,7 +69,7 @@ This produces a file `dist/index.js` that can be run by Node.js:
     $ node dist/index.js
     Hello, World!
 
-### Demo Application: Drivers in a Race
+## Demo Application: Drivers in a Race
 
 As an example application, multiple drivers entering a race shall be modeled in
 TypeScript. The driver is represented as a class called `Driver`, which is
@@ -350,7 +350,7 @@ Output:
     { total: 4, active: 3 } before removing retired
     { total: 3, active: 3 } after removing retired
 
-### Using a third-party package
+## Using a third-party package
 
 TypeScript allows using any JavaScript package with additional static type
 support. In order to make use of ECMAScript modules, which is the common
@@ -544,7 +544,7 @@ function displayDrivers(): void {
 }
 ```
 
-### Adding Persistence
+## Adding Persistence
 
 The application shall be extended with persistent storage of the data. For this
 purpose the Lowdb package shall be used, which stores data in JSON files. Even
