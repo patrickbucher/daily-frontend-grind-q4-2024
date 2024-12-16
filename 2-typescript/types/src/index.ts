@@ -1,23 +1,27 @@
-type WithArea = { area(): number };
-type WithHeight = { height: number };
+class Item<T extends { identify(): string }> {
+  private id: string;
 
-class ShapeConverter<T extends WithArea> {
-  constructor(private withArea: T) {}
-
-  volume<U extends WithHeight>(withHeight: U): number {
-    return this.withArea.area() * withHeight.height;
+  constructor(
+    private name: string,
+    thing: T,
+  ) {
+    this.id = thing.identify();
   }
 }
 
-const rect = {
-  a: 3,
-  b: 4,
-  area: function (): number {
-    return this.a * this.b;
-  },
-};
-const height = {
-  height: 5,
-};
-const conv = new ShapeConverter(rect);
-console.log(conv.volume(height));
+class StockedItem<
+  T extends { identify(): string; count(): number },
+> extends Item<T> {
+  private stock: number;
+
+  constructor(name: string, thing: T) {
+    super(name, thing);
+    this.stock = thing.count();
+  }
+}
+
+const orange = new Item("Orange", { identify: () => "ORNG" });
+const oranges = new StockedItem("Oranges", {
+  identify: () => "ORNG",
+  count: () => 37,
+});

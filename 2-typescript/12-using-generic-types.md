@@ -302,3 +302,38 @@ Output:
 Notice that the type parameters haven't been stated explicitly, but have been
 inferred by the compiler. Check the declarations file to find out which types
 have been inferred.
+
+## Inheritance
+
+When extending a class that expects a type parameter, the subclass has to
+provide a compatible type to its superclass:
+
+```typescript
+class Item<T extends { identify(): string }> {
+  private id: string;
+
+  constructor(
+    private name: string,
+    thing: T,
+  ) {
+    this.id = thing.identify();
+  }
+}
+
+class StockedItem<
+  T extends { identify(): string; count(): number },
+> extends Item<T> {
+  private stock: number;
+
+  constructor(name: string, thing: T) {
+    super(name, thing);
+    this.stock = thing.count();
+  }
+}
+
+const orange = new Item("Orange", { identify: () => "ORNG" });
+const oranges = new StockedItem("Oranges", {
+  identify: () => "ORNG",
+  count: () => 37,
+});
+```

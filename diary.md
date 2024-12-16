@@ -1,3 +1,7 @@
+# Day 76 (2024-12-16)
+
+Very little time this morning; I a generics example involving inheritance.
+
 # Day 75 (2024-12-15)
 
 I continued summarizing chapter 12. I have a hard time coming up with good
