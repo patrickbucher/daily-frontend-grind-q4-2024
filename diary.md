@@ -1,3 +1,14 @@
+# Day 77 (2024-12-17)
+
+Chapter 12 annoys me with all those cliched object-oriented examples. OOP sucks
+the life out of programming and programmers. I just want to run away from it.
+Maybe my sudden tiredness when facing some programming tasks is related to the
+OOP allergy I developed during the last couple of years.
+
+I have still 102 pages left in the book, but zero motivation to work through the
+~8 pages per day for the rest of December. There are two things in programming
+that I should totally avoid in the future: OOP and web frameworks.
+
 # Day 76 (2024-12-16)
 
 Very little time this morning; I a generics example involving inheritance.
