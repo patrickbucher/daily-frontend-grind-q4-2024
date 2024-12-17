@@ -1,27 +1,11 @@
-class Item<T extends { identify(): string }> {
-  private id: string;
+class Collection<T> {
+  private items: T[] = [];
 
-  constructor(
-    private name: string,
-    thing: T,
-  ) {
-    this.id = thing.identify();
+  add(item: T) {
+    this.items.push(item);
+  }
+
+  filter<V extends T>(): V[] {
+    return this.items.filter((i) => i instanceof V) as V[];
   }
 }
-
-class StockedItem<
-  T extends { identify(): string; count(): number },
-> extends Item<T> {
-  private stock: number;
-
-  constructor(name: string, thing: T) {
-    super(name, thing);
-    this.stock = thing.count();
-  }
-}
-
-const orange = new Item("Orange", { identify: () => "ORNG" });
-const oranges = new StockedItem("Oranges", {
-  identify: () => "ORNG",
-  count: () => 37,
-});

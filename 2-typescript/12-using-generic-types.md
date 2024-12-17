@@ -351,6 +351,22 @@ during run time. A predicate function can be used instead.
 
 The following code won't compile:
 
-TODO: example
+```typescript
+class Collection<T> {
+  private items: T[] = [];
+
+  add(item: T) {
+    this.items.push(item);
+  }
+
+  filter<V extends T>(): V[] {
+    return this.items.filter((i) => i instanceof V) as V[];
+  }
+}
+```
+
+Error:
+
+    error TS2693: 'V' only refers to a type, but is being used as a value here.
 
 TODO: fixed example using predicate functon
