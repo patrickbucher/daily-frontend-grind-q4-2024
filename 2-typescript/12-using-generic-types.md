@@ -337,3 +337,20 @@ const oranges = new StockedItem("Oranges", {
   count: () => 37,
 });
 ```
+
+A subclass can also fix the generic type of its superclass by replacing the type
+parameter with a specific type. A type parameter can also be further restricted
+in a subclass using a type union, as long as the type parameter in the subclass
+is more restrictive than the one of its superclass. (Values of the type
+parameter of the subclass must be assignable to the type parameter of the
+superclass.)
+
+The `instanceof` operator cannot be used for checking generic type arguments,
+because the type information is only available during compilation time, but not
+during run time. A predicate function can be used instead.
+
+The following code won't compile:
+
+TODO: example
+
+TODO: fixed example using predicate functon
