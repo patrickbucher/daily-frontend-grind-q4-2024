@@ -363,10 +363,74 @@ class Collection<T> {
     return this.items.filter((i) => i instanceof V) as V[];
   }
 }
+
+class Car {
+  constructor(
+    public brand: string,
+    public model: string,
+  ) {}
+}
+
+class Drink {
+  constructor(
+    public brand: string,
+    public name: string,
+  ) {}
+}
+
+let stuff = new Collection<Car | Drink>();
+stuff.add(new Car("Porsche", "911"));
+stuff.add(new Drink("Jack Daniels", "Whiskey"));
+let drinks = stuff.filter<Drink>();
+console.log(drinks);
 ```
 
 Error:
 
     error TS2693: 'V' only refers to a type, but is being used as a value here.
 
-TODO: fixed example using predicate functon
+However, the problem can be fixed using a predicate function, which asserts the
+type at compilation time:
+
+```typescript
+class Collection<T> {
+  private items: T[] = [];
+
+  add(item: T) {
+    this.items.push(item);
+  }
+
+  filter<V extends T>(predicate: (target: T) => target is V): V[] {
+    return this.items.filter((i) => predicate(i)) as V[];
+  }
+}
+
+class Car {
+  constructor(
+    public brand: string,
+    public model: string,
+  ) {}
+}
+
+class Drink {
+  constructor(
+    public brand: string,
+    public name: string,
+  ) {}
+}
+
+function isDrink(target: any): target is Drink {
+  return target instanceof Drink;
+}
+
+let stuff = new Collection<Car | Drink>();
+stuff.add(new Car("Porsche", "911"));
+stuff.add(new Drink("Jack Daniels", "Whiskey"));
+let drinks = stuff.filter<Drink>(isDrink);
+console.log(drinks);
+```
+
+Static methods can accept their own type arguments, just as instance methods.
+
+Generics can also be used for interfaces, which can further restrict generic
+types as subclasses can do.

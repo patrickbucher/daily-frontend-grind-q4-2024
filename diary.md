@@ -1,3 +1,13 @@
+# Day 78 (2024-12-18)
+
+I finally managed to summarize chapter 12. A lot of its verbiage could be
+summarized to: _this also applies to feature X_. Why demonstrating generics for
+interfaces, when they behave exactly the same as for superclasses? The
+machenisms are all the same. This could really have been a 200 page book.
+
+Hopefully, chapter 13 will bring some further insight. 90 pages and 13 days
+left: i.e. 7 pages per day. Let's get it done.
+
 # Day 77 (2024-12-17)
 
 Chapter 12 annoys me with all those cliched object-oriented examples. OOP sucks
