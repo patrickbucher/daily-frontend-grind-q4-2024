@@ -1,3 +1,14 @@
+# Day 79 (2024-12-19)
+
+I'm quickly reading through chapter 13 to get an idea what "advanced generics"
+is all about, and I have absolutely no clue what purpose most of the techniques
+described serve. This book is absolutely frustrating. I could just have read the
+official TypeScript documentation, which at least is concise.
+
+I'm going to cut this short: chapter 15 is out. I'll be working the book through
+to and including chapter 14, i.e. up to page 378. 66 pages in 13 days, i.e. a
+bit more than five pages per day until the end of the year. This is enough.
+
 # Day 78 (2024-12-18)
 
 I finally managed to summarize chapter 12. A lot of its verbiage could be
