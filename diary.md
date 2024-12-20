@@ -1,3 +1,7 @@
+# Day 80 (2024-12-20)
+
+I started summarizing chapter 13 with a small example of generic collections.
+
 # Day 79 (2024-12-19)
 
 I'm quickly reading through chapter 13 to get an idea what "advanced generics"
