@@ -1,16 +1,27 @@
-let numbers: number[] = [1, 2, 3, 4, 1, 2, 3, 1, 2, 1];
-let uniqueNumbers: Set<number> = new Set<number>();
-let numbersCount: Map<number, number> = new Map<number, number>();
+class Menu implements Iterable<number> {
+  private menu: Map<string, number>;
 
-for (let n of numbers) {
-  uniqueNumbers.add(n);
-  if (numbersCount.has(n)) {
-    let c: number = numbersCount.get(n) as number;
-    numbersCount.set(n, c + 1);
-  } else {
-    numbersCount.set(n, 1);
+  constructor() {
+    this.menu = new Map<string, number>();
+  }
+
+  add(name: string, price: number) {
+    this.menu.set(name, price);
+  }
+
+  [Symbol.iterator](): Iterator<number> {
+    return this.menu.values();
   }
 }
 
-console.log(uniqueNumbers);
-console.log(numbersCount);
+let menu: Menu = new Menu();
+menu.add("Beer", 5.0);
+menu.add("Coffee", 4.2);
+menu.add("Water", 2.5);
+
+let total: number = 0;
+for (let price of menu) {
+  total += price;
+}
+
+console.log(`total price: ${total}`);

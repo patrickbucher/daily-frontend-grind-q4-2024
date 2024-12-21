@@ -1,3 +1,12 @@
+# Day 81 (2024-12-21)
+
+I continued summarizing chapter 13 with some examples on iterators. Figuring out
+own examples is actually fun. However, this needs some trial and error, which is
+better done at the computer then using pen & paper. This is _thinkering_, not
+thinking. But now that I'm aware of this, I don't try to ascribe too much into
+the whole exercise, so let's just thinker with the language until the end of the
+year for 30-45 minutes a day.
+
 # Day 80 (2024-12-20)
 
 I started summarizing chapter 13 with a small example of generic collections.
