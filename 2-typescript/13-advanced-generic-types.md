@@ -134,4 +134,78 @@ for (let price of menu) {
 console.log(`total price: ${total}`);
 ```
 
-TODO: index types (p. 321 ff.)
+## Index types
+
+Given a type `T`, the _index type query operator_ `keyof` returns a union of the
+type's property names, which can be used as a type. This allows to constrain the
+dynamic access to properties:
+
+```typescript
+class Accessor<T> {
+  constructor(private object: T) {}
+
+  get(property: keyof T): any {
+    return this.object[property];
+  }
+
+  set(property: keyof T, value: any) {
+    this.object[property] = value;
+  }
+}
+
+class Person {
+  constructor(
+    public name: string,
+    public age: number,
+  ) {}
+}
+
+let dilbert: Person = new Person("Dilbert", 42);
+let accessor: Accessor<Person> = new Accessor<Person>(dilbert);
+accessor.set("age", 43);
+console.log(`${accessor.get("name")} is ${accessor.get("age")} years old.`);
+```
+
+Output:
+
+    Dilbert is 43 years old.
+
+Notice that the following operation fails:
+
+```typescript
+accessor.set("dead", true);
+```
+
+    error TS2345: Argument of type '"dead"' is not assignable to parameter of type 'keyof Person'.
+
+The compiler detects that there is no such property `dead` on the type `Person`
+and refuses to compile the code.
+
+The indexed access operator can be used together with the `type` keyword:
+
+```typescript
+class Person {
+  constructor(
+    public name: string,
+    public age: number,
+  ) {}
+}
+
+let dilbert: Person = new Person("Dilbert", 42);
+
+type allTypes = Person[keyof Person];
+
+function get(obj: Person, prop: keyof Person): allTypes {
+  return obj[prop];
+}
+
+console.log(get(dilbert, "name"), get(dilbert, "age"));
+```
+
+Output:
+
+    Dilbert 42
+
+A type defined using the indexed access operator is known as a _lookup type_.
+Such types are most useful in conjunction with generic types, whose properties
+cannot be known beforehand.

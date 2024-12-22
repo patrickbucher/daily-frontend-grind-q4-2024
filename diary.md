@@ -1,3 +1,10 @@
+# Day 82 (2024-12-22)
+
+I summarized section 13.4 about index types, which seem to be quite useful when
+used in the context of generics. 52 pages to do in 9 days, i.e. roughly six
+pages per day. I have to speed up a bit. Maybe I can work on type mappings later
+today, but first I'd like to do the other stuff on my daily TODO list.
+
 # Day 81 (2024-12-21)
 
 I continued summarizing chapter 13 with some examples on iterators. Figuring out
