@@ -209,3 +209,93 @@ Output:
 A type defined using the indexed access operator is known as a _lookup type_.
 Such types are most useful in conjunction with generic types, whose properties
 cannot be known beforehand.
+
+## Type Mappings
+
+Index types can be used to map types, i.e. to programmatically create new types
+of existing types, thereby retaining or changing the original type's properties.
+
+The following examples maps an existing type `Product` using a generic type
+mapping:
+
+```typescript
+class Product {
+  constructor(
+    public id: number,
+    public name: string,
+    public stock: number,
+  ) {}
+}
+
+type Mapped<T> = {
+  [P in keyof T]: T[P];
+};
+
+let p: Mapped<Product> = { id: 3, name: "Beer", stock: 17 };
+```
+
+This feature becomes useful when it is used to change properties to change their
+access mode (optional/required) or readonly mode:
+
+- suffix `?`: make optional
+- suffix `-?`: make required
+- prefix `readonly`: make readonly
+- prefix `-readonly`: make read-write
+
+Type mappings can be chained, as the following example shows:
+
+```typescript
+class Product {
+  constructor(
+    public id: number,
+    public name: string,
+    public stock: number,
+  ) {}
+}
+
+type Mapped<T> = {
+  [P in keyof T]: T[P];
+};
+
+type MappedOptional<T> = {
+  [P in keyof T]?: T[P];
+};
+
+type MappedRequired<T> = {
+  [P in keyof T]-?: T[P];
+};
+
+type MappedReadonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type MappedReadWrite<T> = {
+  -readonly [P in keyof T]: T[P];
+};
+
+type MappedProduct = Mapped<Product>;
+type OptionalProduct = MappedOptional<MappedProduct>;
+type RequiredProduct = MappedRequired<OptionalProduct>;
+type ReadonlyProduct = MappedReadonly<RequiredProduct>;
+type ReadWriteProduct = MappedReadWrite<ReadonlyProduct>;
+
+let p: ReadWriteProduct = { id: 3, name: "Beer", stock: 17 };
+p.name = `Lager ${p.name}`;
+p.stock--;
+console.log(p);
+```
+
+TypeScript provides some mapped types:
+
+- [`Partial<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype):
+  makes properties optional
+- [`Required<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#requiredtype):
+  makes properties required
+- [`Readonly<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype):
+  makes properties readonly
+- [`Pick<T, K>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys):
+  selects specific properties
+- [`Omit<T, keys>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys):
+  omits specific properties
+- [`Record<T, K>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type):
+  creates a type without transformations

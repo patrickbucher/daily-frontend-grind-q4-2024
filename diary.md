@@ -5,6 +5,9 @@ used in the context of generics. 52 pages to do in 9 days, i.e. roughly six
 pages per day. I have to speed up a bit. Maybe I can work on type mappings later
 today, but first I'd like to do the other stuff on my daily TODO list.
 
+Later on, I also summarized section 13.5. This leaves me with 45 pages in 9
+days, i.e. 5 pages per day.
+
 # Day 81 (2024-12-21)
 
 I continued summarizing chapter 13 with some examples on iterators. Figuring out
