@@ -1,4 +1,4 @@
-# Advanced generic types
+# Advanced Generic Types
 
 JavaScript's collections can be used with generic type parametes, e.g. `Map<K,
 V>` with type `K` for keys and type `V` for values, and `Set<T>` with type `T`
@@ -134,7 +134,7 @@ for (let price of menu) {
 console.log(`total price: ${total}`);
 ```
 
-## Index types
+## Index Types
 
 Given a type `T`, the _index type query operator_ `keyof` returns a union of the
 type's property names, which can be used as a type. This allows to constrain the
@@ -299,3 +299,62 @@ TypeScript provides some mapped types:
   omits specific properties
 - [`Record<T, K>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type):
   creates a type without transformations
+
+## Conditional Types
+
+A _conditional type_ is a placeholder for a _result type_ to be chosen as a
+generic type argument is used:
+
+```typescript
+type parsedType<T extends boolean> = T extends true ? number : string;
+
+let parsed: parsedType<true> = 123;
+let unparsed: parsedType<false> = "123";
+
+let mismatch: parsedType<true> = "123";
+```
+
+The type `parsedType` can be used with either `true` or `false`. In the first
+case, the type becomes `number`, in the second case, the type becomes `string`.
+The first two variables (`parsed`, `unparsed`) are correct assignments. The
+third variable (`mismatch`) causes an error:
+
+    error TS2322: Type 'string' is not assignable to type 'number'.
+
+Using nested conditional types increases the risk of missing some possible
+combinations of valid types/values, which makes the code harder to understand,
+and creates holes in the type system.
+
+Conditional types can be nested:
+
+```typescript
+type state = "missing" | "available" | "raw" | "parsed";
+type inputState<T extends state> = T extends "available"
+  ? T extends "raw"
+    ? string
+    : number
+  : Object;
+
+let missing: inputState<"missing"> = {};
+let unparsed: inputState<"raw"> = "123";
+let parsed: inputState<"parsed"> = 123;
+```
+
+However, nested type expressions do not improve readability.
+
+TypeScript defines some conditional types ready to be used:
+
+- [`Exclude<T, U>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#excludeuniontype-excludedmembers):
+  exclude the types that can be assigned to `U` from `T`
+- [`Extract<T, U>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#extracttype-union):
+  select the types that can be assigned to `U` from `T`
+- [`NonNullable<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#nonnullabletype):
+  excludes `null` and `undefined` from `T`
+- [`Parameters<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html?#parameterstype):
+  select types of function parameters
+- [`ReturnType<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html?#returntypetype):
+  select return type of a function
+- [`ConstructorParameter<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html?#constructorparameterstype):
+  select types of constructor aprameters
+- [`InstanceType<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html?#instancetypetype):
+  select type of a constructor function

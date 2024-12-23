@@ -1,3 +1,11 @@
+# Day 83 (2024-12-23)
+
+I summarized the rest of chapter 13, but didn't bother too long with conditional
+types. TypeScript is supposed to add clarity to the code, so it's enough for me
+to know that the feature exists, but I probably won't use them for the sake of
+clarity. On to chapter 14: 33 pages in eight days, i.e. a bit more than four
+pages a day; feasible.
+
 # Day 82 (2024-12-22)
 
 I summarized section 13.4 about index types, which seem to be quite useful when
