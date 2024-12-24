@@ -1,3 +1,8 @@
+# Day 84 (2024-12-24)
+
+I started working through the chapter on decorators. The feature looks quite
+useful.
+
 # Day 83 (2024-12-23)
 
 I summarized the rest of chapter 13, but didn't bother too long with conditional
