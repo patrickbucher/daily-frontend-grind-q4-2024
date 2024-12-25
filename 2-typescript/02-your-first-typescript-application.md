@@ -1,4 +1,4 @@
-# Your first TypeScript application
+# Your First TypeScript Application
 
 The TypeScript compiler `tsc` can be installed using the Node Package Manager
 (NPM), which is distributed with Node.js. Install it from
@@ -350,7 +350,7 @@ Output:
     { total: 4, active: 3 } before removing retired
     { total: 3, active: 3 } after removing retired
 
-## Using a third-party package
+## Using a Third-Party Package
 
 TypeScript allows using any JavaScript package with additional static type
 support. In order to make use of ECMAScript modules, which is the common

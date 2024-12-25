@@ -1,4 +1,4 @@
-# Using arrays, tuples, and enums
+# Using Arrays, Tuples, and Enums
 
 TypeScript allows to restrict the types of the elements an array can cake up
 using type annotations:

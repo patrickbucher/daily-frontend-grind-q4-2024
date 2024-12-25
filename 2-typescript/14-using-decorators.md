@@ -50,3 +50,15 @@ The `ClassMethodDecoratorContext` defines various members:
 The `performance` API is used for timing  purposes. Notice that the method is
 replaced by a function that performs the original task (i.e. calls the original
 method in its context) plus some additional task (measuring its timing).
+
+For other kinds of decorators, other context types are used:
+
+- Class: `ClassDecoratorContext`
+- Methods: `ClassMethodDecoratorContext`
+- Fields: `ClassFieldDecoratorContext`
+- Accessors: `ClassGetterDecoratorContext` and `ClassSetterDecoratorContext`
+- Auto-accessors: `ClassAccessorDecoratorContext`
+
+See the [documentation on
+decorators](https://www.typescriptlang.org/docs/handbook/decorators.html) for
+more information.

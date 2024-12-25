@@ -1,4 +1,4 @@
-# Testing and debugging TypeScript
+# Testing and Debugging TypeScript
 
 Because the written TypeScript code and the emitted JavaScript code do not
 correlate on a line-by-line basis, _source maps_ have to be generated in order

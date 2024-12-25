@@ -1,4 +1,4 @@
-# JavaScript primer, part 1
+# JavaScript Primer, Part 1
 
 To understand the benefits provided by TypeScript, one has to understand what
 JavaScript issues it addresses.

@@ -1,4 +1,4 @@
-# JavaScript primer, part 2
+# JavaScript Primer, Part 2
 
 A JavaScript object inherits its properties and methods from another object
 known as its _prototype_. The links of prototypes form an inheritance chain. By

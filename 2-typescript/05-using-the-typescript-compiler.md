@@ -1,4 +1,4 @@
-# Using the TypeScript compiler
+# Using the TypeScript Compiler
 
 To demonstrate the usage of the TypeScript compiler, a new project called
 `tools` shall be created:

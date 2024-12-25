@@ -1,4 +1,4 @@
-# Using generic types
+# Using Generic Types
 
 Generics allow the use of type parameters in place of specific types. The
 specific type is filled in upon usage, allowing existing code to work with types
@@ -63,7 +63,7 @@ The `Item` class not only supports `number`, `string`, or `Coordinates` as types
 for the `id` property, but any type that can be used with string interpolation,
 as used in its `describe` method (e.g. by providing a `toString` method).
 
-## Constraining generic types
+## Constraining Generic Types
 
 The following example demonstrates the use of generics using geometry shapes
 (`shapes.ts`):
@@ -227,7 +227,7 @@ Output:
 
     [ 'Doge', 'ACME Inc.' ]
 
-## Multiple type parameters
+## Multiple Type Parameters
 
 A class can make use of multiple type parameters, listed within angle brackets,
 separated by commas, e.g. `<T, U>`. The following class computes the volume

@@ -1,4 +1,4 @@
-# Using functions
+# Using Functions
 
 Unlike many other languages, JavaScript does _not_ support function overloading.
 In JavaScript, the last function defined with a name will be called. TypeScript,

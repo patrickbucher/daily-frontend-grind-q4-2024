@@ -1,4 +1,4 @@
-# Working with classes and interfaces
+# Working with Classes and Interfaces
 
 In JavaScript, constructor functions can be used to create objects consistently.
 Unfortunately, constructor functions are treated in TypeScript like any other

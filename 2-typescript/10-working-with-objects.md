@@ -1,4 +1,4 @@
-# Working with objects
+# Working with Objects
 
 The object's _shape_ is the combination of its property names and types. With
 the `declarations` compiler option activated, the inferred shapes of the
