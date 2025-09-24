@@ -1,6 +1,6 @@
 # Day 85 (2024-12-25)
 
-This is it, I just threw the book away in the middle of chatper 14. Spending
+This is it, I just threw the book away in the middle of chapter 14. Spending
 time with this book absolutely annoys me. In fact, I no longer want to program,
 especially not in TypeScript or JavaScript. This just sucked the life out of me.
 Now I absolutely have to do anything else before I can start programming again
